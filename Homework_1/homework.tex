@@ -98,7 +98,7 @@ $θ_1 \neq 1$, επομένως
 
 \subsection*{2. Show that a set is \textit{convex} if and only if its intersection with any line is \textit{convex}.}
 
-$\bullet$ Αν έχουμε ένα \textit{convex} σύνολο, τότε η τομή του \textit{convex} σύνολο με μία τυχαιά ευθεία είναι \textit{convex}. \\
+$\bullet$ Αν έχουμε ένα \textit{convex} σύνολο, τότε η τομή του \textit{convex} συνόλου με μία τυχαιά ευθεία είναι \textit{convex}. \\
 
 Αρχικά, να επισημανθεί ότι μία ευθεία είναι \textit{convex} σύνολο,
 καθώς αν πάρουμε δύο οποιαδήποτε σημεία που ανήκουν στην ευθεία,
@@ -290,7 +290,7 @@ the intersection of all conic sets, or \textit{affine} sets, or subspaces that c
 \end{align*}
 
 $\bullet$ Αρχικά θα αποδείξουμε ότι η τομή όλων των \textit{convex} υπερσυνόλων του $S$,
-είναι υπερσύνολο του \textit{convex hull} του.
+είναι υπερσύνολο του \textit{convex hull} του. \\
 
 Έστω \textit{convex} σύνολο $C$, τέτοιο ώστε $C \supseteq S$.\\
 
@@ -298,7 +298,7 @@ $\bullet$ Αρχικά θα αποδείξουμε ότι η τομή όλων �
 
 \begin{align*}
     \sum_{i = 1}^{n} λ_i * c_i \in C \text{ όπου }
-    c_i \in S, \margin
+    c_i \in C, \margin
     n \in \N, \margin
     λ_i \geq 0 \margin \forall i, \margin
     \sum_{i = 1}^{n} λ_i = 1
@@ -318,13 +318,13 @@ $\bullet$ Στη συνέχεια θα δείξουμε ότι το \textit{conv
 
 Είναι προφανές πως $conv(S) \supseteq S$. Αρκεί να δείξουμε ότι το σύνολο $conv(S)$
 είναι \textit{convex}, καθώς σε αυτή την περίπτωση θα ανήκει στο σύνολο \textit{convex} υπερσυνόλων του
-$S$ και ως εκ τούτου θα είναι υπερσύνολο και της τομής τους.\\
+$S$ και ως εκ τούτου θα αποτελεί υπερσύνολο της τομής τους.\\
 
 Έστω δύο σημεία $x_1$ και $x_2$, τέτοια ώστε\\
 
 \begin{align*}
-    x_1 & = \sum_{i = 1}^{n} λ_i \cdot s_i && \in conv(S) \\
-    x_2 & = \sum_{i = 1}^{n} μ_i \cdot s_i && \in conv(S)
+    \sum_{i = 1}^{n} λ_i \cdot s_i = x_1 & \in conv(S) \\
+    \sum_{i = 1}^{n} μ_i \cdot s_i = x_2 & \in conv(S)
 \end{align*}\\
 
 Έστω τώρα $\theta \in \lbrack 0, 1 \rbrack$\\
@@ -337,7 +337,7 @@ $S$ και ως εκ τούτου θα είναι υπερσύνολο και τ
 Δεδομένου ότι\\
 
 \begin{align*}
-    \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = \theta \cdot \sum_{i = 1}^{n} λ_i + (1 - \theta) \cdot \sum_{i = 1}{n} μ_i && \Leftrightarrow \\
+    \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = \theta \cdot \sum_{i = 1}^{n} λ_i + (1 - \theta) \cdot \sum_{i = 1}^{n} μ_i && \Leftrightarrow \\
     \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = \theta \cdot 1 + (1 - \theta) \cdot 1 && \Leftrightarrow \\
     \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = 1
 \end{align*}\\
@@ -349,10 +349,10 @@ $S$ και ως εκ τούτου θα είναι υπερσύνολο και τ
 \end{align*}
 
 καταλήγουμε στο συμπέρασμα $\theta \cdot x_1 + (1 - \theta) \cdot x_2 \in conv(S)$
-και άρα το σύνολο $conv(S)$ είναι \textit{convex} και ως εκ τούτου είναι και υπερσύνολο της
+και άρα το σύνολο $conv(S)$ είναι \textit{convex} και ως εκ τούτου αποτελεί υπερσύνολο της
 τομής των \textit{convex} υπερσυνόλων του $S$.\\
 
-Από τα παραπάνω προκύπτει\\
+Αποδείξαμε λοιπόν ότι \\
 
 \begin{align*}
     &\begin{rcases}
@@ -413,9 +413,9 @@ $\norm{x_1-x_2}_2 =
 \subsection*{7. Let a and b be distinct points in $\R^n$ . Show that the set of all points that are closer (in
 Euclidean Norm) to a than b is a halfspace.}
 
-Έστω $S = \lbrace x \in \R \mid \norm{x - a}_2 \leq \norm{x - b}_2 \rbrace$ το σύνολο
-των σημείων $x \in \R$, τα οποία βρίσκονται πιο κοντά στο a, σε σχέση με το b
-βάσει Ευκλείδιας Νόρμας.\\
+Έστω $S = \lbrace x \in \R^{n} \mid \norm{x - a}_2 \leq \norm{x - b}_2 \rbrace$ το σύνολο
+των σημείων $x \in \R^{n}$, τα οποία βρίσκονται πιο κοντά στο a, σε σχέση με το b, 
+βάσει Ευκλείδιας Νόρμας. Για τα σημεία αυτά ισχύει \\
 
 \begin{align*}
     \norm{x - a}_2 & \leq \norm{x - b}_2 && \Leftrightarrow \\

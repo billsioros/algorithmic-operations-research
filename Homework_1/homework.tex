@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[greek,english]{babel}
 \usepackage{alphabeta}
-\usepackage{latexsym, amsfonts, amssymb, amsthm, amsmath, titlesec, stackrel}
+\usepackage{latexsym, amsfonts, amssymb, amsthm, amsmath, titlesec, stackrel, mnsymbol}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -38,8 +38,8 @@
 
 \pagenumbering{arabic}
 
-\subsection*{1. Let $C \subseteq \R^n$ be a \textit{convex} set with $x_1 ,..., x_k \in C$ and let $θ_1 , . . . , θ_k \in \R$ satisfy $θ_i \geq 0$ and
-$θ_1 +...+ θ_k = 1$. Show that $θ_1x_1 +...+ θ_kx_k \in C$.}
+\subsection*{1. Let $C \subseteq \R^n$ be a \textit{convex} set with $x_1 , \dotsc, x_k \in C$ and let $θ_1 , . . . , θ_k \in \R$ satisfy $θ_i \geq 0$ and
+$θ_1 + \dotsb + θ_k = 1$. Show that $θ_1x_1 + \dotsb + θ_kx_k \in C$.}
 
 Θα αποδείξουμε την παραπάνω πρόταση με επαγωγή στο $k$.\\
 
@@ -49,7 +49,7 @@ $θ_1 +...+ θ_k = 1$. Show that $θ_1x_1 +...+ θ_kx_k \in C$.}
 ΒΑΣΗ ΕΠΑΓΩΓΗΣ: Για $k = 3$ έχουμε 
 
 \begin{align*}
-    θ_1 \times x_1 + θ_2 \times x_2 + θ_3 \times x_3 & = x \\ 
+    θ_1 \cdot x_1 + θ_2 \cdot x_2 + θ_3 \cdot x_3 & = x \\ 
     θ_1, θ_2, θ_3 & \geq 0 \\
     θ_1 + θ_2 + θ_3 & = 1
 \end{align*}
@@ -58,13 +58,13 @@ $θ_1 +...+ θ_k = 1$. Show that $θ_1x_1 +...+ θ_kx_k \in C$.}
 $θ_1 \neq 1$, επομένως
 
 \begin{align*}
-    x = θ_1 \times x_1 +  θ_2 \times x_2 + θ_3 \times x_3 & = θ_1 \times x_1 + (1 - θ_1) \times λ_2 \times x_2 + (1 - θ_1) \times λ_3 \times x_3 \\
+    x = θ_1 \cdot x_1 +  θ_2 \cdot x_2 + θ_3 \cdot x_3 & = θ_1 \cdot x_1 + (1 - θ_1) \cdot λ_2 \cdot x_2 + (1 - θ_1) \cdot λ_3 \cdot x_3 \\
     λ_2 & = \frac{θ_2}{(1 - θ_1)} \\
     λ_3 & = \frac{θ_3}{(1 - θ_1)}
 \end{align*}
 
 Αν το ευθύγραμμο τμήμα, που ορίζεται από τα $x_2$ και $x_3$ ανήκει στο C, τότε και το 
-$θ_1 \times x_1 + (1 - θ_1) \times (λ_2 \times x_2 + λ_3 \times x_3)$ θα ανήκει στο C. Θέλουμε να δείξαμε ότι $λ_2 \times x_2 + λ_3 \times x_3 = y$ ανήκει στο C. \\
+$θ_1 \cdot x_1 + (1 - θ_1) \cdot (λ_2 \cdot x_2 + λ_3 \cdot x_3)$ θα ανήκει στο C. Θέλουμε να δείξαμε ότι $λ_2 \cdot x_2 + λ_3 \cdot x_3 = y$ ανήκει στο C. \\
 
 \begin{align*}
     λ_2 + λ_3 & = \frac{θ_2}{(1 - θ_1)} + \frac{θ_3}{(1 - θ_1)} = \frac{θ_2 + θ_3}{(1 - θ_1)} = \frac{(1 - θ_1)}{(1 - θ_1)} = 1
@@ -72,18 +72,18 @@ $θ_1 \times x_1 + (1 - θ_1) \times (λ_2 \times x_2 + λ_3 \times x_3)$ θα �
 
 Συνεπώς, αφού $x_2, x_3 \in C$, το y ανήκει στο C, άρα και το x ανήκει στο C, αφού $x_1 \in C$. \\
 
-ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Υποθέτω ότι $θ_1 \times x_1 + ... + θ_{n-1} \times x_{n-1}$ ανήκει στο C με $θ_i \geq 0$ για $1 \leq i \leq n-1$ και $ \sum_{i=1}^{n-1}θ_i = 1 $ ανήκει στο C. \\
+ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Υποθέτω ότι $θ_1 \cdot x_1 + \dotsb + θ_{n-1} \cdot x_{n-1}$ ανήκει στο C με $θ_i \geq 0$ για $1 \leq i \leq n-1$ και $ \sum_{i=1}^{n-1}θ_i = 1 $ ανήκει στο C. \\
 
-ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Θα δείξουμε ότι $θ_1 \times x_1 + ... + θ_{n-1} \times x_{n-1} + θ_n \times x_n = z$ ανήκει στο C. \\
+ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Θα δείξουμε ότι $θ_1 \cdot x_1 + \dotsb + θ_{n-1} \cdot x_{n-1} + θ_n \cdot x_n = z$ ανήκει στο C. \\
 
 Χωρίς βλάβη της γενικότητας, υποθέτουμε ότι $θ_n \neq 1$\\
 
 \begin{align*}
-    z & = θ_n \times x_n + (1 - θ_n) \times (λ_1 \times x_1 + ... + λ_{n-1} \times x_{n-1}) \\
-    λ_i & = \frac{θ_i}{(1 - θ_n)} \margin \forall \in \lbrace 1 \dotsc n \rbrace
+    z & = θ_n \cdot x_n + (1 - θ_n) \cdot (λ_1 \cdot x_1 + \dotsb + λ_{n-1} \cdot x_{n-1}) \\
+    λ_i & = \frac{θ_i}{(1 - θ_n)} \margin \forall \in \lbrace 1, \dotsc, n \rbrace
 \end{align*}
 
-Όμως, $λ_1 \times x_1 + ... + λ_{n-1} \times x_{n-1}$ από επαγωγική υπόθεση ανήκει στο C. Άρα, και το z ανήκει στο $C$.
+Όμως, $λ_1 \cdot x_1 + \dotsb + λ_{n-1} \cdot x_{n-1}$ από επαγωγική υπόθεση ανήκει στο C. Άρα, και το z ανήκει στο $C$.
 
 \vspace{2in}
 
@@ -102,7 +102,7 @@ $\bullet$ Αν έχουμε ένα \textit{convex} σύνολο, τότε η τ�
 
 Έστω Α και Β είναι δύο \textit{convex} σύνολα. \\
 
-$\forall p_i, p_j \in (A\cap B)$ το ευθύγραμμο τμήμα $\overleftrightarrow{p_{i}p_{j}}$ ανήκει εξ ολοκλήρου στο Α, 
+$\forall p_i, p_j \in (A \cap B)$ το ευθύγραμμο τμήμα $\overlinesegment{p_{i}p_{j}}$ ανήκει εξ ολοκλήρου στο Α, 
 επειδή Α είναι \textit{convex} σύνολο και ανήκει εξ ολοκλήρου στο Β, 
 επειδή Β είναι \textit{convex} σύνολο, 
 άρα ανήκει εξ ολοκλήρου και στο $Α \cap Β$. 
@@ -117,7 +117,7 @@ $\forall x_1, x_2$ που ανήκουν στο σύνολο, η τομή του
 που ορίζεται από τα  σημεία $x_1$ και $x_2$ είναι convex, άρα \\
 
 $\forall \theta$ με $0 \leq \theta \leq 1$ τα σημεία 
-$\theta \times x_1 + (1 - \theta) \times x_2$ ανήκουν στην τομή τους 
+$\theta \cdot x_1 + (1 - \theta) \cdot x_2$ ανήκουν στην τομή τους 
 κι ως εκ τούτου και στο σύνολο. \\
 
 Συνεπώς, το σύνολο είναι convex.
@@ -138,11 +138,11 @@ $\bullet$ Έστω ένα \textit{affine} σύνολο S. Θα δείξουμε 
 
 \begin{align*}
     &\begin{rcases}
-        x_1, x_2 \in S \cap S_l \implies x_1 \in S \wedge x_2 \in S & \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S \margin \forall \theta_1, \theta_2 \in \R\\
-        x_1, x_2 \in S \cap S_l \implies x_1 \in S_l \wedge x_2 \in S_l & \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S_l \margin \forall \theta_1, \theta_2 \in \R
+        x_1, x_2 \in S \cap S_l \implies x_1 \in S \wedge x_2 \in S & \implies \theta_1 \cdot x_1 + \theta_2 \cdot x_2 \in S \margin \forall \theta_1, \theta_2 \in \R\\
+        x_1, x_2 \in S \cap S_l \implies x_1 \in S_l \wedge x_2 \in S_l & \implies \theta_1 \cdot x_1 + \theta_2 \cdot x_2 \in S_l \margin \forall \theta_1, \theta_2 \in \R
     \end{rcases}
     \Rightarrow \\ \\
-    &x_1, x_2 \in S \cap S_l \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S \cap S_l \margin \forall \theta_1, \theta_2 \in \R
+    &x_1, x_2 \in S \cap S_l \implies \theta_1 \cdot x_1 + \theta_2 \cdot x_2 \in S \cap S_l \margin \forall \theta_1, \theta_2 \in \R
 \end{align*}
 
 Επομένως, η τομή του \textit{affine} συνόλου $S$ με οποιαδήποτε ευθεία είναι \textit{affine} σύνολο.\\
@@ -157,13 +157,13 @@ $\bullet$ Έστω σύνολο $S$, τέτοιο ώστε η τομή του μ
 Αφού, είναι γνωστό από υπόθεση πως το σύνολο $S \cap S_l$ είναι \textit{affine}, έχουμε
 
 \begin{align*}
-    x_1, x_2 \in S \cap S_l \implies  \theta_1 \times x_1 + \theta_2 \times x_2 \in S \cap S_l \margin \forall \theta_1, \theta_2 \in \R
+    x_1, x_2 \in S \cap S_l \implies  \theta_1 \cdot x_1 + \theta_2 \cdot x_2 \in S \cap S_l \margin \forall \theta_1, \theta_2 \in \R
 \end{align*}
 
 και ως εκ τούτου
 
 \begin{align*}
-    x_1, x_2 \in S \implies  \theta_1 \times x_1 + \theta_2 \times x_2 \in S \margin \forall \theta_1, \theta_2 \in \R
+    x_1, x_2 \in S \implies  \theta_1 \cdot x_1 + \theta_2 \cdot x_2 \in S \margin \forall \theta_1, \theta_2 \in \R
 \end{align*}
 
 Επομένως, το σύνολο $S$ είναι \textit{affine}.
@@ -220,15 +220,15 @@ $\bullet$ $a_i, b_i, m_i \in C \margin \forall i$\\
     m_{n + 1} & = \frac{a_{n + 1} + b_{n + 1}}{2} = \frac{a_n + m_n}{2} \in C && \text{ λόγω midpoint covexivity}
 \end{align*}
 
-$\bullet$ Το σημείο m βρίσκεται πάντα επί του ευθύγραμμου τμήματος $\overleftrightarrow{a_{i}b_{i}}$,
+$\bullet$ Το σημείο m βρίσκεται πάντα επί του ευθύγραμμου τμήματος $\overlinesegment{a_{i}b_{i}}$,
 γεγονός προφανές από τον ορισμό της ακολουθίας $m_i$.
 Επομένως, ισχύει η ανισότητα $\norm{m_i - m} \leq \norm{a_i - b_i}$. \\
 
-Θα αποδείξουμε με μαθηματική επαγωγή στο i, ότι $\norm{a_i - b_i} = \norm{a - b} \times 2^{-i}$\\
+Θα αποδείξουμε με μαθηματική επαγωγή στο i, ότι $\norm{a_i - b_i} = \norm{a - b} \cdot 2^{-i}$\\
 
-ΒΑΣΗ ΕΠΑΓΩΓΗΣ: Για i = 0, έχουμε: $\norm{a_0 - b_0} = \norm{a - b} = \norm{a - b} \times 2^{-0}$\\
+ΒΑΣΗ ΕΠΑΓΩΓΗΣ: Για i = 0, έχουμε: $\norm{a_0 - b_0} = \norm{a - b} = \norm{a - b} \cdot 2^{-0}$\\
 
-ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Έστω ότι $\norm{a_i - b_i} = \norm{a - b} \times 2^{-i} \margin \forall i \leq n$\\
+ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Έστω ότι $\norm{a_i - b_i} = \norm{a - b} \cdot 2^{-i} \margin \forall i \leq n$\\
 
 ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Υποθέτοντας χωρίς βλάβη της γενικότητας ότι $m_n > m$,
 όπως και παραπάνω, για i = n + 1, έχουμε\\
@@ -238,12 +238,12 @@ $\bullet$ Το σημείο m βρίσκεται πάντα επί του ευθ
     \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - \frac{a_n + b_n}{2}} && \Leftrightarrow \\
     \norm{a_{n + 1} - b_{n + 1}} & = \norm{\frac{b_n - a_n}{2}} && \Leftrightarrow \\
     \norm{a_{n + 1} - b_{n + 1}} & = \norm{\frac{a_n - b_n}{2}} && \Leftrightarrow \\
-    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - b_n} \times {2^{-1}} && \Leftrightarrow \\
-    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \times 2^{-n} \times {2^{-1}} && \Leftrightarrow \\
-    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \times 2^{-(n + 1)} && \Leftrightarrow
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - b_n} \cdot {2^{-1}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \cdot 2^{-n} \cdot {2^{-1}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \cdot 2^{-(n + 1)} && \Leftrightarrow
 \end{align*}\\
 
-Έτσι, έχουμε $0 \leq \norm{m_i - m} \leq \norm{x - y} \times 2^{-i}$\\
+Έτσι, έχουμε $0 \leq \norm{m_i - m} \leq \norm{x - y} \cdot 2^{-i}$\\
 
 Είναι προφανές πως η ακολουθία $\norm{m_i - m}$ είναι φθίνουσα και λόγω του ότι είναι
 και φραγμένη συγκλίνει στο μέγιστο κάτω φράγμα της, δηλαδή
@@ -254,10 +254,10 @@ $\bullet$ Το σημείο m βρίσκεται πάντα επί του ευθ
 
 Τέλος, επειδή το σύνολο είναι κλειστό περιέχει τα όρια ακολουθιών στοιχείων του και αφού,
 όπως δείξαμε $m_i \in C \margin \forall i$, συνεπάγεται ότι $m \in C$. Αυτό ισχύει για
-οποιαδήποτε σημείο m επί του ευθύγραμμου τμήματος $\overleftrightarrow{αβ}$. Επομένως
+οποιαδήποτε σημείο m επί του ευθύγραμμου τμήματος $\overlinesegment{αβ}$. Επομένως
 
 \begin{align*}
-    a, b \in C \implies m & = \theta_1 \times a + \theta_2 \times b \in C \margin \forall \theta_1, \theta_2 \in \R
+    a, b \in C \implies m & = \theta_1 \cdot a + \theta_2 \cdot b \in C \margin \forall \theta_1, \theta_2 \in \R
 \end{align*}
 
 Επομένως, αν ένα σύνολο είναι κλειστό και midpoint \textit{convex}, τότε το σύνολο αυτό είναι \textit{convex}. 
@@ -273,7 +273,7 @@ the intersection of all conic sets, or \textit{affine} sets, or subspaces that c
 Το \textit{convex hull} ενός συνόλου S, ορίζεται ως εξής:
 
 \begin{align*}
-    conv(S) & = \lbrace \sum_{i = 1}^{n} λ_i \times s_i
+    conv(S) & = \lbrace \sum_{i = 1}^{n} λ_i \cdot s_i
     \mid
     s_i \in S, \margin
     n \in \N, \margin
@@ -300,7 +300,7 @@ $\bullet$ Αρχικά θα αποδείξουμε ότι η τομή όλων �
 Δεδομένου τώρα ότι $C \supseteq P$, ισχύει
 
 \begin{align*}
-    s_i \in S \Rightarrow s_i \in C \Rightarrow \sum_{i = 1}^{n} λ_i \times s_i \in C
+    s_i \in S \Rightarrow s_i \in C \Rightarrow \sum_{i = 1}^{n} λ_i \cdot s_i \in C
 \end{align*}
 
 Ως εκ τούτου, προκύπτει $C \supseteq conv(S)$ και αφού αυτό ισχύει για οποιαδήποτε \textit{convex}
@@ -316,32 +316,32 @@ $S$ και ως εκ τούτου θα είναι υπερσύνολο και τ
 Έστω δύο σημεία $x_1$ και $x_2$, τέτοια ώστε\\
 
 \begin{align*}
-    x_1 & = \sum_{i = 1}^{n} λ_i \times s_i && \in conv(S) \\
-    x_2 & = \sum_{i = 1}^{n} μ_i \times s_i && \in conv(S)
+    x_1 & = \sum_{i = 1}^{n} λ_i \cdot s_i && \in conv(S) \\
+    x_2 & = \sum_{i = 1}^{n} μ_i \cdot s_i && \in conv(S)
 \end{align*}\\
 
 Έστω τώρα $\theta \in \lbrack 0, 1 \rbrack$\\
 
 \begin{align*}
-    \theta \times x_1 + (1 - \theta) \times x_2 & = \theta \times \sum_{i = 1}^{n} λ_i \times s_i + (1 - \theta) \times \sum_{i = 1}^{n} μ_i \times s_i && \Leftrightarrow \\
-    \theta \times x_1 + (1 - \theta) \times x_2 & = \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) \times s_i
+    \theta \cdot x_1 + (1 - \theta) \cdot x_2 & = \theta \cdot \sum_{i = 1}^{n} λ_i \cdot s_i + (1 - \theta) \cdot \sum_{i = 1}^{n} μ_i \cdot s_i && \Leftrightarrow \\
+    \theta \cdot x_1 + (1 - \theta) \cdot x_2 & = \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) \cdot s_i
 \end{align*}\\
 
 Δεδομένου ότι\\
 
 \begin{align*}
-    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = \theta \times \sum_{i = 1}^{n} λ_i + (1 - \theta) \times \sum_{i = 1}{n} μ_i && \Leftrightarrow \\
-    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = \theta \times 1 + (1 - \theta) \times 1 && \Leftrightarrow \\
-    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = 1
+    \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = \theta \cdot \sum_{i = 1}^{n} λ_i + (1 - \theta) \cdot \sum_{i = 1}{n} μ_i && \Leftrightarrow \\
+    \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = \theta \cdot 1 + (1 - \theta) \cdot 1 && \Leftrightarrow \\
+    \sum_{i = 1}^{n}(\theta \cdot λ_i + (1 - \theta) \cdot μ_i) & = 1
 \end{align*}\\
 
 και\\
 
 \begin{align*}
-    \theta \times λ_i + (1 - \theta) \times μ_i \geq 0 \margin \forall i \in \lbrace 1 \dotsc n \rbrace
+    \theta \cdot λ_i + (1 - \theta) \cdot μ_i \geq 0 \margin \forall i \in \lbrace 1, \dotsc, n \rbrace
 \end{align*}
 
-καταλήγουμε στο συμπέρασμα $\theta \times x_1 + (1 - \theta) \times x_2 \in conv(S)$
+καταλήγουμε στο συμπέρασμα $\theta \cdot x_1 + (1 - \theta) \cdot x_2 \in conv(S)$
 και άρα το σύνολο $conv(S)$ είναι \textit{convex} και ως εκ τούτου είναι και υπερσύνολο της
 τομής των \textit{convex} υπερσυνόλων του $S$.\\
 
@@ -383,14 +383,14 @@ ${\lbrace x \in \R^n \mid a^Tx = b_2 \rbrace}$ ?}
 
 Η τομή της Ε με το $Β_2$ είναι \\
 
-$α^{Τ} \times x = b_2 \Leftrightarrow α^{Τ} \times (αy + x_1) = b_2 \Leftrightarrow 
-α^{Τ}  \times  α  \times y + α^{Τ}  \times x_1 = b_2 \Leftrightarrow \\ 
-\Leftrightarrow y = \frac{b_2 - α^{Τ} \times x_1}{α^{Τ} \times α} \Leftrightarrow 
-y = \frac{b_2 - b_2}{α^{Τ} \times α} $ \\
+$α^{Τ} \cdot x = b_2 \Leftrightarrow α^{Τ} \cdot (αy + x_1) = b_2 \Leftrightarrow 
+α^{Τ}  \cdot  α  \cdot y + α^{Τ}  \cdot x_1 = b_2 \Leftrightarrow \\ 
+\Leftrightarrow y = \frac{b_2 - α^{Τ} \cdot x_1}{α^{Τ} \cdot α} \Leftrightarrow 
+y = \frac{b_2 - b_2}{α^{Τ} \cdot α} $ \\
 
 Άρα \\
 
-$x_2 = α \times y + x_1 \Leftrightarrow x_2 = a \times \frac{b_2 - b_1}{α^{Τ} \times α} + x_1$. \\
+$x_2 = α \cdot y + x_1 \Leftrightarrow x_2 = a \cdot \frac{b_2 - b_1}{α^{Τ} \cdot α} + x_1$. \\
 
 Συνεπώς \\
 
@@ -403,8 +403,8 @@ $\norm{x_1-x_2}_2 =
 
 \pagebreak
 
-\subsection*{7. Let a and b be distinct points in $\R^n$ . Show that the σύνολο of all points that are closer (in
-Euclidean norm) to a than b is a halfspace.}
+\subsection*{7. Let a and b be distinct points in $\R^n$ . Show that the set of all points that are closer (in
+Euclidean Norm) to a than b is a halfspace.}
 
 Έστω $S = \lbrace x \in \R \mid \norm{x - a}_2 \leq \norm{x - b}_2 \rbrace$ το σύνολο
 των σημείων $x \in \R$, τα οποία βρίσκονται πιο κοντά στο a, σε σχέση με το b
@@ -413,19 +413,19 @@ Euclidean norm) to a than b is a halfspace.}
 \begin{align*}
     \norm{x - a}_2 & \leq \norm{x - b}_2 && \Leftrightarrow \\
     \norm{x - a}_2^2 & \leq \norm{x - b}_2^2 && \Leftrightarrow \\
-    (x - a)^T \times (x - a) & \leq (x - b)^T \times (x - b) && \Leftrightarrow \\
-    x^T \times x - x^T \times a - a^T \times x + a^T \times a & \leq x^T \times x - x^T \times b - b^T \times x + b^T \times b && \Leftrightarrow \\
-    2 \times b^T \times x - 2 \times a^T \times x & \leq b^T \times b - a^T \times a && \Leftrightarrow \\
-    (2 \times (b - a))^T \times x & \leq b^T \times b - a^T \times a
+    (x - a)^T \cdot (x - a) & \leq (x - b)^T \cdot (x - b) && \Leftrightarrow \\
+    x^T \cdot x - x^T \cdot a - a^T \cdot x + a^T \cdot a & \leq x^T \cdot x - x^T \cdot b - b^T \cdot x + b^T \cdot b && \Leftrightarrow \\
+    2 \cdot b^T \cdot x - 2 \cdot a^T \cdot x & \leq b^T \cdot b - a^T \cdot a && \Leftrightarrow \\
+    (2 \cdot (b - a))^T \cdot x & \leq b^T \cdot b - a^T \cdot a
 \end{align*}\\
 
 Θέτοντας
 
 \begin{align*}
-    c & = 2 \times (b - a) \\
-    d & = b^T \times b - a^T \times a
+    c & = 2 \cdot (b - a) \\
+    d & = b^T \cdot b - a^T \cdot a
 \end{align*}
 
-λαμβάνουμε την ανισότητα $c^T \times x \leq d$, η οποία ορίζει έναν κλειστό halfspace.
+λαμβάνουμε την ανισότητα $c^T \cdot x \leq d$, η οποία ορίζει έναν κλειστό halfspace.
 
 \end{document}

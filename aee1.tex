@@ -1,0 +1,341 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[greek,english]{babel}
+\usepackage{alphabeta}
+\usepackage{latexsym,amsfonts,amssymb,amsthm,amsmath}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\margin}{\hspace{5pt}}
+
+
+\newenvironment{rcases}
+    {\left.\begin{aligned}}
+    {\end{aligned}\right\rbrace}
+
+\setlength{\parindent}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{10in}
+\setlength{\topmargin}{-1.5in}
+\setlength{\headheight}{18pt}
+
+
+
+\title{Αλγοριθμική Επιχειρησιακή Έρευνα - Πρώτη Άσκηση}
+\author{Βασίλης Σιώρος \\ Χριστίνα Ανδρινοπούλου}
+\date{Οκτώβριος 2019}
+
+\begin{document}
+
+\maketitle 
+
+\vspace{0.1in}
+
+\subsection*{1. Let $C \subseteq \mathbb{R}^n$ be a convex set with $x_1 ,..., x_k \in C$ and let $θ_1 , . . . , θ_k \in \mathbb{R}$ satisfy $θ_i \geq 0$ and
+$θ_1 +...+ θ_k = 1$. Show that $θ_1x_1 +...+ θ_kx_k \in C$.}
+
+
+Θα αποδείξουμε την παραπάνω πρόταση με επαγωγή στο $k$. Για $k = 2$ ισχύει από ορισμό. Κάθε convex set περιέχει το ευθύγραμμο τμήμα που κατασκευάζεται από δύο οποιαδήποτε σημεία του.
+\\
+\\
+ΒΑΣΗ ΕΠΑΓΩΓΗΣ: για $k = 3$: $θ_1x_1 + θ_2x_2 + θ_3x_3 = x$ με $θ_1,θ_2,θ_3 \geq 0$ και $θ_1 + θ_2 + θ_3 = 1$. Σίγουρα ένα εκ των $θ_1,θ_2,θ_3$ θα είναι διάφορο του 1. Χβτγ έστω $θ_1 \neq 1$, άρα: \\
+$x = θ_1x_1 +  θ_2x_2 + θ_3x_3 = θ_1x_1 + (1 - θ_1)λ_2x_2 + (1 - θ_1)λ_3x_3$ \\
+με $λ_2 = \frac{θ_2}{(1 - θ_1)}$ και $λ_3 = \frac{θ_3}{(1 - θ_1)}$
+\\
+\\
+Αν το ευθύγραμμο τμήμα που σχηματίζεται από τα $x_2$ και $x_3$ ανήκει στο C, τότε και το: \\
+$θ_1x_1 + (1 - θ_1)(λ_2x_2 + λ_3x_3)$ θα ανήκει στο C. Πρέπει νδο $λ_2x_2 + λ_3x_3 = y$ ανήκει στο C. \\
+$λ_2 +λ_3 = \frac{θ_2}{(1 - θ_1)} + \frac{θ_3}{(1 - θ_1)} = \frac{θ_2 + θ_3}{(1 - θ_1)} = \frac{(1 - θ_1)}{(1 - θ_1)} = 1$ \\
+Συνεπώς, αφού $x_2,x_3 \in C$, το y ανήκει στο C, άρα και το x ανήκει στο C, αφού $x_1 \in C$.
+\\
+\\
+ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Υποθέτω ότι $θ_1x_1 + ... + θ_{n-1}x_{n-1}$ ανήκει στο C με $θ_i \geq 0$ για $1 \leq i \leq n-1$ και $ \sum_{i=1}^{n-1}θ_i = 1 $ ανήκει στο C.
+\\
+\\
+ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Θδο $θ_1x_1 + ... + θ_{n-1}x_{n-1} + θ_nx_n = z$ ανήκει στο C. \\
+Χβτγ έστω ότι $θ_n \neq 1$:
+$z = θ_nx_n + (1 - θ_n)(λ_1x_1 + ... + λ_{n-1}x_{n-1})$ \\
+με $λ_i = \frac{θ_i}{(1 - θ_n)}$ για $1 \leq i \leq n-1$. \\
+Όμως, $λ_1x_1 + ... + λ_{n-1}x_{n-1}$ από επαγωγική υπόθεση ανήκει στο C. Άρα, και το z ανήκει στο C.
+
+\vspace{2in}
+
+\subsection*{2. Show that a set is convex if and only if its intersection with any line is convex.}
+
+$\bullet$ Αν έχουμε ένα convex set, τότε η τομή του convex set με μία τυχαιά ευθεία είναι convex. 
+\\
+\\
+Αρχικά, να επισημανθεί ότι μία ευθεία είναι convex set, διότι αν πάρουμε δύο οποιαδήποτε σημεία που ανήκουν στην ευθεία, τότε ανήκει και το ευθύγραμμο τμήμα που κατασκευάζεται από αυτά. Συνεπώς, η ευθεία είναι convex set. \\
+Θα αποδείξουμε ότι η τομή δύο convex set είναι convex: \\
+Έστω Α και Β είναι δύο convex set. $\forall p_i,p_j \in (A\cap B)$ το ευθύγραμμο τμήμα $p_ip_j$ ανήκει εξ ολοκλήρου στο Α, επειδή Α είναι convex set και ανήκει εξ ολοκλήρου στο Β, επειδή Β είναι convex set, άρα ανήκει εξ ολοκλήρου και στο $Α\cap Β$. Συνεπώς, το $Α\capΒ$ είναι convex set. 
+\\
+\\
+Συνεπώς, η τομή του convex set και μιας ευθείας είναι covex.
+\\
+\\
+$\bullet$ Aν η τομή μιας ευθέιας και ενός set είναι convex, τότε το set είναι convex set.
+\\
+\\
+$\forall x_1,x_2$ που ανήκουν στο set, η τομή του set με την ευθεία που διέρχεται από τα $x_1$ και $x_2$
+είναι convex (από υπόθεση), άρα $\forall$ θ με $0 \leq θ \leq 1$ το $θx_1 + (1-θ)x_2$ ανήκουν στην τομή, άρα και στο set. \\
+Συνεπώς, το set είναι convex.
+
+
+\vspace{2in} %Leave more space for comments! \log(\frac{1}{\delta})
+
+\subsection*{3. Show that a set is affine if and only if its intersection with any line is affine.}
+
+$\bullet$ Έστω ένα affine σύνολο S. Θα δείξουμε ότι η τομή του με οποιαδήποτε ευθεία είναι affine σύνολο.\\
+
+Γνωρίζουμε ότι κάθε ευθεία είναι affine σύνολο.
+Έστω $S^{'}$ το affine σύνολο που αντιστοιχεί σε κάποια τυχαία ευθεία.
+Τότε έχουμε:\\
+
+$x_1 \in S \cap S^{'} \implies x_1 \in S \wedge x_1 \in S^{'}$\\
+$x_2 \in S \cap S^{'} \implies x_2 \in S \wedge x_2 \in S^{'}$\\
+
+Δεδομένου ότι τα S και $S^{'}$ είναι affine σύνολα έχουμε:\\
+
+\begin{align*}
+    &\begin{rcases}
+        x_1 \in S \wedge x_2 \in S & \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S, \margin \forall \theta_1, \theta_2 \in \R\\
+        x_1 \in S^{'} \wedge x_2 \in S^{'} & \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S^{'}, \margin \forall \theta_1, \theta_2 \in \R
+    \end{rcases}
+    \Rightarrow
+\end{align*}
+
+$x_1 \in S \cap S^{'} \wedge x_2 \in S \cap S^{'} \implies \theta_1 \times x_1 + \theta_2 \times x_2 \in S \cap S^{'}, \margin \forall \theta_1, \theta_2 \in \R$
+
+Επομένως, η τομή του affine συνόλου S με οποιαδήποτε ευθεία είναι affine σύνολο.\\
+
+$\bullet$ Έστω σύνολο S, τέτοιο ώστε η τομή του με οποιαδήποτε ευθεία να είναι affine σύνολο.
+Θα δείξουμε ότι το σύνολο S είναι affine.\\
+
+Όπως αναφέρθηκε και προηγουμένως, κάθε ευθεία είναι affine σύνολο.
+Έστω, το affine σύνολο $S^{'}$, που αντιστοιχεί στην ευθεία 
+που ορίζεται από δύο τυχαία σημεία $x_1, x_2 \in S$.\\
+
+Αφού από υπόθεση το σύνολο $S \cap S^{'}$ είναι affine, έχουμε:\\
+
+$x_1, x_2 \in S \cap S^{'} \implies  \theta_1 \times x_1 + \theta_2 \times x_2 \in S \cap S^{'}, \margin \forall \theta_1, \theta_2 \in \R$\\
+
+και ως εκ τούτου:\\
+
+$x_1, x_2 \in S \implies  \theta_1 \times x_1 + \theta_2 \times x_2 \in S, \margin \forall \theta_1, \theta_2 \in \R$\\
+
+Επομένως, το σύνολο S είναι affine.
+
+\vspace{2in} %Leave more space for comments! \log(\frac{1}{\delta})
+
+\subsection*{4. A set C is midpoint convex, if whenever two points $a, b \in C$, the average or midpoint
+$(a + b) / 2$ is in C. Obviously, a convex set is midpoint convex. Prove that if C is closed and
+midpoint convex, then C is convex.}
+
+Έστω σημεία $a, b \in C$ και m ένα οποιαδήποτε σημείο επί του ευθύγραμμου τμήματος που ορίζουν τα σημεία a και b.
+Ορίζουμε την ακολουθία:\\
+
+\begin{align*}
+    m_i & = \frac{a_i + b_i}{2} \\
+    \intertext{όπου}
+    a_i & = \left\{\begin{array}{lr}
+        a, & \text{i = 0}\\
+        a_{i - 1}, & i \geq 1 \wedge m_{i - 1} > m\\
+        m_{i - 1}, & i \geq 1 \wedge m_{i - 1} \leq m
+        \end{array}\right\} \\
+    b_i & = \left\{\begin{array}{lr}
+        b, & \text{i = 0}\\
+        m_{i - 1}, & i \geq 1 \wedge m_{i - 1} > m\\
+        b_{i - 1}, & i \geq 1 \wedge m_{i - 1} \leq m
+        \end{array}\right\}
+\end{align*}\\
+
+Παρατηρούμε τα εξής:\\
+
+$\bullet$ $a_i, b_i, m_i \in C \margin \forall i$\\
+
+Αυτό αποδεικνύεται με μαθηματική επαγωγή στο i ως εξής:\\
+
+ΒΑΣΗ ΕΠΑΓΩΓΗΣ: H πρόταση προς απόδειξη ισχύει για i = 0, καθώς\\
+
+\begin{align*}
+    a_0 & = a \in C && \text{ από υπόθεση} \\
+    b_0 & = b \in C && \text{ από υπόθεση} \\
+    m_0 & = \frac{a_0 + b_0}{2} = \frac{a + b}{2} \in C && \text{ λόγω midpoint covexivity}
+\end{align*} \\
+
+ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Έστω ότι $a_i, b_i, m_i \in C \margin \forall i \leq n$ \\
+
+ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Θα δείξουμε ότι $a_{n + 1}, b_{n + 1}, m_{n + 1} \in C$ \\
+
+Υποθέτουμε χωρίς βλάβη της γενικότητας ότι $m_n > m$. Έτσι έχουμε: \\
+
+\begin{align*}
+    a_{n + 1} & = a_n \in C && \text{ από επαγωγική υπόθεση}\\
+    b_{n + 1} & = m_n \in C && \text{ από επαγωγική υπόθεση} \\
+    m_{n + 1} & = \frac{a_{n + 1} + b_{n + 1}}{2} = \frac{a_n + m_n}{2} \in C && \text{ λόγω midpoint covexivity}
+\end{align*}
+
+$\bullet$ Το σημείο m βρίσκεται πάντα επί του ευθύγραμμου τμήματος $\overleftrightarrow{a_{i}b_{i}}$,
+γεγονός προφανές από τον ορισμό της ακολουθίας $m_i$.
+Επομένως, ισχύει η ανισότητα $\norm{m_i - m} \leq \norm{a_i - b_i}$. \\
+
+Θα αποδείξουμε με μαθηματική επαγωγή στο i, ότι $\norm{a_i - b_i} = \norm{a - b} \times 2^{-i}$\\
+
+ΒΑΣΗ ΕΠΑΓΩΓΗΣ: Για i = 0, έχουμε: $\norm{a_0 - b_0} = \norm{a - b} = \norm{a - b} \times 2^{-0}$\\
+
+ΕΠΑΓΩΓΙΚΗ ΥΠΟΘΕΣΗ: Έστω ότι $\norm{a_i - b_i} = \norm{a - b} \times 2^{-i} \margin \forall i \leq n$\\
+
+ΕΠΑΓΩΓΙΚΟ ΒΗΜΑ: Υποθέτοντας χωρίς βλάβη της γενικότητας ότι $m_n > m$,
+όπως και παραπάνω, για i = n + 1, έχουμε:\\
+
+\begin{align*}
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - m_n} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - \frac{a_n + b_n}{2}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{\frac{b_n - a_n}{2}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{\frac{a_n - b_n}{2}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a_n - b_n} \times {2^{-1}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \times 2^{-n} \times {2^{-1}} && \Leftrightarrow \\
+    \norm{a_{n + 1} - b_{n + 1}} & = \norm{a - b} \times 2^{-(n + 1)} && \Leftrightarrow
+\end{align*}\\
+
+Έτσι, έχουμε: $0 \leq \norm{m_i - m} \leq \norm{x - y} \times 2^{-i}$\\
+
+Είναι προφανές πως η ακολουθία $\norm{m_i - m}$ είναι φθίνουσα και λόγω του ότι είναι
+και φραγμένη συγκλίνει στο μέγιστο κάτω φράγμα της, δηλαδή:\\
+
+$\lim_{i \to \infty} \norm{m_i - m} = 0 \Leftrightarrow \lim_{i \to \infty} m_i = m$\\
+
+Τέλος, επειδή το σύνολο είναι κλειστό περιέχει τα όρια ακολουθιών στοιχείων του και αφού,
+όπως δείξαμε $m_i \in C \margin \forall i$, συνεπάγεται ότι $m \in C$. Αυτό ισχύει για
+οποιαδήποτε σημείο m επί του ευθύγραμμου τμήματος $\overleftrightarrow{αβ}$ και άρα
+$a, b \in C \implies m = \theta_1 \times a + \theta_2 \times b \in C \margin \forall \theta_1, \theta_2 \in \R$
+
+\vspace{2in} %Leave more space for comments! \log(\frac{1}{\delta})
+
+\subsection*{5. Show that the convex hull of a set S is the intersection of all convex sets that contain
+S.(The same method can be used to show that the conic, or affine, or linear hull of a set S is
+the intersection of all conic sets, or affine sets, or subspaces that contain S.}
+
+Το convex hull ενός συνόλου S, ορίζεται ως εξής:\\
+
+$conv(S) = \lbrace \sum_{i = 1}^{n} λ_i \times s_i
+\mid
+s_i \in S, \margin
+n \in \N, \margin
+λ_i \geq 0 \margin \forall i, \margin
+\sum_{i = 1}^{n} λ_i = 1
+\rbrace$\\
+
+$\bullet$ Αρχικά θα αποδείξουμε ότι η τομή όλων των convex υπερσυνόλων του S,
+είναι υπερσύνολο του convex hull του.
+
+Έστω convex σύνολο C, τέτοιο ώστε $C \supseteq S$.\\
+
+Δεδομένου ότι το σύνολο C είναι convex, ισχύει:\\
+
+$\sum_{i = 1}^{n} λ_i * c_i \in C \text{ όπου }
+c_i \in S, \margin
+n \in \N, \margin
+λ_i \geq 0 \margin \forall i, \margin
+\sum_{i = 1}^{n} λ_i = 1$\\
+
+Δεδομένου τώρα ότι $C \supseteq P$, ισχύει:\\
+
+$s_i \in S \Rightarrow s_i \in C \Rightarrow \sum_{i = 1}^{n} λ_i \times s_i \in C$\\
+
+Ως εκ τούτου, προκύπτει $C \supseteq conv(S)$ και αφού αυτό ισχύει για οποιαδήποτε convex
+υπερσύνολο του S συνεπάγεται πως και η τομή αυτών των συνόλων είναι υπερσύνολο του conv(S).\\
+
+$\bullet$ Στη συνέχεια θα δείξουμε ότι το convex hull του συνόλου S είναι υπερσύνολο της
+τομής όλων των convex υπερσυνόλων του.\\
+
+Είναι προφανές πως $conv(S) \supseteq S$. Αρκεί να δείξουμε ότι το σύνολο conv(S)
+είναι convex, καθώς σε αυτή την περίπτωση θα ανήκει στο σύνολο convex υπερσυνόλων του
+S και ως εκ τούτου θα είναι υπερσύνολο και της τομής τους.\\
+
+Έστω δύο σημεία $x_1$ και $x_2$, τέτοια ώστε:\\
+
+\begin{align*}
+    x_1 & = \sum_{i = 1}^{n} λ_i \times s_i && \in conv(S) \\
+    x_2 & = \sum_{i = 1}^{n} μ_i \times s_i && \in conv(S)
+\end{align*}\\
+
+Έστω τώρα $\theta \in \lbrack 0, 1 \rbrack$\\
+
+\begin{align*}
+    \theta \times x_1 + (1 - \theta) \times x_2 & = \theta \times \sum_{i = 1}^{n} λ_i \times s_i + (1 - \theta) \times \sum_{i = 1}^{n} μ_i \times s_i && \Leftrightarrow \\
+    \theta \times x_1 + (1 - \theta) \times x_2 & = \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) \times s_i
+\end{align*}\\
+
+Δεδομένου ότι:\\
+
+\begin{align*}
+    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = \theta \times \sum_{i = 1}^{n} λ_i + (1 - \theta) \times \sum_{i = 1}{n} μ_i && \Leftrightarrow \\
+    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = \theta \times 1 + (1 - \theta) \times 1 && \Leftrightarrow \\
+    \sum_{i = 1}^{n}(\theta \times λ_i + (1 - \theta) \times μ_i) & = 1
+\end{align*}\\
+
+και\\
+
+$\theta \times λ_i + (1 - \theta) \times μ_i \geq 0 \margin \forall i \in \lbrace 1 \dotsc n \rbrace$\\
+
+καταλήγουμε στο συμπέρασμα $\theta \times x_1 + (1 - \theta) \times x_2 \in conv(S)$
+και άρα το σύνολο conv(S) είναι convex και ως εκτούτου είναι και υπερσύνολο της
+τομής των convex υπερσυνόλων του S.\\
+
+Από τα παραπάνω προκύπτει\\
+
+\begin{align*}
+    &\begin{rcases}
+        conv(S) & \supseteq \bigcap C \text{ όπου C οποιοδήποτε convex υπερσύνολο του S} \\
+        conv(S) & \subseteqq \bigcap C \text{ όπου C οποιοδήποτε convex υπερσύνολο του S}
+    \end{rcases}
+    \Rightarrow
+\end{align*}
+
+$conv(S) \equiv \bigcap C \text{ όπου C οποιοδήποτε convex υπερσύνολο του S}$
+
+\vspace{2in} %Leave more space for comments! \log(\frac{1}{\delta})
+
+\subsection*{6. What is the distance between two parallel hyperplanes ${x \in \mathbb{R}^n : a^Tx = b_1 }$ and
+${x \in \mathbb{R}^n : a^Tx = b_2 }$?}
+
+Τα δύο hyperplanes, έστω $B_1$ και $B_2$ είναι μεταξύ τους παράλληλα, άρα έχει νόημα να μελετήσουμε την απόσταση μεταξύ τους. Αν δεν ήταν παράλληλα, η απόσταση μεταξύ των $B_1$ και $B_2$ θα ήταν 0, αφού θα υπήρχε σημείο τομής ανάμεσα τους. \\
+Έστω ένα σημείο $x_1$ που ανήκει στο $B_1$ και έστω μία ευθεία Ε, η οποία διέρχεται από το $x_1$ και είναι κάθετη στο $Β_1$. Η Ε τέμνει το $B_2$ στο σημείο $x_2$ επίσης κάθετα, γιατί τα δύο hyperplanes είναι μεταξύ τους παράλληλα. Αρκεί να βρούμε την απόσταση μεταξύ των δύο σημείων $x_1$ και $x_2$, δηλαδη να βρούμε την $\left\|x_1-x_2\right\|_2 $. \\
+Η ευθεία Ε έχει ίδια κατεύθυνση με το α, γιατί και το α και η ευθεία Ε είναι κάθετα στα δύο hyperplanes, συνεπώς την ευθεία μπορούμε να την γράψουμε ως: $αy + x_1$. \\
+Η τομή της Ε με το $Β_2$ είναι: $α^{Τ}x = b_2 \Leftrightarrow α^{Τ}(αy + x_1) = b_2 \Leftrightarrow α^{Τ}αy + α^{Τ}x_1 = b_2 \Leftrightarrow \\ \Leftrightarrow y = \frac{b_2 - α^{Τ}x_1}{α^{Τ}α} \Leftrightarrow y = \frac{b_2 - b_2}{α^{Τ}α} $ \\
+Άρα, $x_2 = αy + x_1 \Leftrightarrow x_2 = a\frac{b_2 - b_1}{α^{Τ}α} + x_1$. \\
+Συνεπώς, $\left\|x_1-x_2\right\|_2 = \left\|x_1 - \frac{b_2 - b_1}{α^{Τ}} - x_1\right\|_2 = \left\|-\frac{b_2 - b_1}{α^{Τ}}\right\|_2 = \frac{|b_2 - b_1|}{\left\|α\right\|_2}$
+
+
+\vspace{2in} %Leave more space for comments! \log(\frac{1}{\delta})
+
+\subsection*{7. Let a and b be distinct points in $\mathbb{R}^n$ . Show that the set of all points that are closer (in
+Euclidean norm) to a than b is a halfspace.}
+
+Έστω $S = \lbrace x \in \R \mid \norm{x - a}_2 \leq \norm{x - b}_2 \rbrace$ το σύνολο
+των σημείων $x \in \R$, τα οποία βρίσκονται πιο κοντά στο a, σε σχέση με το b
+βάσει Ευκλείδιας Νόρμας.\\
+
+\begin{align*}
+    \norm{x - a}_2 & \leq \norm{x - b}_2 && \Leftrightarrow \\    
+    \norm{x - a}_2^2 & \leq \norm{x - b}_2^2 && \Leftrightarrow \\    
+    (x - a)^T \times (x - a) & \leq (x - b)^T \times (x - b) && \Leftrightarrow \\
+    x^T \times x - x^T \times a - a^T \times x + a^T \times a & \leq x^T \times x - x^T \times b - b^T \times x + b^T \times b && \Leftrightarrow \\
+    2 \times b^T \times x - 2 \times a^T \times x & \leq b^T \times b - a^T \times a && \Leftrightarrow \\
+    2 \times (b - a)^T \times x & \leq b^T \times b - a^T \times a
+\end{align*}\\
+
+Θέτουμε\\
+
+\begin{align*}
+    c & = 2 \times (b - a) \\
+    d & = b^t \times b - a^T \times a
+\end{align*}
+
+και λαμβάνουμε την ανισότητα $c^T \times x \leq d$, η οποία ορίζει έναν κλειστό ημιχώρο.
+
+\end{document}

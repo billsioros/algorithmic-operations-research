@@ -1,4 +1,4 @@
 
-# Solutions to various mathematical, geometrical and algorithmic problems
+# Algorithmic Operation Research
 
 * [Homework 1](Homework_1/homework.pdf)

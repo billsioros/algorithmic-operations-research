@@ -1,4 +1,26 @@
 
+# MIT License
+#
+# Copyright (c) 2019 Vasileios Sioros
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import re
 
 import os
@@ -122,6 +144,20 @@ if __name__ == '__main__':
 
     args = argparser.parse_args()
 
+
+    if os.path.exists(args.save):
+
+        if not args.overwrite:
+
+            raise ValueError(f"Permission to overwrite '{args.save}' has not been granted")
+
+    else:
+
+        if args.directory:
+
+            os.makedirs(os.path.dirname(args.save))
+
+
     if not os.path.exists(config_path):
 
         with open(config_path, "w", encoding="utf8") as config_file:
@@ -136,15 +172,6 @@ if __name__ == '__main__':
 
             config = json.load(config_file)
 
-    subsections = '\n'.join(parse_seed(args.load)) if args.load else ""
-
-    if os.path.exists(args.save) and not args.overwrite:
-
-        raise ValueError(f"Permission to overwrite '{args.save}' has not been granted")
-
-    if args.directory:
-
-        os.makedirs(os.path.dirname(args.save))
 
     with open(args.save, "w", encoding="utf8") as tex_file:
 
@@ -157,7 +184,7 @@ if __name__ == '__main__':
                 secondary_title=config["title"].get("secondary", ""),
                 authors="\\\\".join(config["authors"]),
                 date=datetime.datetime.now().strftime("%B %Y"),
-                subsections=subsections
+                subsections='\n'.join(parse_seed(args.load)) if args.load else ""
             )
         )
 

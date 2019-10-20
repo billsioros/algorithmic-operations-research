@@ -1,0 +1,34 @@
+{
+    "title": {
+        "primary": "Αλγοριθμική Επιχειρησιακή Έρευνα",
+        "secondary": "Δεύτερη Εργασία"
+    },
+    "authors": [
+        "Σιώρος Βασίλειος",
+        "Ανδρινοπούλου Χριστίνα"
+    ],
+    "packages": [
+        "alphabeta",
+        "latexsym",
+        "amsfonts",
+        "amssymb",
+        "amsthm",
+        "amsmath",
+        "titlesec",
+        "stackrel",
+        "mnsymbol"
+    ],
+    "commands": {
+        "\\R": "\\mathbb{R}",
+        "\\N": "\\mathbb{N}",
+        "\\norm": "\\left\\lVert#1\\right\\rVert",
+        "\\margin": "\\hspace{4pt}",
+        "\\centered": "\\begin{align*}#1\\end{align*}"
+    },
+    "environments": {
+        "rcases": {
+            "begin": "\\left.\\begin{aligned}",
+            "end": "\\end{aligned}\\right\\rbrace"
+        }
+    }
+}

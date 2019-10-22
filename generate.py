@@ -25,7 +25,9 @@ import re
 
 import os
 
-import datetime
+import time
+
+import locale
 
 import json
 
@@ -175,6 +177,8 @@ if __name__ == '__main__':
 
     with open(args.save, "w", encoding="utf8") as tex_file:
 
+        locale.setlocale(locale.LC_ALL, "el")
+
         tex_file.write(
             tex_project_template.format(
                 packages=", ".join(sorted(config["packages"])),
@@ -183,7 +187,7 @@ if __name__ == '__main__':
                 primary_title=config["title"].get("primary", ""),
                 secondary_title=config["title"].get("secondary", ""),
                 authors="\\\\".join(config["authors"]),
-                date=datetime.datetime.now().strftime("%B %Y"),
+                date=time.strftime("%B %Y"),
                 subsections='\n'.join(parse_seed(args.load)) if args.load else ""
             )
         )

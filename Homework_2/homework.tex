@@ -3,7 +3,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[greek, english]{babel}
-\usepackage{alphabeta, amsfonts, amsmath, amssymb, amsthm, latexsym, mnsymbol, stackrel, titlesec}
+\usepackage{alphabeta, amsfonts, amsmath, amssymb, amsthm, latexsym, stackrel, titlesec}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -66,12 +66,84 @@ Cost(x1, x2) = x1 + x2.}
 
 \pagebreak
 
-\subsection*{4. Let A,B Rnn. Show that the traditional way of computing their product AB requires
-a total of (2n 1)n2 arithmetic operations.}
+\subsection*{4. Let A,B $\R^{n\times n}$. Show that the traditional way of computing their product AB requires
+a total of $(2n-1)n^2$ arithmetic operations.}
 
+Οι πίνακες Α και Β είναι τετραγωνικοί $(n\times n)$, δηλαδή αποτελόυνται από n γραμμές και από n στήλες, όπως φαίνεται παρακάτω: \\
+$$A = \begin{bmatrix}
+a_{11} & a_{22} & . . . . & a_{1n} \\
+a_{21} & a_{22} & . . . . & a_{2n} \\
+. & . & . . . . & . \\
+a_{n1} & a_{n2} & . . . . & a_{nn}
+\end{bmatrix}$$
+$$B = \begin{bmatrix}
+b_{11} & b_{22} & . . . . & b_{1n} \\
+b_{21} & b_{22} & . . . . & b_{2n} \\
+. & . & . . . . & . \\
+b_{n1} & b_{n2} & . . . . & b_{nn}
+\end{bmatrix}$$
+\\
+$$ Α\times B = 
+\begin{bmatrix}
+a_{11} & a_{22} & . . . . & a_{1n} \\
+a_{21} & a_{22} & . . . . & a_{2n} \\
+. & . & . . . . & . \\
+a_{n1} & a_{n2} & . . . . & a_{nn}
+\end{bmatrix} 
+\begin{bmatrix}
+b_{11} & b_{22} & . . . . & b_{1n} \\
+b_{21} & b_{22} & . . . . & b_{2n} \\
+. & . & . . . . & . \\
+b_{n1} & b_{n2} & . . . . & b_{nn}
+\end{bmatrix} =
+\begin{bmatrix}
+z_{11} & z_{22} & . . . . & z_{1n} \\
+z_{21} & z_{22} & . . . . & z_{2n} \\
+. & . & . . . . & . \\
+z_{n1} & z_{n2} & . . . . & z_{nn}
+\end{bmatrix} = Ζ
+$$
+\\
+Για τον πολλαπλασιασμό των πινάκων Α και Β αρκεί να πολλαπλασιάσουμε την: \\ 
+\[
+\left.
+\raisebox{1pt}[30pt]{\smash{$\begin{array}{r@{}l@{\,}l}
+		\mbox{1η γραμμή του Α με την 1η στήλη του Β, για το $z_{11}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\mbox{1η γραμμή του Α με την 2η στήλη του Β, για το $z_{12}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\\
+		\mbox{1η γραμμή του Α με την n στήλη του Β, για το $z_{1n}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\end{array}$}}
+\right\} n(n + (n-1))
+\]
+\\
+\[
+\left.
+\raisebox{1pt}[30pt]{\smash{$\begin{array}{r@{}l@{\,}l}
+		\mbox{2η γραμμή του Α με την 1η στήλη του Β, για το $z_{21}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\mbox{2η γραμμή του Α με την 2η στήλη του Β, για το $z_{22}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+	   	\\
+		\mbox{2η γραμμή του Α με την n στήλη του Β, για το $z_{2n}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\end{array}$}}
+\right\} n(n + (n-1))
+\]
+\\
+$$...$$
+$$...$$
+$$...$$
+\\
+\[
+\left.
+\raisebox{1pt}[30pt]{\smash{$\begin{array}{r@{}l@{\,}l}
+		\mbox{n γραμμή του Α με την 1η στήλη του Β, για το $z_{n1}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\mbox{n γραμμή του Α με την 2η στήλη του Β, για το $z_{n2}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\\
+		\mbox{n γραμμή του Α με την n στήλη του Β, για το $z_{nn}$ $\rightarrow$ n γινόμενα και (n-1) προσθέσεις} \\
+		\end{array}$}}
+\right\} n(n + (n-1))
+\]
+\\
+Η κάθε γραμμή του πίνακα Α πολλαπλασιάζεται με όλες τις στήλες του Β και προκύπτει μία νέα γραμμή στον πίνακα Ζ. Η παραπάνω διαδικασία απαιτεί n(n+(n-1)) αριθμητικές παραστάσεις και επειδή αυτό θα συμβεί n φορές απαιτούνται συνολικά $n^2(n+(n-1)) = n^2(2n-1)$.
 \vspace{2in}
-
-
 \pagebreak
 
 \subsection*{5. Consider the problem of solving a system of n linear equations in n unknowns. Show

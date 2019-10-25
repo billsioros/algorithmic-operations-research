@@ -85,11 +85,9 @@ tex_project_template = \
 
 \\maketitle
 
-\\thispagestyle{{empty}}
+\\pagenumbering{{gobble}}
 
 \\pagebreak
-
-\\pagenumbering{{arabic}}
 
 {subsections}
 
@@ -130,7 +128,7 @@ def parse_section(section):
 
     section = re.sub(r"[^\S\n]+", " ", section, flags=re.UNICODE)
 
-    return f"\n\n\\subsection*{{{section}}}\n\n\\vspace{{2in}}\n\n\\pagebreak"
+    return f"\n\\subsection*{{{section}}}\n\n\\vspace{{2in}}\n\n\\pagebreak"
 
 
 def parse_seed(seed, section_rgx=r"([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)(?=([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)|($)|(.*))"):

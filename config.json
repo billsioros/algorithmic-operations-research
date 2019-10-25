@@ -11,7 +11,6 @@
         "alphabeta",
         "latexsym",
         "amsfonts",
-        "amssymb",
         "amsthm",
         "amsmath",
         "titlesec",
@@ -25,12 +24,17 @@
         "\\N": "\\mathbb{N}",
         "\\norm": "\\left\\lVert#1\\right\\rVert",
         "\\margin": "\\hspace{4pt}",
-        "\\centered": "\\begin{align*}#1\\end{align*}"
+        "\\centered": "\\begin{align*}#1\\end{align*}",
+        "\\plot": "\\includegraphics"
     },
     "environments": {
         "rcases": {
             "begin": "\\left.\\begin{aligned}",
             "end": "\\end{aligned}\\right\\rbrace"
+        },
+        "matlab": {
+            "begin": "\\begin{figure}[hp]\\centering\\captionsetup{justification=centering}",
+            "end": "\\end{figure}"
         }
     }
 }

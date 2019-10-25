@@ -10,6 +10,8 @@ from tikzplotlib import save as tikz_save
 from sympy import Symbol
 from sympy.solvers import solve
 
+from scipy.optimize import linprog
+
 
 x1 = np.linspace(-1, 20, 100)
 
@@ -39,9 +41,19 @@ for cost in [(y1 + f1(y1)) * (2 ** i) for i in np.arange(0.125, 1.5, 0.5)]:
 
     plt.plot(x1, cost_f(x1), "-.m")
 
-plt.plot([0, y2, y1], [f1(0), f2(y2), f1(y1)], "ok", markersize=8)
+plt.plot([0, y2, y1], [f1(0), f2(y2), f1(y1)], "xk", markersize=10)
 
-plt.title("Feasible Region")
+A = np.array([[-30, -5], [-15, -10], [0, -1], [-1, 0]])
+B = np.array([-60, -70, 0, 0])
+C = np.array([1, 1])
+
+result = linprog(C, A_ub=A, b_ub=B, bounds=(0, None))
+
+solution = (result.fun, f2(result.fun))
+
+plt.plot(solution[0], solution[1], ".k", markersize=10)
+
+plt.title(r"$\bf{The}$ $\bf{Diet}$ $\bf{Problem}$", fontsize=16)
 plt.ylabel("$x_2$", color="#1C2833")
 plt.xlabel("$x_1$", color="#1C2833")
 plt.legend(loc="upper right")

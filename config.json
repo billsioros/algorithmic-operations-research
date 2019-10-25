@@ -16,7 +16,9 @@
         "amsmath",
         "titlesec",
         "stackrel",
-        "mnsymbol"
+        "MnSymbol",
+        "graphicx",
+        "caption"
     ],
     "commands": {
         "\\R": "\\mathbb{R}",

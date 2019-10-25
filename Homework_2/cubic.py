@@ -5,8 +5,6 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-from tikzplotlib import save as tikz_save
-
 
 figure, axes = plt.subplots()
 
@@ -32,5 +30,5 @@ plt.ylim([-2.5, 2.5])
 
 plt.show()
 
-tikz_save(os.path.splitext(sys.argv[0])[0] + ".tikz", figureheight="\\figureheight", figurewidth="\\figurewidth")
+figure.savefig(os.path.splitext(sys.argv[0])[0] + "_figure.eps", format="eps")
 

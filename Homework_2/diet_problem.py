@@ -5,7 +5,6 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-from pylab import *
 from tikzplotlib import save as tikz_save
 
 from sympy import Symbol
@@ -32,9 +31,9 @@ for cost in [0 + f1(0), y2 + f2(y2), y1 + f1(y1)]:
 
     cost_f = lambda x1: cost - x1
 
-    plt.plot(x1, cost_f(x1), "-.c", label=f"$x_1 + x_2 = {cost}$")
+    plt.plot(x1, cost_f(x1), "-.c", label="$x_1 + x_2 = {:.2f}$".format(round(cost, 2)))
 
-for cost in [(y1 + f1(y1)) * (2 ** i) for i in np.arange(0.125, 1.5, 0.25)]:
+for cost in [(y1 + f1(y1)) * (2 ** i) for i in np.arange(0.125, 1.5, 0.5)]:
 
     cost_f = lambda x1: cost - x1
 

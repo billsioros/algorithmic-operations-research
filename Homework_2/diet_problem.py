@@ -29,7 +29,7 @@ plt.plot(x1,            [0] * len(x1), "--k", label="$x_2 = 0$")
 plt.plot(x1, f1(x1), "--r", label="$30 \\cdot x_1 +  5 \\cdot x_2 = 60$")
 plt.plot(x1, f2(x1), "--b", label="$15 \\cdot x_1 + 10 \\cdot x_2 = 70$")
 
-for cost in [0 + f1(0), y2 + f2(y2), y1 + f1(y1)]:
+for cost in sorted([0 + f1(0), y1 + f1(y1), y2 + f2(y2)], reverse=True):
 
     cost_f = lambda x1: cost - x1
 

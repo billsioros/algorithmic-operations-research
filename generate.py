@@ -57,10 +57,14 @@ tex_project_template = \
 
 \\usepackage[utf8]{{inputenc}}
 \\usepackage[greek, english]{{babel}}
-\\usepackage{{{packages}}}
 
+% Packages
+{packages}
+
+% Commands
 {commands}
 
+% Environments
 {environments}
 
 \\setlength{{\\parindent}}{{0in}}
@@ -81,16 +85,19 @@ tex_project_template = \
 
 \\maketitle
 
-\\thispagestyle{{empty}}
+\\pagenumbering{{gobble}}
 
 \\pagebreak
-
-\\pagenumbering{{arabic}}
 
 {subsections}
 
 \\end{{document}}
 """
+
+
+def parse_package(package):
+
+    return f"\\usepackage{{{package}}}"
 
 
 def parse_command(command, args_count_rgx=r"#[1-9][0-9]*"):
@@ -121,7 +128,7 @@ def parse_section(section):
 
     section = re.sub(r"[^\S\n]+", " ", section, flags=re.UNICODE)
 
-    return f"\n\n\\subsection*{{{section}}}\n\n\\vspace{{2in}}\n\n\\pagebreak"
+    return f"\n\\subsection*{{{section}}}\n\n\\vspace{{2in}}\n\n\\pagebreak"
 
 
 def parse_seed(seed, section_rgx=r"([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)(?=([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)|($)|(.*))"):
@@ -183,9 +190,9 @@ if __name__ == '__main__':
 
         tex_file.write(
             tex_project_template.format(
-                packages=", ".join(sorted(config["packages"])),
+                packages="\n".join(map(parse_package, sorted(config["packages"]))),
                 commands='\n'.join(map(parse_command, config["commands"].items())),
-                environments='\n'.join(map(parse_environment, config["environments"].items())),
+                environments="\n\n".join(map(parse_environment, config["environments"].items())),
                 primary_title=config["title"].get("primary", ""),
                 secondary_title=config["title"].get("secondary", ""),
                 authors="\\\\".join(config["authors"]),

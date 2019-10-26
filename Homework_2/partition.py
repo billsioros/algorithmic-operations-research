@@ -27,7 +27,7 @@ def partition(number):
 
 if __name__ == '__main__':
 
-    for number in range (1, 21):
+    for number in range (10, 21):
 
         products = {}
 
@@ -43,5 +43,9 @@ if __name__ == '__main__':
 
                 max_product_partition, max_product = decomposition, product
 
-        print(f"Decomposition: {number} = {' + '.join(map(str, max_product_partition))}\nMaximum Product: {' * '.join(map(str, max_product_partition))} = {max_product}\n")
+        decomposition = f"{number} = {' + '.join(map(str, max_product_partition))}"
+
+        maximum_product = f"{' * '.join(map(str, max_product_partition))} = {max_product}"
+
+        print(f"Decomposition: {decomposition}\nMaximum Product: {max_product}\n")
 

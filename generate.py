@@ -166,7 +166,11 @@ if __name__ == '__main__':
 
         if args.directory:
 
-            os.makedirs(os.path.dirname(args.save))
+            directory = os.path.dirname(args.save)
+
+            if not os.path.isdir(directory):
+
+                os.makedirs(os.path.dirname(args.save))
 
 
     if not os.path.exists(config_path):

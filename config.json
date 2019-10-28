@@ -17,8 +17,7 @@
         "stackrel",
         "MnSymbol",
         "graphicx",
-        "caption",
-        "minted"
+        "caption"
     ],
     "commands": {
         "\\R": "\\mathbb{R}",

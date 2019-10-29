@@ -25,7 +25,7 @@
         "\\norm": "\\left\\lVert#1\\right\\rVert",
         "\\margin": "\\hspace{4pt}",
         "\\centered": "\\begin{align*}#1\\end{align*}",
-        "\\plot": "\\includegraphics"
+        "\\plot": "\\includegraphics{#1}\\caption{#2}"
     },
     "environments": {
         "rcases": {

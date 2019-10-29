@@ -10,14 +10,17 @@
     "packages": [
         "alphabeta",
         "latexsym",
-        "amsfonts",
         "amsthm",
         "amsmath",
         "titlesec",
         "stackrel",
         "MnSymbol",
         "graphicx",
-        "caption"
+        "caption",
+        "fullpage",
+        "listings",
+        "pxfonts",
+        "color"
     ],
     "commands": {
         "\\R": "\\mathbb{R}",
@@ -25,7 +28,8 @@
         "\\norm": "\\left\\lVert#1\\right\\rVert",
         "\\margin": "\\hspace{4pt}",
         "\\centered": "\\begin{align*}#1\\end{align*}",
-        "\\plot": "\\includegraphics{#1}\\caption{#2}"
+        "\\plot": "\\includegraphics{#1}\\caption{#2}",
+        "\\code": "\\lstinputlisting{#1}"
     },
     "environments": {
         "rcases": {

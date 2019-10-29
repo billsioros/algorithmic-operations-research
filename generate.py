@@ -67,6 +67,36 @@ tex_project_template = \
 % Environments
 {environments}
 
+% Python Syntax Highlighting
+\\definecolor{{string_color}}{{RGB}}{{0, 161, 13}}
+\\definecolor{{comment_color}}{{RGB}}{{46, 46, 46}}
+\\definecolor{{keyword_color}}{{RGB}}{{0, 112, 191}}
+
+\\lstset{{
+    language=Python,
+    captionpos=b,
+    numbers=right,
+    numberstyle=\\small\\ttfamily,
+    frame=lines,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    commentstyle=\\color{{comment_color}},
+    keywordstyle=\\bfseries\\color{{keyword_color}},
+    stringstyle=\\color{{string_color}},
+    morekeywords={{self, lambda, __init__, __del__, __name__, for, in, not, and, or, :}},
+    basicstyle=\\ttfamily,
+    tabsize=4,
+    keepspaces=true,
+    columns=fixed,
+    frame=trbl,
+    frameround=tttt,
+    framesep=4pt
+}}
+
+% Lengths
 \\setlength{{\\parindent}}{{0in}}
 \\setlength{{\\oddsidemargin}}{{0in}}
 \\setlength{{\\textwidth}}{{6.5in}}

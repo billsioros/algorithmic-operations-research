@@ -2,19 +2,32 @@
 # Algorithmic Operation Research
 
 * [Homework 1](Homework_1/homework.pdf)
+* [Homework 2](Homework_2/homework.pdf)
+* [Homework 3](Homework_3/homework.pdf)
 
 ## Contributors
 
 * Σιώρος Βασίλειος       - 1115201500144
 * Ανδρινοπούλου Χριστίνα - 1115201500006
 
-## LaTeX Project Base Generation
+# LaTeX Project Base Generation
 
 ```bash
-python generate.py -l <QUESTIONS> -d -o -s <ANSWERS>
+usage: generate.py [-h] [-l LOAD] -s SAVE [-d] [-o]
 
-# For example:
+LaTeX Project Base Generation
 
-python generate.py -l "..\Algorithmic Operation Research_hw_2.pdf" -d -o -s .\Homework_2\homework.tex
+optional arguments:
+  -h, --help            show this help message and exit
+  -l LOAD, --load LOAD  specify the input file
+  -s SAVE, --save SAVE  specify the output file
+  -d, --directory       make parent directories as needed
+  -o, --overwrite       enable overwriting
+```
+
+## Example
+
+```bash
+python generate.py -s ".\Homework_3\homework.tex" -l "..\Algorithmic Operation Research_hw_3.pdf" -d -o
 ```
 

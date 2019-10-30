@@ -83,17 +83,14 @@ tex_project_template = \
     breaklines=true,
     showstringspaces=false,
     breakatwhitespace=true,
-    commentstyle=\\color{{comment_color}},
-    keywordstyle=\\bfseries\\color{{keyword_color}},
-    stringstyle=\\color{{string_color}},
+    commentstyle=\\color{{comment_color}}\\textit,
+    keywordstyle=\\bfseries\\color{{keyword_color}}\\textbf,
+    stringstyle=\\color{{string_color}}\\textit,
     morekeywords={{self, lambda, __init__, __del__, __name__, for, in, not, and, or, :}},
     basicstyle=\\ttfamily,
     tabsize=4,
     keepspaces=true,
-    columns=fixed,
-    frame=trbl,
-    frameround=tttt,
-    framesep=4pt
+    columns=flexible
 }}
 
 % Lengths

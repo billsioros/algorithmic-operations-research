@@ -135,7 +135,7 @@ def parse_command(command, args_count_rgx=r"#[1-9][0-9]*"):
 
     args_str = f"[{args_count}]" if args_count > 0 else ""
 
-    return f"\\newcommand{{{signature}}}{args_str}{{{body}}}"
+    return f"\\newcommand{{\\{signature}}}{args_str}{{{body}}}"
 
 
 def parse_environment(environment):

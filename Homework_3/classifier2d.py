@@ -6,7 +6,7 @@ from scipy.optimize import linprog
 import matplotlib.pyplot as plt
 
 
-class Classifier:
+class Classifier2D:
 
     def __init__(self, Y, Z):
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     blue, red = [(0, 0), (1, 0)], [(0, 2), (1, 2)]
 
-    classifier = Classifier(blue, red)
+    classifier = Classifier2D(blue, red)
 
     for point in blue:
 

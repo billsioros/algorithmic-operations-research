@@ -123,36 +123,37 @@ if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description="2D Pattern Classification via Linear Programming")
 
     argparser.add_argument("-g", "--guides",     help="draw guides connecting each point to the separation line",                    action="store_true")
-    argparser.add_argument("-x", "--xaxis",      help="specify the lower and upper bounds of the horizontal axis",                   default=[-25.0, +25.0],           type=float, nargs='+')
-    argparser.add_argument("-l", "--line",       help="specify the slope and the y-intercept of the separation line",                default=[+2.0, -3.0],             type=float, nargs='+')
-    argparser.add_argument("-s", "--size",       help="specify the number of points to be generated",                                default=100,                      type=int)
+    argparser.add_argument("-r", "--random",     help="generate the points completely at random",                                    action="store_true")
+    argparser.add_argument("-s", "--seed",       help="initialize the internal state of the random number generator",                default=None,                     type=int)
+    argparser.add_argument("-n", "--number",     help="specify the number of points to be generated",                                default=100,                      type=int)
     argparser.add_argument("-p", "--percentage", help="specify the percentage of points belonging to the first class",               default=0.5,                      type=float)
+    argparser.add_argument("-x", "--axis",       help="specify the lower and upper bounds of the horizontal axis",                   default=[-25.0, +25.0],           type=float, nargs='+')
+    argparser.add_argument("-l", "--line",       help="specify the slope and the y-intercept of the separation line",                default=[+2.0, -3.0],             type=float, nargs='+')
     argparser.add_argument("-d", "--distance",   help="specify the lower and upper bounds of the distance from the separation line", default=[+10.0, +80.0],           type=float, nargs='+')
     argparser.add_argument("-c", "--classes",    help="specify the classes' labels",                                                 default=["Negative", "Positive"], type=str,   nargs='+')
-    argparser.add_argument("-r", "--random",     help="generate the points completely at random",                                    action="store_true")
 
     args = argparser.parse_args()
 
 
-    if len(args.xaxis) != 2:
+    if len(args.axis) != 2:
 
-        tense = "was" if len(args.xaxis) == 1 else "were"
+        tense = "was" if len(args.axis) == 1 else "were"
 
-        raise Warning(f"specifying the range of the horizontal axis requires 2 values but {len(args.xaxis)} {tense} given")
+        raise Warning(f"specifying the range of the horizontal axis requires 2 values but {len(args.axis)} {tense} given")
 
-    if args.xaxis[0] > args.xaxis[1]:
+    if args.axis[0] > args.axis[1]:
 
-        raise ValueError(f"the lower bound of the horizontal axis is greater than upper bound [{args.xaxis[0]:+5.2f}, {args.xaxis[1]:+5.2f}]")
+        raise ValueError(f"the lower bound of the horizontal axis is greater than upper bound [{args.axis[0]:+5.2f}, {args.axis[1]:+5.2f}]")
 
 
     if len(args.line) != 2:
 
-        tense = "was" if len(args.xaxis) == 1 else "were"
+        tense = "was" if len(args.axis) == 1 else "were"
 
         raise Warning(f"specifying the slope and the y-intercept of the separation line requires 2 values but {len(args.line)} {tense} given")
 
 
-    if args.size <= 0:
+    if args.number <= 0:
 
         raise ValueError("'size' must be a positive integer")
 
@@ -184,11 +185,16 @@ if __name__ == '__main__':
         raise Warning(f"specifying the classes' names requires 2 values but {len(args.classes)} {tense} given")
 
 
-    x = np.linspace(args.xaxis[0] - args.distance[1], args.xaxis[1] + args.distance[1], 500)
+    if args.seed:
+
+        random.seed(args.seed)
+
+
+    x = np.linspace(args.axis[0] - args.distance[1], args.axis[1] + args.distance[1], 500)
 
     f = lambda x: args.line[0] * x + args.line[1]
 
-    fmin, fmax = [f(args.xaxis[0]), f(args.xaxis[1])]
+    fmin, fmax = [f(args.axis[0]), f(args.axis[1])]
     fmin, fmax = min([fmin, fmax]), max([fmin, fmax])
 
     if args.guides:
@@ -198,13 +204,13 @@ if __name__ == '__main__':
 
     if args.random:
 
-        xa, ya = generate_random_group(args.size, args.percentage, args.xaxis, (fmin, fmax), -1)
-        xb, yb = generate_random_group(args.size, args.percentage, args.xaxis, (fmin, fmax), +1)
+        xa, ya = generate_random_group(args.number, args.percentage, args.axis, (fmin, fmax), -1)
+        xb, yb = generate_random_group(args.number, args.percentage, args.axis, (fmin, fmax), +1)
 
     else:
 
-        xa, ya = generate_separable_group(args.size, args.percentage, args.xaxis, args.line, args.distance, -1, ("r", "v", ":") if args.guides else None)
-        xb, yb = generate_separable_group(args.size, args.percentage, args.xaxis, args.line, args.distance, +1, ("b", "^", ":") if args.guides else None)
+        xa, ya = generate_separable_group(args.number, args.percentage, args.axis, args.line, args.distance, -1, ("r", "v", ":") if args.guides else None)
+        xb, yb = generate_separable_group(args.number, args.percentage, args.axis, args.line, args.distance, +1, ("b", "^", ":") if args.guides else None)
 
     plt.scatter(xa, ya, marker="v", color="r", label=args.classes[0])
     plt.scatter(xb, yb, marker="^", color="b", label=args.classes[1])
@@ -228,7 +234,7 @@ if __name__ == '__main__':
         pass
 
     plt.axis('equal')
-    plt.xlim([args.xaxis[0], args.xaxis[1]])
+    plt.xlim([args.axis[0], args.axis[1]])
     plt.ylim([fmin, fmax])
     plt.xlabel("$x$", color="#1C2833")
     plt.ylabel("$y$", color="#1C2833")

@@ -59,7 +59,17 @@ def get_line_label(a, b):
     return label
 
 
-def generate_group(size, xmin, xmax, multipler, guides=None):
+def generate_random_group(size, percentage, xaxis, yaxis, mulitplier):
+
+    size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
+
+    xs = [random.uniform(xaxis[0], xaxis[1]) for _ in range(size)]
+    ys = [random.uniform(yaxis[0], yaxis[1]) for _ in range(size)]
+
+    return xs, ys
+
+
+def generate_separable_group(size, percentage, axis, line, distance, mulitplier, guides=None):
 
     def get_dispositioned_point(a, point, distance, xmin, xmax):
 
@@ -79,21 +89,29 @@ def generate_group(size, xmin, xmax, multipler, guides=None):
         return np.asarray(point) + distance * v
 
 
+    f = lambda x: line[0] * x + line[1]
+
+    size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
+
+    midpoint = (axis[1] + axis[0]) * percentage
+
+    bounds = (axis[0], midpoint) if mulitplier < 0 else (midpoint, axis[1])
+
     xs, ys = [], []
 
     for _ in range(size):
 
-        x = random.uniform(xmin, xmax)
+        x = random.uniform(bounds[0], bounds[1])
         y = f(x)
 
-        dx, dy = get_dispositioned_point(args.line[0], (x, y), multipler * random.uniform(args.distance[0], args.distance[1]), args.xaxis[0], args.xaxis[1])
+        xx, yy = get_dispositioned_point(line[0], (x, y), mulitplier * random.uniform(distance[0], distance[1]), axis[0], axis[1])
 
-        xs.append(dx)
-        ys.append(dy)
+        xs.append(xx)
+        ys.append(yy)
 
         if guides != None and len(guides) == 3:
 
-            plt.plot([x, dx], [y, dy], f"{guides[2]}{guides[0]}")
+            plt.plot([x, xx], [y, yy], f"{guides[2]}{guides[0]}")
 
             plt.scatter(x, y, marker=guides[1], color=guides[0])
 
@@ -104,13 +122,14 @@ if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser(description="2D Pattern Classification via Linear Programming")
 
-    argparser.add_argument("-g", "--guides",     help="enable drawing guides connecting each point to the separation line", action="store_true")
-    argparser.add_argument("-x", "--xaxis",      help="specify the range of the horizontal axis",                           default=[-25.0, +25.0],           type=float, nargs='+')
-    argparser.add_argument("-l", "--line",       help="specify the slope and the y-intercept of the separation line",       default=[+2.0, -3.0],             type=float, nargs='+')
-    argparser.add_argument("-s", "--size",       help="specify the number of points to be generated",                       default=100,                      type=int)
-    argparser.add_argument("-p", "--percentage", help="specify the percentage of points belonging to the first class",      default=0.5,                      type=float)
-    argparser.add_argument("-d", "--distance",   help="specify the range of the distance from the separation line",         default=[+10.0, +80.0],           type=float, nargs='+')
-    argparser.add_argument("-c", "--classes",    help="specify the classes' names",                                         default=["Negative", "Positive"], type=str,   nargs='+')
+    argparser.add_argument("-g", "--guides",     help="draw guides connecting each point to the separation line",                    action="store_true")
+    argparser.add_argument("-x", "--xaxis",      help="specify the lower and upper bounds of the horizontal axis",                   default=[-25.0, +25.0],           type=float, nargs='+')
+    argparser.add_argument("-l", "--line",       help="specify the slope and the y-intercept of the separation line",                default=[+2.0, -3.0],             type=float, nargs='+')
+    argparser.add_argument("-s", "--size",       help="specify the number of points to be generated",                                default=100,                      type=int)
+    argparser.add_argument("-p", "--percentage", help="specify the percentage of points belonging to the first class",               default=0.5,                      type=float)
+    argparser.add_argument("-d", "--distance",   help="specify the lower and upper bounds of the distance from the separation line", default=[+10.0, +80.0],           type=float, nargs='+')
+    argparser.add_argument("-c", "--classes",    help="specify the classes' labels",                                                 default=["Negative", "Positive"], type=str,   nargs='+')
+    argparser.add_argument("-r", "--random",     help="generate the points completely at random",                                    action="store_true")
 
     args = argparser.parse_args()
 
@@ -135,12 +154,12 @@ if __name__ == '__main__':
 
     if args.size <= 0:
 
-        raise ValueError("size must be a positive integer")
+        raise ValueError("'size' must be a positive integer")
 
 
-    if args.percentage < 0.0 or args.percentage > 1.0:
+    if args.percentage <= 0.0 or args.percentage >= 1.0:
 
-        raise ValueError("percentage must be a real number in the range [0.0, 1.0]")
+        raise ValueError("'percentage' must be a real number in the range (0.0, 1.0)")
 
 
     if len(args.distance) != 2:
@@ -177,25 +196,36 @@ if __name__ == '__main__':
         plt.plot(x, f(x), ":k", label=get_line_label(args.line[0], args.line[1]))
 
 
-    size_a, size_b = int(args.percentage * args.size), args.size - int(args.percentage * args.size)
-    guides_a, guides_b = (("r", "v", ":"), ("b", "^", ":")) if args.guides else (None, None)
+    if args.random:
 
-    midpoint = (args.xaxis[1] + args.xaxis[0]) * args.percentage
+        xa, ya = generate_random_group(args.size, args.percentage, args.xaxis, (fmin, fmax), -1)
+        xb, yb = generate_random_group(args.size, args.percentage, args.xaxis, (fmin, fmax), +1)
 
-    xa, ya = generate_group(size_a, args.xaxis[0], midpoint,      -1, guides_a)
-    xb, yb = generate_group(size_b, midpoint,      args.xaxis[1], +1, guides_b)
+    else:
+
+        xa, ya = generate_separable_group(args.size, args.percentage, args.xaxis, args.line, args.distance, -1, ("r", "v", ":") if args.guides else None)
+        xb, yb = generate_separable_group(args.size, args.percentage, args.xaxis, args.line, args.distance, +1, ("b", "^", ":") if args.guides else None)
 
     plt.scatter(xa, ya, marker="v", color="r", label=args.classes[0])
     plt.scatter(xb, yb, marker="^", color="b", label=args.classes[1])
 
-    group_a = [(xa[i], ya[i]) for i in range(len(xa))]
-    group_b = [(xb[i], yb[i]) for i in range(len(xb))]
 
-    a, b = Classifier2D(group_a, group_b).get_separator_parameters()
+    try:
 
-    f = lambda x: a * x + b
+        group_1 = [(xa[i], ya[i]) for i in range(len(xa))]
+        group_2 = [(xb[i], yb[i]) for i in range(len(xb))]
 
-    plt.plot(x, f(x), "-k", label=get_line_label(a, b))
+        classifier = Classifier2D(group_1, group_2)
+
+        a, b = classifier.get_separator_parameters()
+
+        f = lambda x: a * x + b
+
+        plt.plot(x, f(x), "-k", label=get_line_label(a, b))
+
+    except:
+
+        pass
 
     plt.axis('equal')
     plt.xlim([args.xaxis[0], args.xaxis[1]])
@@ -204,6 +234,5 @@ if __name__ == '__main__':
     plt.ylabel("$y$", color="#1C2833")
     plt.legend(loc="upper right")
     plt.grid()
-
     plt.show()
 

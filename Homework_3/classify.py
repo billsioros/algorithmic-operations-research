@@ -222,7 +222,7 @@ if __name__ == '__main__':
 
     f = lambda x: args.line[0] * x + args.line[1]
 
-    if args.guides:
+    if not args.random and args.guides:
 
         plt.plot(x, f(x), ":k", label=get_line_label(args.line[0], args.line[1]))
 

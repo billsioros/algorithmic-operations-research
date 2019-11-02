@@ -7,8 +7,8 @@
 
 ## Contributors
 
-* Σιώρος Βασίλειος       - 1115201500144
-* Ανδρινοπούλου Χριστίνα - 1115201500006
+* [Σιώρος Βασίλειος       - 1115201500144](https://github.com/billsioros)
+* [Ανδρινοπούλου Χριστίνα - 1115201500006](https://github.com/ChristinaAndrinopoyloy)
 
 # LaTeX Project Base Generation
 
@@ -30,4 +30,8 @@ optional arguments:
 ```bash
 python generate.py -s ".\Homework_3\homework.tex" -l "..\Algorithmic Operation Research_hw_3.pdf" -d -o
 ```
+
+# Special Thanks To
+
+* [Carbon](https://carbon.now.sh/) for providing us with beautiful images of our source code
 

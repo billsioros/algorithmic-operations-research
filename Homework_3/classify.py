@@ -23,6 +23,8 @@
 
 import numpy as np
 
+import math
+
 import random
 
 import matplotlib.pyplot as plt
@@ -59,17 +61,32 @@ def get_line_label(a, b):
     return label
 
 
-def generate_random_group(size, percentage, xaxis, yaxis, mulitplier):
+def generate_random_group(size, percentage, distance, mulitplier):
+
+    def random_polar_coordinates(rmin, rmax):
+
+        r = random.uniform(rmin, rmax)
+
+        phi = random.uniform(-math.pi, +math.pi)
+
+        return r * math.cos(phi), r * math.sin(phi)
+
 
     size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
 
-    xs = [random.uniform(xaxis[0], xaxis[1]) for _ in range(size)]
-    ys = [random.uniform(yaxis[0], yaxis[1]) for _ in range(size)]
+    xs, ys = [], []
+
+    for _ in range(size):
+
+        x, y = random_polar_coordinates(distance[0], distance[1])
+
+        xs.append(x)
+        ys.append(y)
 
     return xs, ys
 
 
-def generate_separable_group(size, percentage, axis, line, distance, mulitplier, guides=None):
+def generate_separable_group(size, percentage, distance, mulitplier, axis, line, guides):
 
     def get_dispositioned_point(a, point, distance, xmin, xmax):
 
@@ -93,7 +110,7 @@ def generate_separable_group(size, percentage, axis, line, distance, mulitplier,
 
     size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
 
-    midpoint = (axis[1] + axis[0]) * percentage
+    midpoint = (axis[0] + axis[1]) * percentage
 
     bounds = (axis[0], midpoint) if mulitplier < 0 else (midpoint, axis[1])
 
@@ -116,6 +133,17 @@ def generate_separable_group(size, percentage, axis, line, distance, mulitplier,
             plt.scatter(x, y, marker=guides[1], color=guides[0])
 
     return xs, ys
+
+
+def generate_group(size, percentage, distance, mulitplier, axis=None, line=None, guides=None):
+
+    if axis and line:
+
+        return generate_separable_group(size, percentage, distance, mulitplier, axis, line, guides)
+
+    else:
+
+        return generate_random_group(size, percentage, distance, mulitplier)
 
 
 if __name__ == '__main__':
@@ -194,9 +222,6 @@ if __name__ == '__main__':
 
     f = lambda x: args.line[0] * x + args.line[1]
 
-    fmin, fmax = [f(args.axis[0]), f(args.axis[1])]
-    fmin, fmax = min([fmin, fmax]), max([fmin, fmax])
-
     if args.guides:
 
         plt.plot(x, f(x), ":k", label=get_line_label(args.line[0], args.line[1]))
@@ -204,13 +229,16 @@ if __name__ == '__main__':
 
     if args.random:
 
-        xa, ya = generate_random_group(args.number, args.percentage, args.axis, (fmin, fmax), -1)
-        xb, yb = generate_random_group(args.number, args.percentage, args.axis, (fmin, fmax), +1)
+        xa, ya = generate_group(args.number, args.percentage, args.distance, -1)
+        xb, yb = generate_group(args.number, args.percentage, args.distance, +1)
 
     else:
 
-        xa, ya = generate_separable_group(args.number, args.percentage, args.axis, args.line, args.distance, -1, ("r", "v", ":") if args.guides else None)
-        xb, yb = generate_separable_group(args.number, args.percentage, args.axis, args.line, args.distance, +1, ("b", "^", ":") if args.guides else None)
+        xa, ya = generate_group(args.number, args.percentage, args.distance, -1, args.axis, args.line, ("r", "v", ":") if args.guides else None)
+        xb, yb = generate_group(args.number, args.percentage, args.distance, +1, args.axis, args.line, ("b", "^", ":") if args.guides else None)
+
+    xmin, xmax = min(xa + xb), max(xa + xb)
+    ymin, ymax = min(ya + yb), max(ya + yb)
 
     plt.scatter(xa, ya, marker="v", color="r", label=args.classes[0])
     plt.scatter(xb, yb, marker="^", color="b", label=args.classes[1])
@@ -234,8 +262,8 @@ if __name__ == '__main__':
         pass
 
     plt.axis('equal')
-    plt.xlim([args.axis[0], args.axis[1]])
-    plt.ylim([fmin, fmax])
+    plt.xlim([xmin, xmax])
+    plt.ylim([ymin, ymax])
     plt.xlabel("$x$", color="#1C2833")
     plt.ylabel("$y$", color="#1C2833")
     plt.legend(loc="upper right")

@@ -41,7 +41,7 @@ class Classifier2D:
 
         a, b, c = self.result.x[-3:]
 
-        return -1.0 * (a / b), (c / b)
+        return -(a / b), (c / b)
 
 
 if __name__ == '__main__':

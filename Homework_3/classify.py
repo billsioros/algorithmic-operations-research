@@ -284,7 +284,7 @@ if __name__ == '__main__':
 
             for i in range(len(xs)):
 
-                if (f(xs[i] > 0)) == (f(xa[0] > 0)):
+                if (f(xs[i]) > ys[i]) == (f(xa[0]) > 0):
 
                     xsa.append(xs[i])
                     ysa.append(ys[i])
@@ -294,8 +294,8 @@ if __name__ == '__main__':
                     xsb.append(xs[i])
                     ysb.append(ys[i])
 
-            plt.scatter(xsa, ysa, marker="X", color="#ff3664", label=f"Unknown / {args.classes[0]}")
-            plt.scatter(xsb, ysb, marker="X", color="#03a1fc", label=f"Unknown / {args.classes[1]}")
+            plt.scatter(xsa, ysa, marker="X", color="#ff3664", label=f"Unknown [{args.classes[0]}]")
+            plt.scatter(xsb, ysb, marker="X", color="#03a1fc", label=f"Unknown [{args.classes[1]}]")
 
     except:
 

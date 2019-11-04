@@ -61,7 +61,7 @@ def get_line_label(a, b):
     return label
 
 
-def generate_random_group(size, percentage, distance, mulitplier):
+def generate_random_group(number, percentage, distance, mulitplier):
 
     def random_polar_coordinates(rmin, rmax):
 
@@ -72,11 +72,11 @@ def generate_random_group(size, percentage, distance, mulitplier):
         return r * math.cos(phi), r * math.sin(phi)
 
 
-    size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
+    number = int(percentage * number) if mulitplier < 0 else number - int(percentage * number)
 
     xs, ys = [], []
 
-    for _ in range(size):
+    for _ in range(number):
 
         x, y = random_polar_coordinates(distance[0], distance[1])
 
@@ -86,7 +86,7 @@ def generate_random_group(size, percentage, distance, mulitplier):
     return xs, ys
 
 
-def generate_separable_group(size, percentage, distance, mulitplier, axis, line, guides):
+def generate_separable_group(number, percentage, distance, mulitplier, axis, line, guides):
 
     def get_dispositioned_point(a, point, distance, xmin, xmax):
 
@@ -108,7 +108,7 @@ def generate_separable_group(size, percentage, distance, mulitplier, axis, line,
 
     f = lambda x: line[0] * x + line[1]
 
-    size = int(percentage * size) if mulitplier < 0 else size - int(percentage * size)
+    number = int(percentage * number) if mulitplier < 0 else number - int(percentage * number)
 
     midpoint = (axis[0] + axis[1]) * percentage
 
@@ -116,7 +116,7 @@ def generate_separable_group(size, percentage, distance, mulitplier, axis, line,
 
     xs, ys = [], []
 
-    for _ in range(size):
+    for _ in range(number):
 
         x = random.uniform(bounds[0], bounds[1])
         y = f(x)
@@ -135,15 +135,27 @@ def generate_separable_group(size, percentage, distance, mulitplier, axis, line,
     return xs, ys
 
 
-def generate_group(size, percentage, distance, mulitplier, axis=None, line=None, guides=None):
+def generate_group(number, percentage, distance, mulitplier, axis=None, line=None, guides=None):
 
     if axis and line:
 
-        return generate_separable_group(size, percentage, distance, mulitplier, axis, line, guides)
+        return generate_separable_group(number, percentage, distance, mulitplier, axis, line, guides)
 
     else:
 
-        return generate_random_group(size, percentage, distance, mulitplier)
+        return generate_random_group(number, percentage, distance, mulitplier)
+
+
+def generate_random_points(xaxis, yaxis, number):
+
+    xs, ys = [], []
+
+    for _ in range(number):
+
+        xs.append(random.uniform(xaxis[0], xaxis[1]))
+        ys.append(random.uniform(yaxis[0], yaxis[1]))
+
+    return xs, ys
 
 
 if __name__ == '__main__':
@@ -153,7 +165,8 @@ if __name__ == '__main__':
     argparser.add_argument("-g", "--guides",     help="draw guides connecting each point to the separation line",                    action="store_true")
     argparser.add_argument("-r", "--random",     help="generate the points completely at random",                                    action="store_true")
     argparser.add_argument("-s", "--seed",       help="initialize the internal state of the random number generator",                default=None,                     type=int)
-    argparser.add_argument("-n", "--number",     help="specify the number of points to be generated",                                default=100,                      type=int)
+    argparser.add_argument("-n", "--number",     help="specify the number of random points that make up the training set",           default=100,                      type=int)
+    argparser.add_argument("-e", "--extra",      help="specify the number of random points that make up the testing set",            default=0,                        type=int)
     argparser.add_argument("-p", "--percentage", help="specify the percentage of points belonging to the first class",               default=0.5,                      type=float)
     argparser.add_argument("-x", "--axis",       help="specify the lower and upper bounds of the horizontal axis",                   default=[-25.0, +25.0],           type=float, nargs='+')
     argparser.add_argument("-l", "--line",       help="specify the slope and the y-intercept of the separation line",                default=[+2.0, -3.0],             type=float, nargs='+')
@@ -183,7 +196,12 @@ if __name__ == '__main__':
 
     if args.number <= 0:
 
-        raise ValueError("'size' must be a positive integer")
+        raise ValueError("'number' must be a positive integer")
+
+
+    if args.extra < 0:
+
+        raise ValueError("'extra' must be a non negative integer")
 
 
     if args.percentage <= 0.0 or args.percentage >= 1.0:
@@ -256,6 +274,28 @@ if __name__ == '__main__':
         f = lambda x: a * x + b
 
         plt.plot(x, f(x), "-k", label=get_line_label(a, b))
+
+
+        if args.extra:
+
+            xs, ys = generate_random_points((xmin, xmax), (ymin, ymax), args.extra)
+
+            xsa, ysa, xsb, ysb = [], [], [], []
+
+            for i in range(len(xs)):
+
+                if (f(xs[i] > 0)) == (f(xa[0] > 0)):
+
+                    xsa.append(xs[i])
+                    ysa.append(ys[i])
+
+                else:
+
+                    xsb.append(xs[i])
+                    ysb.append(ys[i])
+
+            plt.scatter(xsa, ysa, marker="X", color="#ff3664", label=f"Unknown / {args.classes[0]}")
+            plt.scatter(xsb, ysb, marker="X", color="#03a1fc", label=f"Unknown / {args.classes[1]}")
 
     except:
 

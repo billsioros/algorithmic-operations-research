@@ -236,7 +236,7 @@ if __name__ == '__main__':
         raise Warning(f"specifying the classes' names requires 2 values but {len(args.classes)} {tense} given")
 
 
-    if len(args.figure) == 0:
+    if args.figure and len(args.figure) == 0:
 
         raise ValueError("'figure' must be a non empty string")
 

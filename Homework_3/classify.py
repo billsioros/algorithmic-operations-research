@@ -31,6 +31,10 @@ import matplotlib.pyplot as plt
 
 import argparse
 
+from os.path import splitext
+
+from sys import argv
+
 from classifier2d import Classifier2D
 
 
@@ -164,6 +168,7 @@ if __name__ == '__main__':
 
     argparser.add_argument("-g", "--guides",     help="draw guides connecting each point to the separation line",                    action="store_true")
     argparser.add_argument("-r", "--random",     help="generate the points completely at random",                                    action="store_true")
+    argparser.add_argument("-f", "--figure",     help="save the figure as a '.eps' file with the given basename",                    default=None,                     type=str)
     argparser.add_argument("-s", "--seed",       help="initialize the internal state of the random number generator",                default=None,                     type=int)
     argparser.add_argument("-n", "--number",     help="specify the number of random points that make up the training set",           default=100,                      type=int)
     argparser.add_argument("-e", "--extra",      help="specify the number of random points that make up the testing set",            default=0,                        type=int)
@@ -229,6 +234,16 @@ if __name__ == '__main__':
         tense = "was" if len(args.classes) == 1 else "were"
 
         raise Warning(f"specifying the classes' names requires 2 values but {len(args.classes)} {tense} given")
+
+
+    if len(args.figure) == 0:
+
+        raise ValueError("'figure' must be a non empty string")
+
+
+    if args.figure:
+
+        figure = plt.figure()
 
 
     if args.seed:
@@ -309,4 +324,9 @@ if __name__ == '__main__':
     plt.legend(loc="upper right")
     plt.grid()
     plt.show()
+
+
+    if args.figure:
+
+        figure.savefig(f"{args.figure}.eps", format="eps")
 

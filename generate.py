@@ -71,6 +71,7 @@ tex_project_template = \
 \\definecolor{{string_color}}{{RGB}}{{0, 161, 13}}
 \\definecolor{{comment_color}}{{RGB}}{{46, 46, 46}}
 \\definecolor{{keyword_color}}{{RGB}}{{0, 112, 191}}
+\\definecolor{{background_color}}{{RGB}}{{250, 250, 250}}
 
 \\lstset{{
     language=Python,
@@ -87,10 +88,19 @@ tex_project_template = \
     keywordstyle=\\bfseries\\color{{keyword_color}}\\textbf,
     stringstyle=\\color{{string_color}}\\textit,
     morekeywords={{self, lambda, __init__, __del__, __name__, for, in, not, and, or, :}},
-    basicstyle=\\ttfamily,
+    basicstyle=\\small\\ttfamily,
     tabsize=4,
     keepspaces=true,
-    columns=flexible
+    columns=flexible,
+    backgroundcolor=\\color{{background_color}}
+}}
+
+% Links
+\\hypersetup{{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
 }}
 
 % Lengths

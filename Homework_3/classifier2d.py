@@ -14,25 +14,41 @@ class Classifier2D:
 
         for y in range(1, len(Y) + 1):
 
-            A.append([0] * (y - 1) + [-1] + [0] * (len(Y) - y) + [0] * len(Z) + [-1 * Y[y - 1][0], -1 * Y[y - 1][1], +1])
+            l = [0] * (y - 1)
+            r = [0] * (len(Y) + len(Z) - y)
+
+            A.append(l + [-1] + r + [-1 * Y[y - 1][0], -1 * Y[y - 1][1], +1])
 
         for z in range(1, len(Z) + 1):
 
-            A.append([0] * len(Y) + [0] * (z - 1) + [-1] + [0] * (len(Z) - z) + [+1 * Z[z - 1][0], +1 * Z[z - 1][1], -1])
+            l = [0] * (len(Y) + z - 1)
+            r = [0] * (len(Z) - z)
+
+            A.append(l + [-1] + r + [+1 * Z[z - 1][0], +1 * Z[z - 1][1], -1])
 
         for y in range(1, len(Y) + 1):
 
-            A.append([0] * (y - 1) + [-1] + [0] * (len(Y) - y) + [0] * len(Z) + [0, 0, 0])
+            l = [0] * (y - 1)
+            r = [0] * (len(Y) + len(Z) - y)
+
+            A.append(l + [-1] + r + [0, 0, 0])
 
         for z in range(1, len(Z) + 1):
 
-            A.append([0] * len(Y) + [0] * (z - 1) + [-1] + [0] * (len(Z) - z) + [0, 0, 0])
+            l = [0] * (len(Y) + z - 1)
+            r = [0] * (len(Z) - z)
+
+            A.append(l + [-1] + r + [0, 0, 0])
 
         A = np.asarray(A)
 
-        b = np.asarray([-1] * (len(Y) + len(Z)) + [0] * (len(Y) + len(Z)))
+        lower, upper = [0] * (len(Y) + len(Z)), [-1] * (len(Y) + len(Z))
 
-        c = np.asarray([0.5] * (len(Y) + len(Z)) + [0, 0, 0])
+        b = np.asarray(upper + lower)
+
+        lower, upper = [0, 0, 0], [1 / len(Y)] * len(Y) + [1 / len(Z)] * len(Z)
+
+        c = np.asarray(upper + lower)
 
         self.result = linprog(c, A_ub=A, b_ub=b, bounds=(None, None))
 

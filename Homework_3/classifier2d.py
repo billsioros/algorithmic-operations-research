@@ -42,13 +42,11 @@ class Classifier2D:
 
         A = np.asarray(A)
 
-        upper = [-1] * (len(Y) + len(Z))
-        lower = [0] * (len(Y) + len(Z))
+        lower, upper = [0] * (len(Y) + len(Z)), [-1] * (len(Y) + len(Z))
 
         b = np.asarray(upper + lower)
 
-        upper = [0.5] * (len(Y) + len(Z))
-        lower = [0, 0, 0]
+        lower, upper = [0, 0, 0], [1 / len(Y)] * len(Y) + [1 / len(Z)] * len(Z)
 
         c = np.asarray(upper + lower)
 

@@ -71,7 +71,7 @@ tex_project_template = \
 \\definecolor{{string_color}}{{RGB}}{{0, 161, 13}}
 \\definecolor{{comment_color}}{{RGB}}{{46, 46, 46}}
 \\definecolor{{keyword_color}}{{RGB}}{{0, 112, 191}}
-\\definecolor{{background_color}}{{RGB}}{{245, 245, 245}}
+\\definecolor{{background_color}}{{RGB}}{{250, 250, 250}}
 
 \\lstset{{
     language=Python,
@@ -93,6 +93,14 @@ tex_project_template = \
     keepspaces=true,
     columns=flexible,
     backgroundcolor=\\color{{background_color}}
+}}
+
+% Links
+\\hypersetup{{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
 }}
 
 % Lengths

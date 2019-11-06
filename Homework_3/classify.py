@@ -76,7 +76,8 @@ def generate_random_group(number, percentage, distance, mulitplier):
         return r * math.cos(phi), r * math.sin(phi)
 
 
-    number = int(percentage * number) if mulitplier < 0 else number - int(percentage * number)
+    offset = int(percentage * number)
+    number = offset if mulitplier < 0 else number - offset
 
     xs, ys = [], []
 
@@ -112,11 +113,11 @@ def generate_separable_group(number, percentage, distance, mulitplier, axis, lin
 
     f = lambda x: line[0] * x + line[1]
 
-    number = int(percentage * number) if mulitplier < 0 else number - int(percentage * number)
+    offset = int(percentage * number)
+    number = offset if mulitplier < 0 else number - offset
 
     midpoint = (axis[0] + axis[1]) * percentage
-
-    bounds = (axis[0], midpoint) if mulitplier < 0 else (midpoint, axis[1])
+    bounds   = (axis[0], midpoint) if mulitplier < 0 else (midpoint, axis[1])
 
     xs, ys = [], []
 
@@ -125,7 +126,9 @@ def generate_separable_group(number, percentage, distance, mulitplier, axis, lin
         x = random.uniform(bounds[0], bounds[1])
         y = f(x)
 
-        xx, yy = get_dispositioned_point(line[0], (x, y), mulitplier * random.uniform(distance[0], distance[1]), axis[0], axis[1])
+        d = mulitplier * random.uniform(distance[0], distance[1])
+
+        xx, yy = get_dispositioned_point(line[0], (x, y), d, axis[0], axis[1])
 
         xs.append(xx)
         ys.append(yy)

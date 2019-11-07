@@ -74,6 +74,9 @@ tex_project_template = \
 \\definecolor{{background_color}}{{RGB}}{{250, 250, 250}}
 
 \\lstset{{
+    framesep=15pt,
+    xleftmargin=15pt,
+    xrightmargin=15pt,
     language=Python,
     captionpos=b,
     numbers=right,

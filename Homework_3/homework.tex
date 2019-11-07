@@ -47,6 +47,9 @@
 \definecolor{background_color}{RGB}{250, 250, 250}
 
 \lstset{
+    framesep=10pt,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
     language=Python,
     captionpos=b,
     numbers=right,
@@ -189,6 +192,11 @@
 
 \subsection{Generating Random Points}
 
+Οι μέθοδοι, που θα αναπτύξουμε στη συνέχεια, καλούνται αρχικά με αρνητικό \textit{multiplier},
+ο ρόλος του οποίου θα αποσαφηνιστεί στη συνέχεια,
+για να παράξουν τα σημεία της μίας κλάσης, και έπειτα με θετικό \textit{multiplier},
+για να παράξουν τα σημεία της δεύτερης κλάσης. \\
+
 \subsubsection{Linearly Separable Dataset}
 
 Αρχικά, αναπτύσσουμε την μέθοδο \textit{get\_dispositioned\_point},
@@ -254,7 +262,7 @@
 
 \begin{matlab}
     \includegraphics[scale=0.75]{figures/perpendicular}
-    \caption{Using \textit{generate\_separable\_group} twice to generate 10 points }
+    \caption{Calling \textit{generate\_separable\_group} twice to generate 10 points }
 \end{matlab}
 
 \subsubsection{Non Linearly Separable Dataset}
@@ -282,8 +290,6 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     return r * math.cos(phi), r * math.sin(phi)
 \end{lstlisting}
 
-\pagebreak
-
 Στη συνέχεια αναπτύσσουμε τη μέθοδο \textit{generate\_random\_group},
 η οποία χρησιμοποιώντας τη μέθοδο \textit{random\_polar\_coordinates},
 παράγει το ζητούμενο πλήθος τυχαίων σημείων. \\
@@ -304,12 +310,12 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     return xs, ys
 \end{lstlisting}
 
+\pagebreak
+
 \begin{matlab}
     \includegraphics[scale=0.75]{figures/random}
-    \caption{Using \textit{generate\_random\_group} twice to generate 10 points }
+    \caption{Calling \textit{generate\_random\_group} twice to generate 10 points }
 \end{matlab}
-
-\pagebreak
 
 \subsection{Linear Classification in \( \R^2 \)}
 
@@ -327,6 +333,8 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
 \href{https://docs.scipy.org/doc/scipy/reference/optimize.linprog-simplex.html}{linprog},
 παράδειγμα χρήσης της οποίας μπορείτε να βρείτε
 \href{https://stackoverflow.com/questions/45873783/python-linprog-minimization-simplex-method}{εδώ}. \\
+
+\pagebreak
 
 \begin{lstlisting}[caption={Calculating matrix \textbf{A} and vector \textbf{b}}]
     A = []
@@ -366,8 +374,6 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     b = np.asarray(upper + lower)
 \end{lstlisting}
 
-\pagebreak
-
 \begin{lstlisting}[caption={Defining vector \textbf{c} and finding a solution to the problem}]
     lower, upper = [0, 0, 0], [1 / len(Y)] * len(Y) + [1 / len(Z)] * len(Z)
 
@@ -376,11 +382,17 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     result = linprog(c, A_ub=A, b_ub=b, bounds=(None, None))
 \end{lstlisting}
 
+\begin{lstlisting}[caption={Determining the slope and the y-intercept of the separating line}]
+    a, b, c = result.x[-3:]
+
+    a, b = -(a / b), (c / b)
+\end{lstlisting}
+
 \begin{figure}[hp]
     \centering
-    \subfloat{{\includegraphics[width=7.5cm]{figures/linearly_separable_example_no_guides}}}
-    \qquad
     \subfloat{{\includegraphics[width=7.5cm]{figures/linearly_separable_example_with_guides}}}
+    \qquad
+    \subfloat{{\includegraphics[width=7.5cm]{figures/linearly_separable_example_no_guides}}}
     \caption{Παράδειγμα επι γραμμικά διαχωρίσιμων υποσυνόλων του \( \R^2 \)}
 \end{figure}
 
@@ -392,12 +404,14 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     \caption{Παράδειγμα επι μη γραμμικά διαχωρίσιμων υποσυνόλων του \( \R^2 \)}
 \end{figure}
 
-\pagebreak
-
 \subsubsection{Testing the Linear Classifier}
 
-Για κάθε αταξινόμητο αντικείμενο \( x \) το πρόσημο της παράστασης \( a^{T} \cdot x - b \)
-υποδεικνύει σε ποια κλάση ανήκει το αντικείμενο αυτό. \\
+Χρησιμοποιούμε τυχαία στοιχεία του \( \R^2 \),
+για να ελέγξουμε την ακρίβεια του γραμμικού ταξινομητή, που αναπτύξαμε. \\
+
+Για κάθε ένα από αυτά τα αταξινόμητα αντικείμενα \( x \),
+το πρόσημο της παράστασης \( a^{T} \cdot x - b \),
+θα υποδεικνύει την κλάση στην οποία είναι πιθανότερο να ανήκει το αντικείμενο αυτό. \\
 
 \begin{lstlisting}[caption={Η μέθοδος \textit{generate\_random\_points}}]
     xs, ys = [], []
@@ -410,7 +424,11 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
     return xs, ys
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Η ταξινόμηση των τυχαίων σημείων βάσει του προσήμου της παράστασης}]
+\pagebreak
+
+\begin{lstlisting}[caption={Η υλοποίηση της ταξινόμησης βάσει του προσήμου της παράστασης \( a^{T} \cdot x - b \)}]
+    f = lambda x: a * x + b
+
     xs, ys = generate_random_points((xmin, xmax), (ymin, ymax), args.extra)
 
     xsa, ysa, xsb, ysb = [], [], [], []
@@ -427,5 +445,13 @@ Tο πολικό σύστημα συντεταγμένων είναι ένα δ�
             xsb.append(xs[i])
             ysb.append(ys[i])
 \end{lstlisting}
+
+\begin{figure}[hp]
+    \centering
+    \subfloat{{\includegraphics[width=7.5cm]{figures/testing_1}}}
+    \qquad
+    \subfloat{{\includegraphics[width=7.5cm]{figures/testing_2}}}
+    \caption{Ταξινόμηση σημείων των οποίων την κλάση δεν γνωρίζουμε εκ των προτέρων}
+\end{figure}
 
 \end{document}

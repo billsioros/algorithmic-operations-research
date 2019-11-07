@@ -169,7 +169,116 @@
 
 \pagebreak
 
+Εναλλακτικά, μπορούμε να εκφράσουμε τη γραμμική διαχωρισιμότητα ως εξής: \\
+
+Έστω τα δύο σύνολα αντικειμένων: 
+
+\begin{align*}
+K & = \{K_{1}, K_{2}, \dotsc , K_{l_k}\} & \text{ όπου }  K_i \in \R^{n} & \margin \forall i \in \lbrack 1, \dotsc l_k \rbrack \\
+N & = \{N_{1}, N_{2}, \dotsc , N_{l_n}\} & \text{ όπου }  N_i \in \R^{n} & \margin \forall i \in \lbrack 1, \dotsc l_n \rbrack
+\end{align*}
+
+Τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα αν και μόνο αν υπάρχει \(a \in \R^{n}\) και \(b \in \R\) τέτοια ώστε \(a^{T} \cdot K_{i} -b \geq 1\) και \(a^{T} \cdot N_{j} - b \leq -1\) \(\forall i \in \{1,...,l_{k}\}\) και \(\forall j \in \{1,...,l_{n}\}\). \\
+
+Για να αποδείξουμε τον παραπάνω ισχυρισμό, πρέπει να αποδείξουμε και τις δύο κατευθύνσεις: \\
+
+\( \bullet \) Αν υπάρχει \(a \in \R^{n}\) και \(b \in \R\) τέτοια ώστε \(a^{T} \cdot K_{i} -b \geq 1\) και \(a^{T} \cdot N_{j} - b \leq -1\) \(\forall i \in \{1,...,l_{k}\}\) και \(\forall j \in \{1,...,l_{n}\}\), τότε τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα \\
+
+Όπως προαναφέρθηκε, τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα όταν υπάρχουν \( a \in \R^{n} \) και \( b \in \R \), τέτοια ώστε
+
+\begin{align*}
+K & \subseteq \{ x \in \R^{n} : a^{T} \cdot x \geq b \} \\
+N & \subseteq \{ x \in \R^{n} : a^{T} \cdot x < b\}
+\end{align*}
+
+Άρα, προφανώς τα \(K\) και \(N\) θα είναι γραμμικά διαχωρίσιμα και όταν: \\
+
+\begin{align*}
+K & \subseteq \{ x \in \R^{n} : a^{T} \cdot x \geq b + 1 \} \\
+N & \subseteq \{ x \in \R^{n} : a^{T} \cdot x < b - 1\}
+\end{align*}
+
+\( \bullet \)  Αν τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα, τότε υπάρχει \(a \in \R^{n}\) και \(b \in \R\) τέτοια ώστε \(a^{T} \cdot K_{i} -b \geq 1\) και \(a^{T} \cdot N_{j} - b \leq -1\) \(\forall i \in \{1,...,l_{k}\}\) και \(\forall j \in \{1,...,l_{n}\}\). \\
+
+Αφού τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα, υπάρχουν \( c \in \R^{n} \) και \( b \in \R \), τέτοια ώστε \(c^{T} \cdot x \geq b \) για \(x \in K\) και \(c^{T} \cdot x < b \) για \(x \in Ν\). \\
+
+Ορίζουμε \textit{m} (εκ του margin) ως:
+
+\centered{ m = \min_{x \in K} c^{T} \cdot x - \max_{x \in N} c^{T} \cdot x }
+
+Επειδή ισχύει ότι: \\
+
+\centered{a = \frac{2}{m} \cdot c}
+\centered{b = \frac{1}{p} \cdot \left( \min_{x \in K} c^{T} \cdot x + \max_{x \in N} c^{T} \cdot x \right)}
+
+Για το \(\max_{x \in N} a^{T} \cdot x\) ισχύεί \\
+
+\begin{align*}
+\max_{x \in N} a^{T} \cdot x & = \max_{x \in N} \frac{2}{m} \cdot c^{T} \cdot x  && \Leftrightarrow \\ 
+\max_{x \in N} a^{T} \cdot x & = \max_{x \in N} \frac{1}{m} \cdot \left( c^{T} \cdot x + c^{T} \cdot x \right) && \Leftrightarrow \\
+\max_{x \in N} a^{T} \cdot x & = \max_{x \in N} \frac{1}{m} \cdot \left( \min_{x \in K} c^{T} \cdot x - m + c^{T} \cdot x \right)  && \Leftrightarrow \\
+\max_{x \in N} a^{T} \cdot x & = \frac{1}{m} \cdot \left( \min_{x \in K} c_{T} \cdot x - m + \max_{x \in N} c^{T} \cdot x \right)  && \Leftrightarrow \\
+\max_{x \in N} a^{T} \cdot x & = \frac{1}{m} \cdot \left( m \cdot b - m \right) && \Leftrightarrow \\ 
+\max_{x \in N} a^{T} \cdot x & = b - 1 
+\end{align*} 
+
+Για το \(\min_{x \in K} a^{T} \cdot x\) ισχύεί \\
+
+\begin{align*}
+\min_{x \in K} a^{T} \cdot x & = \min_{x \in K} \frac{2}{m} \cdot c^{T} \cdot x && \Leftrightarrow \\ 
+\min_{x \in K} a^{T} \cdot x & = \min_{x \in K} \frac{1}{m} \left( c^{T} \cdot x + c^{T} \cdot x \right) && \Leftrightarrow \\ 
+\min_{x \in K} a^{T} \cdot x & = \min_{x \in K} \frac{1}{m} \left( \max_{x \in N} c^{T} \cdot x + m + c^{T} \cdot x \right) && \Leftrightarrow \\
+\min_{x \in K} a^{T} \cdot x & = \min_{x \in K} \frac{1}{m} \left( \max_{x \in N} c^{T} \cdot x + m + \min_{x \in K} c^{T} \cdot x \right) && \Leftrightarrow \\ 
+\min_{x \in K} a^{T} \cdot x & = \frac{1}{m} \cdot \left( m \cdot b + m \right) && \Leftrightarrow \\
+\min_{x \in K} a^{T} \cdot x & = b + 1
+\end{align*} 
+
+\pagebreak
+
 \section{Pattern Classification via Linear Programming}
+
+Ο γραμμικός προγραμματισμός μπορεί να δώσει λύση σε προβλήματα γραμμικής διαχωρισιμότητας. Ένα γραμμικό πρόγραμμα μπορεί να αποφανθεί αν το σύνολο των δεδομένων είναι διαχωρίσιμο κι αν είναι να δώσει το υπερεπιπεδο που διαχωρίζει τα αντικείμενα σε δύο διακριτά σύνολα. \\
+
+Έστω τα σύνολα αντικειμένων: \\
+
+\begin{align*}
+K & = \{K_{1}, K_{2}, \dotsc , K_{l_k}\} & \text{ όπου }  K_i \in \R^{n} & \margin \forall i \in \lbrack 1, \dotsc l_k \rbrack \\
+N & = \{N_{1}, N_{2}, \dotsc , N_{l_n}\} & \text{ όπου }  N_i \in \R^{n} & \margin \forall i \in \lbrack 1, \dotsc l_n \rbrack
+\end{align*}
+
+Διατύπωση του γραμμικού προγράμματος: \\
+
+\centered{ \min \frac{1}{l_{k}} \left( y_{1} + \dotsc + y_{l_{k}} \right) + \frac{1}{l_{n}} \cdot \left( z_{1} + \dotsc + z_{l_{n}} \right) }
+
+Υπό τις προϋποθέσεις: \\
+
+\begin{align*}
+y_{i} \geq -a^{T} \cdot K_{i} + b + 1 && \forall i \in \lbrack 1, \dotsc l_k \rbrack \\
+z_{i} \geq a^{T} \cdot N_{i} - b + 1 && \forall i \in \lbrack 1, \dotsc l_n \rbrack \\
+y_{i} \geq 0 && \forall i \in \lbrack 1, \dotsc l_k \rbrack \\
+z_{i} \geq 0 && \forall i \in \lbrack 1, \dotsc l_n \rbrack \\
+\end{align*} 
+
+
+Αν το παραπάνω έχει βέλτιστη λύση το 0, τότε: \\
+
+\( \bullet \) \(y_{opt} = 0\):
+
+\begin{align*}
+0 & \geq -a^{T}_{opt} \cdot K_{i} + b_{opt} + 1 && \Leftrightarrow \\ 
+a^{T}_{opt} \cdot K_{i} & \geq b_{opt} + 1 && \forall i \in \lbrack 1, \dotsc l_k \rbrack
+\end{align*} 
+
+\( \bullet \) \(z_{opt} = 0\):
+
+\begin{align*}
+0 & \geq a^{T}_{opt} \cdot N_{i} - b_{opt} + 1 && \Leftrightarrow \\ 
+a^{T}_{opt} \cdot N_{i} & \leq b_{opt} - 1 && \forall i \in \lbrack 1, \dotsc l_n \rbrack
+\end{align*} 
+
+Άρα, τα \(K\) και \(N\) είναι γραμμικά διαχωρίσιμα και το υπερεπίπεδο που τα διαχωρίζει είναι το: \\
+
+\centered{a^{T}_{opt} \cdot x + b_{opt} = 0}
 
 
 \pagebreak

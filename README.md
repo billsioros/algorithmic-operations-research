@@ -1,5 +1,7 @@
 
-# Algorithmic Operation Research
+# Algorithmic Operations Research
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 * [Homework 1](Homework_1/homework.pdf)
 * [Homework 2](Homework_2/homework.pdf)
@@ -35,4 +37,8 @@ python generate.py -s ".\Homework_3\homework.tex" -l "..\Algorithmic Operation R
 # Special Thanks To
 
 * [Carbon](https://carbon.now.sh/) for providing us with beautiful images of our source code
+
+# License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
 

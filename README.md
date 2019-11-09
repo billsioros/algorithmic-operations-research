@@ -38,7 +38,3 @@ python generate.py -s ".\Homework_3\homework.tex" -l "..\Algorithmic Operation R
 
 * [Carbon](https://carbon.now.sh/) for providing us with beautiful images of our source code
 
-# License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
-

@@ -8,8 +8,8 @@
 
 ## Contributors
 
-* [Σιώρος Βασίλειος       - 1115201500144](https://github.com/billsioros)
-* [Ανδρινοπούλου Χριστίνα - 1115201500006](https://github.com/ChristinaAndrinopoyloy)
+* [Σιώρος Βασίλειος](https://github.com/billsioros)
+* [Ανδρινοπούλου Χριστίνα](https://github.com/ChristinaAndrinopoyloy)
 
 # LaTeX Project Base Generation
 

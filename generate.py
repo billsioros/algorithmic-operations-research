@@ -234,8 +234,8 @@ if __name__ == '__main__':
         tex_file.write(
             tex_project_template.format(
                 packages="\n".join(map(parse_package, sorted(config["packages"]))),
-                commands='\n'.join(map(parse_command, config["commands"].items())),
-                environments="\n\n".join(map(parse_environment, config["environments"].items())),
+                commands='\n'.join(map(parse_command, sorted(config["commands"].items()))),
+                environments="\n\n".join(map(parse_environment, sorted(config["environments"].items()))),
                 primary_title=config["title"].get("primary", ""),
                 secondary_title=config["title"].get("secondary", ""),
                 authors="\\\\".join(config["authors"]),

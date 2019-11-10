@@ -22,21 +22,21 @@
 \usepackage{titlesec}
 
 % Commands
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\margin}{\hspace{4pt}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\centered}[1]{\begin{align*}#1\end{align*}}
 \newcommand{\code}[2]{\lstinputlisting[caption={#2}]{#1}}
+\newcommand{\margin}{\hspace{4pt}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 % Environments
-\newenvironment{rcases}
-	{\left.\begin{aligned}}
-	{\end{aligned}\right\rbrace}
-
 \newenvironment{matlab}
 	{\begin{figure}[hp]\centering\captionsetup{justification=centering}}
 	{\end{figure}}
+
+\newenvironment{rcases}
+	{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
 
 % Python Syntax Highlighting
 \definecolor{string_color}{RGB}{0, 161, 13}

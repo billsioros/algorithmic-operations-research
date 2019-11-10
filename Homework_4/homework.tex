@@ -111,23 +111,64 @@ and reformulate it a linear programming problem.}
 \pagebreak
 
 \subsection*{2. (Road lighting) Consider a road divided in n segments that is illuminated by m
-lamps. Let pj be the power of the jth lamp. The illumination Ii of the ith segment is assumed
-to be
-\ensuremath{\sum}m
-j=1 aijpj where aij are known coefficients. Let I
-\ensuremath{*}
-i be the desired illuminationof road i.}
+	lamps. Let \(p_{j}\) be the power of the jth lamp. The illumination \(I_{i}\) of the ith segment is assumed
+	to be \(\sum_{j=1}^{m}{a_{ij} \cdot p_{j}}\)
+	where \(a_{ij}\) are known coefficients. Let \(I_{i}^{*}\) be the desired illumination of road i.
+	We are interested in choosing the lamp powers \(p_{j}\) so that the illuminations \(I_{i}\) are close to the
+	desired \(I_{i}^{*}\). Provide a reasonable linear programming formulation of this problem.}
+
+Έστω δρόμος χωρισμένος σε n κομμάτια. \\
+
+Για να καταφέρουμε στο i κομμάτι του δρόμου ο υπάρχον φωτεισμός \(I_{i}\) να είναι όσο το δυνατόν πιο κοντά στον επιθυμητό φωτισμό \(I_{i}^{*}\) πρέπει η διαφορά των δύο φωτεισμών να είναι η μικρότερη δυνατή. \\
+
+Συνεπώς, πρεπει να διαλέξουμε:
+\centered{\mbox{min }\left| I_{i}^{*} - I_{i} \right| \mbox{ για } 1 \leq i \leq n} 
+
+Συνολικά, για ολόκληρο τον δρόμο πρέπει: \\
+\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - I_{i} \right|} }
+κι επειδή \(I_{i} = \sum_{j=1}^{m}{a_{ij} \cdot p_{j}}\) η παραπάνω σχέση μπορεί να γραφεί και ως \\
+\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - \sum_{j=1}^{m}{a_{ij} \cdot p_{j}} \right|} }
+Η μεταβλητή που ψάχνουμε είναι τα \(p_{j}\). \\
+
+Οι περιορισμοί είναι (για προφανείς λόγους): \\
+\centered{p_{j} \geq 0 \mbox{για } 1 \leq j \leq m}
 
 \vspace{2in}
 
 \pagebreak
 
 \subsection*{3. Consider a school district with I neighborhoods, J schools and G grades
-at each school. Each school j has a capacity Cjg for grade g. In each neighborhood i, the
-student population of grade i is Sig. Finally the distance of school j from neighborhood i is dij .
-Formulate a linear programming problem whose objective is to assign all students to schools,
-while minimizing the total distance traveled by all students. (You may ignore the fact that
-numbers of students must be integer).}
+	at each school. Each school j has a capacity \(C_{jg}\) for grade g. In each neighborhood i, the
+	student population of grade i is \(S_{ig}\) . Finally the distance of school j from neighborhood i is \(d_{ij}\) .
+	Formulate a linear programming problem whose objective is to assign all students to schools,
+	while minimizing the total distance traveled by all students. (You may ignore the fact that
+	numbers of students must be integer).}
+
+Στόχος είναι να ελαχιστοποιηθεί η απόσταση που διανύουν οι μαθητές για να φτάσουν στο σχολείο τους. \\
+
+Οι περιορισμοί εδώ είναι: \\
+\( \bullet \) κάθε σχολείο μπορεί να δεχτεί συγκεκριμένο αριθμό μαθητών \\
+\( \bullet \) όλα τα παιδιά πρέπει να πηγαίνουν στο σχολείο. \\
+
+Η κωδικοποίηση των απαραίτητων μεγεθών για το πρόβλημα είναι η εξής: \\
+\( \bullet \) \( I \mbox{ γειτονιές}\) \\
+\(\bullet \) \( J \mbox{ σχολέια}\) \\
+\(\bullet \) \( G \mbox{ τάξεις}\) \\
+\(\bullet \) \( C_{jg} \mbox{ χωρητικότητα μαθητών στο σχολείο j στην τάξη g}\) \\
+\(\bullet \) \( S_{ig} \mbox{ πληθυσμός παιδιών στη γειτονιά i στην τάξη g}\) \\
+\(\bullet \) \( d_{ij} \mbox{ απόσταση γειτονιάς i από σχολείο j}\) \\
+\(\bullet \) \( k_{igj} \mbox{ οι μαθητές τάξης g που μένουν στη γειτονιά i και πηγαίνουν στο σχολείο j}\) \\
+
+Θέλουμε να μειωθεί η συνολική απόσταση που διανύουν οι μαθητές, άρα: \\
+\centered{\mbox{min } \sum_{\forall i \in I}{ \sum_{\forall j \in J} { \sum_{\forall g \in G} {k_{igj} \cdot d_{ij} } }  }    }
+
+Υπό τους περιορισμούς: \\
+\( \bullet \) : το σχολείο j μπορεί να δεχτεί μέχρι \( C_{jg} \) μαθητές στην τάξη g  \\
+\centered{ \sum_{\forall i \in I}{ k_{igj} \leq C_{jg} } \mbox{ } \forall g \in G \mbox{ } \forall j \in J  }
+\( \bullet \) Κάθε παιδί πρέπει να πηγαίνει σχολείο: \\
+\centered{ \sum_{\forall j \in J}{ k_{igj} = S_{ig} } \mbox{ } \forall g \in G \mbox{ } \forall i \in I  }
+\( \bullet \) Δε μπορεί η αντιστοίχιση μαθητών σε σχολεία να είναι αρνητική: \\
+\centered{ k_{igj} \geq 0 }
 
 \vspace{2in}
 

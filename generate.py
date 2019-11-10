@@ -35,6 +35,14 @@ import argparse
 
 from tika import parser
 
+from pylatexenc.latexencode import UnicodeToLatexConversionRule, UnicodeToLatexEncoder, RULE_REGEX
+
+
+encoder = UnicodeToLatexEncoder(conversion_rules=[
+    UnicodeToLatexConversionRule(RULE_REGEX, [
+    ]),
+    'defaults'
+])
 
 config_path = os.path.join(os.getcwd(), "config.json")
 
@@ -171,9 +179,11 @@ def parse_section(section):
     return f"\n\\subsection*{{{section}}}\n\n\\vspace{{2in}}\n\n\\pagebreak"
 
 
-def parse_seed(seed, section_rgx=r"([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)(?=([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n+)|($)|(.*))"):
+def parse_seed(seed, section_rgx=r"([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n\n+)(?=([1-9][0-9]*\.[^\S\n]*?.+?[\?\.]\n\n+)|($)|(.*))"):
 
     sections = parser.from_file(seed)['content']
+
+    sections = encoder.unicode_to_latex(sections)
 
     sections = sections.encode('utf8', 'strict').decode('ascii', 'ignore')
 

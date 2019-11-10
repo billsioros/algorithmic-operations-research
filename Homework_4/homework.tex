@@ -102,8 +102,8 @@
 
 
 \subsection*{1. Consider the problem
-min 2x1 + 3|x2 10|
-s.t. |x1 + 2|+ |x2| 5
+min 2x1 + 3|x2 \ensuremath{-} 10|
+s.t. |x1 + 2|+ |x2| \ensuremath{\leq} 5
 and reformulate it a linear programming problem.}
 
 \vspace{2in}
@@ -113,8 +113,9 @@ and reformulate it a linear programming problem.}
 \subsection*{2. (Road lighting) Consider a road divided in n segments that is illuminated by m
 lamps. Let pj be the power of the jth lamp. The illumination Ii of the ith segment is assumed
 to be
-m
+\ensuremath{\sum}m
 j=1 aijpj where aij are known coefficients. Let I
+\ensuremath{*}
 i be the desired illuminationof road i.}
 
 \vspace{2in}
@@ -123,15 +124,20 @@ i be the desired illuminationof road i.}
 
 \subsection*{3. Consider a school district with I neighborhoods, J schools and G grades
 at each school. Each school j has a capacity Cjg for grade g. In each neighborhood i, the
-student population of grade i is Sig. Finally the distance of school j from neighborhood i is dij .}
+student population of grade i is Sig. Finally the distance of school j from neighborhood i is dij .
+Formulate a linear programming problem whose objective is to assign all students to schools,
+while minimizing the total distance traveled by all students. (You may ignore the fact that
+numbers of students must be integer).}
 
 \vspace{2in}
 
 \pagebreak
 
 \subsection*{4. Consider a set P described by linear inequality constraints
-P = {x Rn : aix bi, i = 1, . . . ,m}
-A ball with center y and radius r is defined as the set of all points within distance r from y.}
+P = \{x \ensuremath{\in} Rn : a'ix \ensuremath{\leq} bi, i = 1, . . . ,m\}
+A ball with center y and radius r is defined as the set of all points within distance r from y.
+We are interested in finding a ball with the largest possible radius, which is entirely contained
+within the set P. Provide a linear programming formulation of this problem.}
 
 \vspace{2in}
 

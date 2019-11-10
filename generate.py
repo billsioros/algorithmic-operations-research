@@ -188,29 +188,28 @@ if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser(description="LaTeX Project Base Generation")
 
-    argparser.add_argument("-l", "--load",      help="specify the input file")
-    argparser.add_argument("-s", "--save",      help="specify the output file",           required=True)
-    argparser.add_argument("-d", "--directory", help="make parent directories as needed", action="store_true")
-    argparser.add_argument("-o", "--overwrite", help="enable overwriting",                action="store_true")
+    argparser.add_argument("-l", "--load",  help="specify the input file")
+    argparser.add_argument("-s", "--save",  help="specify the output file",          required=True)
+    argparser.add_argument("-f", "--force", help="do not prompt before overwriting", action="store_true")
 
     args = argparser.parse_args()
 
 
-    if os.path.exists(args.save):
+    if os.path.exists(args.save) and not args.force:
 
-        if not args.overwrite:
+        answer = input(f"Would you like to overwrite '{args.save}': ")
 
-            raise ValueError(f"Permission to overwrite '{args.save}' has not been granted")
+        if not re.fullmatch(r"y|Y|yes|YES|", answer):
+
+            exit(1)
 
     else:
 
-        if args.directory:
+        path = os.path.dirname(args.save)
 
-            directory = os.path.dirname(args.save)
+        if not os.path.isdir(path):
 
-            if not os.path.isdir(directory):
-
-                os.makedirs(os.path.dirname(args.save))
+            os.makedirs(path)
 
 
     if not os.path.exists(config_path):

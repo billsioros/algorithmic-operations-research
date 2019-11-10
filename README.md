@@ -16,7 +16,7 @@
 # LaTeX Project Base Generation
 
 ```bash
-usage: generate.py [-h] [-l LOAD] -s SAVE [-d] [-o]
+usage: generate.py [-h] [-l LOAD] -s SAVE [-f]
 
 LaTeX Project Base Generation
 
@@ -24,14 +24,13 @@ optional arguments:
   -h, --help            show this help message and exit
   -l LOAD, --load LOAD  specify the input file
   -s SAVE, --save SAVE  specify the output file
-  -d, --directory       make parent directories as needed
-  -o, --overwrite       enable overwriting
+  -f, --force           do not prompt before overwriting
 ```
 
 ## Example
 
 ```bash
-python generate.py -s ".\Homework_3\homework.tex" -l "..\Algorithmic Operation Research_hw_3.pdf" -d -o
+python generate.py -l "..\Algorithmic Operation Research_hw_4.pdf" -fs .\Homework_4\homework.tex
 ```
 
 # Special Thanks To

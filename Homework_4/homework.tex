@@ -5,21 +5,22 @@
 \usepackage[greek, english]{babel}
 
 % Packages
-\usepackage{MnSymbol}
 \usepackage{alphabeta}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{caption}
 \usepackage{color}
-\usepackage{float}
 \usepackage{fullpage}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{latexsym}
 \usepackage{listings}
 \usepackage{pxfonts}
 \usepackage{stackrel}
 \usepackage{titlesec}
+\usepackage{subfig}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{hyperref}
 
 % Commands
 \newcommand{\N}{\mathbb{N}}
@@ -28,6 +29,7 @@
 \newcommand{\code}[2]{\lstinputlisting[caption={#2}]{#1}}
 \newcommand{\margin}{\hspace{4pt}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 
 % Environments
 \newenvironment{matlab}
@@ -102,8 +104,11 @@
 
 
 \subsection*{1. Consider the problem
-min 2x1 + 3|x2 \ensuremath{-} 10|
-s.t. |x1 + 2|+ |x2| \ensuremath{\leq} 5
+\begin{align*}
+    \min_{x_1, x_2 \in \R} 2 \cdot x_1 & + 3 \cdot \abs{x_2 - 10} \\
+    &s.t. \\
+    \abs{x_1 + 2} & + \abs{x_2} \leq 5
+\end{align*}
 and reformulate it a linear programming problem.}
 
 \vspace{2in}
@@ -122,12 +127,12 @@ and reformulate it a linear programming problem.}
 Για να καταφέρουμε στο i κομμάτι του δρόμου ο υπάρχον φωτεισμός \(I_{i}\) να είναι όσο το δυνατόν πιο κοντά στον επιθυμητό φωτισμό \(I_{i}^{*}\) πρέπει η διαφορά των δύο φωτεισμών να είναι η μικρότερη δυνατή. \\
 
 Συνεπώς, πρεπει να διαλέξουμε:
-\centered{\mbox{min }\left| I_{i}^{*} - I_{i} \right| \mbox{ για } 1 \leq i \leq n} 
+\centered{\mbox{min }\abs{ I_{i}^{*} - I_{i} } \mbox{ για } 1 \leq i \leq n}
 
 Συνολικά, για ολόκληρο τον δρόμο πρέπει: \\
-\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - I_{i} \right|} }
+\centered{\mbox{min } \sum_{i=1}^{n}{\abs{ I_{i}^{*} - I_{i} }} }
 κι επειδή \(I_{i} = \sum_{j=1}^{m}{a_{ij} \cdot p_{j}}\) η παραπάνω σχέση μπορεί να γραφεί και ως \\
-\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - \sum_{j=1}^{m}{a_{ij} \cdot p_{j}} \right|} }
+\centered{\mbox{min } \sum_{i=1}^{n}{\abs{ I_{i}^{*} - \sum_{j=1}^{m}{a_{ij} \cdot p_{j}} }} }
 Η μεταβλητή που ψάχνουμε είναι τα \(p_{j}\). \\
 
 Οι περιορισμοί είναι (για προφανείς λόγους): \\
@@ -175,10 +180,43 @@ and reformulate it a linear programming problem.}
 \pagebreak
 
 \subsection*{4. Consider a set P described by linear inequality constraints
-P = \{x \ensuremath{\in} Rn : a'ix \ensuremath{\leq} bi, i = 1, . . . ,m\}
+\centered{P = \{x \in \R^n : a^{T}_{i} \cdot x \leq b_i, \margin i = 1, \dotsc, m\}}
 A ball with center y and radius r is defined as the set of all points within distance r from y.
 We are interested in finding a ball with the largest possible radius, which is entirely contained
-within the set P. Provide a linear programming formulation of this problem.}
+within the set \( P \). Provide a linear programming formulation of this problem.}
+
+Παρατηρούμε ότι μια σφαίρα, η οποία βρίσκεται εξ ολοκλήρου εντός του συνόλου \( P \),
+πρέπει να συμμορφώνεται στους εξής περιορισμούς:
+
+\begin{enumerate}
+    \item Το κέντρο της σφαίρας πρέπει να ανήκει στο συνόλο \( P \).
+    \item Η απόσταση, του κέντρου της σφαίρας από οποιοδήποτε ύπερεπίπεδο αντιστοιχεί σε μία
+    από τις εξισώσεις \( a^{T}_{i} \cdot x = b_i, \margin i = 1, \dotsc, m\),
+    που περιγράφουν το σύνολο \( P \), πρέπει να είναι τουλάχιστον ίση με \( r \).
+\end{enumerate}
+
+Η απόσταση, μεταξύ ενός σημείου \( p \) και ενός ύπερεπιπέδου \( κ \cdot x + λ \),
+δίνεται από την έκφραση
+
+\centered{\frac{\abs{κ \cdot p + λ}}{\norm{κ}}}
+
+Λοιπόν, μπορούμε να εκφράσουμε μαθηματικά τους παραπάνω περιορισμούς ως εξής:
+
+\begin{align*}
+    a^{T}_{i} \cdot c & \leq b_i, \margin i = 1, \dotsc, m && (1)\\
+    \frac{\abs{a^{T}_{i} \cdot c - b_i}}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m && (2)
+\end{align*}
+
+Παρατηρούμε ότι ο δεύτερος περιορισμός δεν είναι γραμμικός.
+Ωστόσο μπορεί να μετατραπεί σε γραμμικό.
+
+\centered{(2)\stackrel{(1)}{\Rightarrow}\frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} \geq r, \margin i = 1, \dotsc, m}
+
+Καταλήγουμε επομένως σε δύο γραμμικούς περιορισμούς. \\
+
+Τέλος, ως αντικειμενική συνάρτηση επιλέγουμε τη σχέση
+
+\centered{\max_{c \in \R^n, r \in R} r}
 
 \vspace{2in}
 

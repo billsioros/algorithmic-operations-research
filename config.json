@@ -29,6 +29,7 @@
         "R": "\\mathbb{R}",
         "N": "\\mathbb{N}",
         "norm": "\\left\\lVert#1\\right\\rVert",
+        "abs": "\\left\\lvert#1\\right\\rvert",
         "margin": "\\hspace{4pt}",
         "centered": "\\begin{align*}#1\\end{align*}",
         "code": "\\lstinputlisting[caption={#2}]{#1}"

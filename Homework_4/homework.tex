@@ -5,29 +5,30 @@
 \usepackage[greek, english]{babel}
 
 % Packages
-\usepackage{MnSymbol}
 \usepackage{alphabeta}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{caption}
 \usepackage{color}
-\usepackage{float}
 \usepackage{fullpage}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{latexsym}
 \usepackage{listings}
 \usepackage{pxfonts}
 \usepackage{stackrel}
 \usepackage{titlesec}
+\usepackage{subfig}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{hyperref}
 
 % Commands
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\centered}[1]{\begin{align*}#1\end{align*}}
 \newcommand{\code}[2]{\lstinputlisting[caption={#2}]{#1}}
 \newcommand{\margin}{\hspace{4pt}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 
 % Environments
 \newenvironment{matlab}
@@ -102,9 +103,52 @@
 
 
 \subsection*{1. Consider the problem
-min 2x1 + 3|x2 \ensuremath{-} 10|
-s.t. |x1 + 2|+ |x2| \ensuremath{\leq} 5
-and reformulate it a linear programming problem.}
+\begin{align*}
+    \min_{x_1, x_2} \{2 \cdot x_1 & + 3 \cdot \abs{x_2 - 10}\} \\
+    &s.t. \\
+    \abs{x_1 + 2} & + \abs{x_2} \leq 5
+\end{align*}
+and reformulate it as a linear programming problem.}
+
+Γνωρίζουμε ότι
+
+\begin{align*}
+    \abs{x} & \geq +x \margin \forall x \in \R \\
+    \abs{x} & \geq -x \margin \forall x \in \R
+\end{align*}
+
+Θέτουμε λοιπόν
+
+\begin{align*}
+    a_1 & = \abs{x_2 - 10} \\
+    a_2 & = \abs{x_1 + 2} \\
+    a_3 & = \abs{x_2}
+\end{align*}
+
+και προσθέτουμε τους περιορισμούς
+
+\begin{align*}
+    a_1 & \geq +x_2 - 10 \\
+    a_1 & \geq -x_2 + 10 \\
+    a_2 & \geq +x_1 + 2 \\
+    a_2 & \geq -x_1 - 2 \\
+    a_3 & \geq +x_2 \\
+    a_3 & \geq -x_2
+\end{align*}
+
+Έτσι, το δοθέν πρόβλημα λαμβάνει την ακόλουθη ισοδύναμη μορφή
+
+\begin{align*}
+    \min_{x_1, x_2, a_1, a_2, a_3} & \{2 \cdot x_1 + 3 \cdot a_1\} \\
+    &s.t. \\
+    a_1 & \geq +x_2 - 10 \\
+    a_1 & \geq -x_2 + 10 \\
+    a_2 & \geq +x_1 + 2 \\
+    a_2 & \geq -x_1 - 2 \\
+    a_3 & \geq +x_2 \\
+    a_3 & \geq -x_2 \\
+    a_2 + a_3 & \leq 5
+\end{align*}
 
 \vspace{2in}
 
@@ -122,16 +166,16 @@ and reformulate it a linear programming problem.}
 Για να καταφέρουμε στο i κομμάτι του δρόμου ο υπάρχον φωτεισμός \(I_{i}\) να είναι όσο το δυνατόν πιο κοντά στον επιθυμητό φωτισμό \(I_{i}^{*}\) πρέπει η διαφορά των δύο φωτεισμών να είναι η μικρότερη δυνατή. \\
 
 Συνεπώς, πρεπει να διαλέξουμε:
-\centered{\mbox{min }\left| I_{i}^{*} - I_{i} \right| \mbox{ για } 1 \leq i \leq n} 
+\[ \mbox{min }\abs{ I_{i}^{*} - I_{i} } \mbox{ για } 1 \leq i \leq n \]
 
 Συνολικά, για ολόκληρο τον δρόμο πρέπει: \\
-\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - I_{i} \right|} }
+\[ \mbox{min } \sum_{i=1}^{n}{\abs{ I_{i}^{*} - I_{i} }}  \]
 κι επειδή \(I_{i} = \sum_{j=1}^{m}{a_{ij} \cdot p_{j}}\) η παραπάνω σχέση μπορεί να γραφεί και ως \\
-\centered{\mbox{min } \sum_{i=1}^{n}{\left| I_{i}^{*} - \sum_{j=1}^{m}{a_{ij} \cdot p_{j}} \right|} }
+\[ \mbox{min } \sum_{i=1}^{n}{\abs{ I_{i}^{*} - \sum_{j=1}^{m}{a_{ij} \cdot p_{j}} }}  \]
 Η μεταβλητή που ψάχνουμε είναι τα \(p_{j}\). \\
 
 Οι περιορισμοί είναι (για προφανείς λόγους): \\
-\centered{p_{j} \geq 0 \mbox{για } 1 \leq j \leq m}
+\[ p_{j} \geq 0 \mbox{για } 1 \leq j \leq m \]
 
 \vspace{2in}
 
@@ -146,41 +190,90 @@ and reformulate it a linear programming problem.}
 
 Στόχος είναι να ελαχιστοποιηθεί η απόσταση που διανύουν οι μαθητές για να φτάσουν στο σχολείο τους. \\
 
-Οι περιορισμοί εδώ είναι: \\
-\( \bullet \) κάθε σχολείο μπορεί να δεχτεί συγκεκριμένο αριθμό μαθητών \\
-\( \bullet \) όλα τα παιδιά πρέπει να πηγαίνουν στο σχολείο. \\
+Οι περιορισμοί εδώ είναι:
 
-Η κωδικοποίηση των απαραίτητων μεγεθών για το πρόβλημα είναι η εξής: \\
-\( \bullet \) \( I \mbox{ γειτονιές}\) \\
-\(\bullet \) \( J \mbox{ σχολέια}\) \\
-\(\bullet \) \( G \mbox{ τάξεις}\) \\
-\(\bullet \) \( C_{jg} \mbox{ χωρητικότητα μαθητών στο σχολείο j στην τάξη g}\) \\
-\(\bullet \) \( S_{ig} \mbox{ πληθυσμός παιδιών στη γειτονιά i στην τάξη g}\) \\
-\(\bullet \) \( d_{ij} \mbox{ απόσταση γειτονιάς i από σχολείο j}\) \\
-\(\bullet \) \( k_{igj} \mbox{ οι μαθητές τάξης g που μένουν στη γειτονιά i και πηγαίνουν στο σχολείο j}\) \\
+\begin{itemize}
+    \item κάθε σχολείο μπορεί να δεχτεί συγκεκριμένο αριθμό μαθητών.
+    \item όλα τα παιδιά πρέπει να πηγαίνουν στο σχολείο.
+\end{itemize}
+
+
+Η κωδικοποίηση των απαραίτητων μεγεθών για το πρόβλημα είναι η εξής:
+
+\begin{itemize}
+    \item \( I \mbox{ γειτονιές}\)
+    \item \( J \mbox{ σχολέια}\)
+    \item \( G \mbox{ τάξεις}\)
+    \item \( C_{jg} \mbox{ χωρητικότητα μαθητών στο σχολείο j στην τάξη g}\)
+    \item \( S_{ig} \mbox{ πληθυσμός παιδιών στη γειτονιά i στην τάξη g}\)
+    \item \( d_{ij} \mbox{ απόσταση γειτονιάς i από σχολείο j}\)
+    \item \( k_{igj} \mbox{ οι μαθητές τάξης g που μένουν στη γειτονιά i και πηγαίνουν στο σχολείο j}\)
+\end{itemize}
 
 Θέλουμε να μειωθεί η συνολική απόσταση που διανύουν οι μαθητές, άρα: \\
-\centered{\mbox{min } \sum_{\forall i \in I}{ \sum_{\forall j \in J} { \sum_{\forall g \in G} {k_{igj} \cdot d_{ij} } }  }    }
+\[ \mbox{min } \sum_{\forall i \in I}{ \sum_{\forall j \in J} { \sum_{\forall g \in G} {k_{igj} \cdot d_{ij} } }  }     \]
 
-Υπό τους περιορισμούς: \\
-\( \bullet \) : το σχολείο j μπορεί να δεχτεί μέχρι \( C_{jg} \) μαθητές στην τάξη g  \\
-\centered{ \sum_{\forall i \in I}{ k_{igj} \leq C_{jg} } \mbox{ } \forall g \in G \mbox{ } \forall j \in J  }
-\( \bullet \) Κάθε παιδί πρέπει να πηγαίνει σχολείο: \\
-\centered{ \sum_{\forall j \in J}{ k_{igj} = S_{ig} } \mbox{ } \forall g \in G \mbox{ } \forall i \in I  }
-\( \bullet \) Δε μπορεί η αντιστοίχιση μαθητών σε σχολεία να είναι αρνητική: \\
-\centered{ k_{igj} \geq 0 }
+Υπό τους περιορισμούς:
+
+\begin{itemize}
+    \item το σχολείο j μπορεί να δεχτεί μέχρι \( C_{jg} \) μαθητές στην τάξη g
+    \[  \sum_{\forall i \in I}{ k_{igj} \leq C_{jg} } \mbox{ } \forall g \in G \mbox{ } \forall j \in J   \]
+    \item Κάθε παιδί πρέπει να πηγαίνει σχολείο:
+    \[  \sum_{\forall j \in J}{ k_{igj} = S_{ig} } \mbox{ } \forall g \in G \mbox{ } \forall i \in I   \]
+    \item Δε μπορεί η αντιστοίχιση μαθητών σε σχολεία να είναι αρνητική:
+    \[  k_{igj} \geq 0  \]
+\end{itemize}
 
 \vspace{2in}
 
 \pagebreak
 
 \subsection*{4. Consider a set P described by linear inequality constraints
-P = \{x \ensuremath{\in} Rn : a'ix \ensuremath{\leq} bi, i = 1, . . . ,m\}
+\[ P = \{x \in \R^n : a^{T}_{i} \cdot x \leq b_i, \margin i = 1, \dotsc, m\} \]
 A ball with center y and radius r is defined as the set of all points within distance r from y.
 We are interested in finding a ball with the largest possible radius, which is entirely contained
-within the set P. Provide a linear programming formulation of this problem.}
+within the set \( P \). Provide a linear programming formulation of this problem.}
 
-\vspace{2in}
+Μια σφαίρα, η οποία βρίσκεται εξ ολοκλήρου εντός του συνόλου
+
+\[ P = \{x \in \R^n : a^{T}_{i} \cdot x \leq b_i, \margin i = 1, \dotsc, m\} \]
+
+πρέπει να συμμορφώνεται στους εξής περιορισμούς:
+
+\begin{enumerate}
+    \item Το κέντρο της σφαίρας πρέπει να ανήκει στο συνόλο \( P \).
+    \item Η απόσταση, του κέντρου της σφαίρας από οποιοδήποτε ύπερεπίπεδο, αντιστοιχεί σε μία
+    από τις εξισώσεις \( a^{T}_{i} \cdot x = b_i, \margin i = 1, \dotsc, m\),
+    που περιγράφουν το σύνολο \( P \), πρέπει να είναι τουλάχιστον ίση με \( r \).
+\end{enumerate}
+
+Η απόσταση, μεταξύ ενός σημείου \( p \) και ενός ύπερεπιπέδου \( κ \cdot x + λ \),
+δίνεται από την έκφραση
+
+\[ \frac{\abs{κ \cdot p + λ}}{\norm{κ}} \]
+
+Λοιπόν, μπορούμε να εκφράσουμε μαθηματικά τους παραπάνω περιορισμούς ως εξής:
+
+\begin{align*}
+    a^{T}_{i} \cdot c & \leq b_i, \margin i = 1, \dotsc, m && (1)\\
+    \frac{\abs{a^{T}_{i} \cdot c - b_i}}{\norm{a^{T}_{i}}} \geq r
+    \stackrel{(1)}{\Rightarrow}\frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m&& (2)
+\end{align*}
+
+Τέλος, ως αντικειμενική συνάρτηση επιλέγουμε τη σχέση
+
+\[ \max_{c, r} r \]
+
+Συνοψίζοντας, το δοθέν πρόβλημα εκφράζεται ως πρόβλημα γραμμικου προγραμματισμού ως εξής:
+
+\[ \max_{c, r} r \]
+
+\[ s.t. \]
+
+\begin{align*}
+    a^{T}_{i} \cdot c & \leq b_i, \margin i = 1, \dotsc, m \\
+    \frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m
+\end{align*}
 
 \pagebreak
 

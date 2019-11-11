@@ -104,17 +104,17 @@
 
 \subsection*{1. Consider the problem
 \begin{align*}
-    \min_{x_1, x_2 \in \R} 2 \cdot x_1 & + 3 \cdot \abs{x_2 - 10} \\
+    \min_{x_1, x_2} \{2 \cdot x_1 & + 3 \cdot \abs{x_2 - 10}\} \\
     &s.t. \\
     \abs{x_1 + 2} & + \abs{x_2} \leq 5
 \end{align*}
-and reformulate it a linear programming problem.}
+and reformulate it as a linear programming problem.}
 
 Γνωρίζουμε ότι
 
 \begin{align*}
-    \abs{x} & \geq +x \\
-    \abs{x} & \geq -x
+    \abs{x} & \geq +x \margin \forall x \in \R \\
+    \abs{x} & \geq -x \margin \forall x \in \R
 \end{align*}
 
 Θέτουμε λοιπόν
@@ -136,20 +136,18 @@ and reformulate it a linear programming problem.}
     a_3 & \geq -x_2
 \end{align*}
 
-Συνοψίζοντας, το δοθέν πρόβλημα εκφράζεται ως πρόβλημα γραμμικου προγραμματισμού ως εξής:
-
-\[ \min_{x_1, x_2 \in \R} 2 \cdot x_1 + 3 \cdot a_1 \]
-
-\[ s.t. \]
+Έτσι, το δοθέν πρόβλημα λαμβάνει την ακόλουθη ισοδύναμη μορφή
 
 \begin{align*}
+    \min_{x_1, x_2, a_1, a_2, a_3} & \{2 \cdot x_1 + 3 \cdot a_1\} \\
+    &s.t. \\
     a_1 & \geq +x_2 - 10 \\
     a_1 & \geq -x_2 + 10 \\
     a_2 & \geq +x_1 + 2 \\
     a_2 & \geq -x_1 - 2 \\
     a_3 & \geq +x_2 \\
     a_3 & \geq -x_2 \\
-    a_2 & + a_3 \leq 5
+    a_2 + a_3 & \leq 5
 \end{align*}
 
 \vspace{2in}
@@ -192,29 +190,39 @@ and reformulate it a linear programming problem.}
 
 Στόχος είναι να ελαχιστοποιηθεί η απόσταση που διανύουν οι μαθητές για να φτάσουν στο σχολείο τους. \\
 
-Οι περιορισμοί εδώ είναι: \\
-\( \bullet \) κάθε σχολείο μπορεί να δεχτεί συγκεκριμένο αριθμό μαθητών \\
-\( \bullet \) όλα τα παιδιά πρέπει να πηγαίνουν στο σχολείο. \\
+Οι περιορισμοί εδώ είναι:
 
-Η κωδικοποίηση των απαραίτητων μεγεθών για το πρόβλημα είναι η εξής: \\
-\( \bullet \) \( I \mbox{ γειτονιές}\) \\
-\(\bullet \) \( J \mbox{ σχολέια}\) \\
-\(\bullet \) \( G \mbox{ τάξεις}\) \\
-\(\bullet \) \( C_{jg} \mbox{ χωρητικότητα μαθητών στο σχολείο j στην τάξη g}\) \\
-\(\bullet \) \( S_{ig} \mbox{ πληθυσμός παιδιών στη γειτονιά i στην τάξη g}\) \\
-\(\bullet \) \( d_{ij} \mbox{ απόσταση γειτονιάς i από σχολείο j}\) \\
-\(\bullet \) \( k_{igj} \mbox{ οι μαθητές τάξης g που μένουν στη γειτονιά i και πηγαίνουν στο σχολείο j}\) \\
+\begin{itemize}
+    \item κάθε σχολείο μπορεί να δεχτεί συγκεκριμένο αριθμό μαθητών.
+    \item όλα τα παιδιά πρέπει να πηγαίνουν στο σχολείο.
+\end{itemize}
+
+
+Η κωδικοποίηση των απαραίτητων μεγεθών για το πρόβλημα είναι η εξής:
+
+\begin{itemize}
+    \item \( I \mbox{ γειτονιές}\)
+    \item \( J \mbox{ σχολέια}\)
+    \item \( G \mbox{ τάξεις}\)
+    \item \( C_{jg} \mbox{ χωρητικότητα μαθητών στο σχολείο j στην τάξη g}\)
+    \item \( S_{ig} \mbox{ πληθυσμός παιδιών στη γειτονιά i στην τάξη g}\)
+    \item \( d_{ij} \mbox{ απόσταση γειτονιάς i από σχολείο j}\)
+    \item \( k_{igj} \mbox{ οι μαθητές τάξης g που μένουν στη γειτονιά i και πηγαίνουν στο σχολείο j}\)
+\end{itemize}
 
 Θέλουμε να μειωθεί η συνολική απόσταση που διανύουν οι μαθητές, άρα: \\
 \[ \mbox{min } \sum_{\forall i \in I}{ \sum_{\forall j \in J} { \sum_{\forall g \in G} {k_{igj} \cdot d_{ij} } }  }     \]
 
-Υπό τους περιορισμούς: \\
-\( \bullet \) : το σχολείο j μπορεί να δεχτεί μέχρι \( C_{jg} \) μαθητές στην τάξη g  \\
-\[  \sum_{\forall i \in I}{ k_{igj} \leq C_{jg} } \mbox{ } \forall g \in G \mbox{ } \forall j \in J   \]
-\( \bullet \) Κάθε παιδί πρέπει να πηγαίνει σχολείο: \\
-\[  \sum_{\forall j \in J}{ k_{igj} = S_{ig} } \mbox{ } \forall g \in G \mbox{ } \forall i \in I   \]
-\( \bullet \) Δε μπορεί η αντιστοίχιση μαθητών σε σχολεία να είναι αρνητική: \\
-\[  k_{igj} \geq 0  \]
+Υπό τους περιορισμούς:
+
+\begin{itemize}
+    \item το σχολείο j μπορεί να δεχτεί μέχρι \( C_{jg} \) μαθητές στην τάξη g
+    \[  \sum_{\forall i \in I}{ k_{igj} \leq C_{jg} } \mbox{ } \forall g \in G \mbox{ } \forall j \in J   \]
+    \item Κάθε παιδί πρέπει να πηγαίνει σχολείο:
+    \[  \sum_{\forall j \in J}{ k_{igj} = S_{ig} } \mbox{ } \forall g \in G \mbox{ } \forall i \in I   \]
+    \item Δε μπορεί η αντιστοίχιση μαθητών σε σχολεία να είναι αρνητική:
+    \[  k_{igj} \geq 0  \]
+\end{itemize}
 
 \vspace{2in}
 

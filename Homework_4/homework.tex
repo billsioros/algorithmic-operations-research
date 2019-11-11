@@ -185,12 +185,15 @@ A ball with center y and radius r is defined as the set of all points within dis
 We are interested in finding a ball with the largest possible radius, which is entirely contained
 within the set \( P \). Provide a linear programming formulation of this problem.}
 
-Παρατηρούμε ότι μια σφαίρα, η οποία βρίσκεται εξ ολοκλήρου εντός του συνόλου \( P \),
+Μια σφαίρα, η οποία βρίσκεται εξ ολοκλήρου εντός του συνόλου
+
+\centered{P = \{x \in \R^n : a^{T}_{i} \cdot x \leq b_i, \margin i = 1, \dotsc, m\}}
+
 πρέπει να συμμορφώνεται στους εξής περιορισμούς:
 
 \begin{enumerate}
     \item Το κέντρο της σφαίρας πρέπει να ανήκει στο συνόλο \( P \).
-    \item Η απόσταση, του κέντρου της σφαίρας από οποιοδήποτε ύπερεπίπεδο αντιστοιχεί σε μία
+    \item Η απόσταση, του κέντρου της σφαίρας από οποιοδήποτε ύπερεπίπεδο, αντιστοιχεί σε μία
     από τις εξισώσεις \( a^{T}_{i} \cdot x = b_i, \margin i = 1, \dotsc, m\),
     που περιγράφουν το σύνολο \( P \), πρέπει να είναι τουλάχιστον ίση με \( r \).
 \end{enumerate}
@@ -204,21 +207,24 @@ within the set \( P \). Provide a linear programming formulation of this problem
 
 \begin{align*}
     a^{T}_{i} \cdot c & \leq b_i, \margin i = 1, \dotsc, m && (1)\\
-    \frac{\abs{a^{T}_{i} \cdot c - b_i}}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m && (2)
+    \frac{\abs{a^{T}_{i} \cdot c - b_i}}{\norm{a^{T}_{i}}} \geq r
+    \stackrel{(1)}{\Rightarrow}\frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m&& (2)
 \end{align*}
-
-Παρατηρούμε ότι ο δεύτερος περιορισμός δεν είναι γραμμικός.
-Ωστόσο μπορεί να μετατραπεί σε γραμμικό.
-
-\centered{(2)\stackrel{(1)}{\Rightarrow}\frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} \geq r, \margin i = 1, \dotsc, m}
-
-Καταλήγουμε επομένως σε δύο γραμμικούς περιορισμούς. \\
 
 Τέλος, ως αντικειμενική συνάρτηση επιλέγουμε τη σχέση
 
-\centered{\max_{c \in \R^n, r \in R} r}
+\centered{\max_{c, r} r}
 
-\vspace{2in}
+Συνοψίζοντας, το δοθέν πρόβλημα εκφράζεται ως πρόβλημα γραμμικου προγραμματισμού ως εξής:
+
+\centered{\max_{c, r} r}
+
+\centered{s.t.}
+
+\begin{align*}
+    a^{T}_{i} \cdot c & \leq b_i, \margin i = 1, \dotsc, m \\
+    \frac{b_i - a^{T}_{i} \cdot c}{\norm{a^{T}_{i}}} & \geq r, \margin i = 1, \dotsc, m
+\end{align*}
 
 \pagebreak
 

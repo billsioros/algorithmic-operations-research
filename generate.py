@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
         path = os.path.dirname(args.save)
 
-        if not os.path.isdir(path):
+        if len(path) > 0 and not os.path.isdir(path):
 
             os.makedirs(path)
 

@@ -3,3 +3,7 @@ __pycache__
 *synctex*
 *.aux
 *.log
+*.nav
+*.out
+*.snm
+*.toc

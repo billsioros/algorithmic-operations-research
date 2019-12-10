@@ -147,7 +147,85 @@ Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*}
 
 \pagebreak
 
-\subsection*{5. Write down the proof of complimentary slackness theorem.}
+\subsection*{5. Write down the proof of the \textit{Complimentary Slackness Theorem}.}
+
+Έστω το πρωτεύον πρόβλημα \\
+
+\begin{align*}
+    \max \margin c & \cdot x \\
+    A \times x & \leq b \\
+    x & \geq 0
+\end{align*}
+
+και το δϋικό του
+
+\begin{align*}
+    \min \margin b & \cdot y \\
+    A^T \times y & \geq c \\
+    y & \geq 0
+\end{align*}
+
+Έστω \( x \) και \( y \) εφικτές λύσεις στο πρωτεύον και στο δϋικό πρόβλημα αντίστοιχα. \\
+
+Το \( x \) και το \( y \) αποτελούν βέλτιστες λύσεις του πρωτεύοντος και του δϋικού
+αν και μόνο αν ισχύει ότι: \\
+
+\begin{itemize}
+    \item \( (b_i - \sum{j = 1}{n} a_{ij} \cdot x_j) \cdot y_i = 0 \margin \forall i \in \{ 1, \ldots, m\} \)
+    \item \( (\sum{i = 1}{n} a_{ji} \cdot y_i - c_j) \cdot x_j = 0 \margin \forall j \in \{ 1, \ldots, n\} \)
+\end{itemize}
+
+\[ \underline{\textbf{ΑΠΟΔΕΙΞΗ}} \]
+
+Δεδομένου ότι οι λύσεις \( x \) και \( y \) είναι εφικτές έχουμε:
+
+\begin{align*}
+    \begin{rcases}
+        A^T & \times y \geq c
+        x & \geq 0
+    \end{rcases}
+    \Rightarrow \\
+    x^T \times A^T \times y \geq x^T \times c = c \cdot x
+\end{align*}
+
+\begin{align*}
+    \begin{rcases}
+        A & \times x \leq b \\
+        y & \geq 0
+    \end{rcases}
+    \Rightarrow \\
+    y^T \times A \times x \leq y^T \times b = b \cdot y
+\end{align*}
+
+Από τα παραπάνω, δεδομένου ότι \( x^T \times A^T \times y \) είναι ένας \( 1 \times 1 \)
+πίνακας και ως εκ τούτου \( x^T \times A^T \times y = (x^T \times A^T \times y)^T = y^T \times A \times x\)
+προκύπτει
+
+\[ c \cdot x = x^T \times c \leq x^T \times A^T \times y = y^T \times A \times x \leq y^T \times b = b \cdot y \]
+
+Βάσει Ισχυρής Δϋικότητας, τα \( x \) και \( y \) αποτελούν βέλτιστες λύσεις στα αντίστοιχα
+γραμμικά προβλήματα αν και μόνο αν \( c \dot x = b \cdot y \) και άρα αν και μόνο αν
+
+\begin{itemize}
+    \item \( x^T \times c = x^T \times A^T \times y \Leftrightarrow x \cdot (A^T \times y - c) = 0 \)
+    \item \( y^T \times A \times x = y^T \times b \Leftrightarrow y \cdot (b - A \times x) = 0 \)
+\end{itemize}
+
+Σημειώνουμε ότι
+
+\[ 0 = x \cdot (A^T \times y - c)  = \sum_{j = 1}^{n}(x_j \cdot (\sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j)) \]
+
+και δεδομένου ότι \( x_j \geq 0 \) και \( \sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j \geq 0 \)
+\( \forall j \in \{1, \ldots, n \} \) καταλήουμε στο συμπέρασμα ότι
+
+\[ x_j \cdot (\sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j) \geq 0 \forall j \in \{ 1, \ldots, n \} \]
+
+Από τα παραπάνω προκύπτει ότι κάθε όρος του παραπάνω αθροίσματος είναι υποχρεωτικά ίσος με 0
+που αντιστοιχεί στην πρώτη προϋπόθεση του Θεωρήματος. \\
+
+Ομοίως αποδεικνύεται ότι
+
+\[ y \cdot ( b - A \times x ) = 0 \Leftrightarrow y_i \cdot ( b_i - \sum_{j = 1}^{n} a_{ij} \cdot x_j ) = 0 \margin \forall i \in \{ 1, \ldots, m \} \]
 
 \vspace{2in}
 

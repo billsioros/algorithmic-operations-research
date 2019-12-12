@@ -103,24 +103,121 @@
 
 
 \subsection*{1. Consider the linear programming problem
-min x1 \ensuremath{-} x2
-s.t. 2x1 + 3x2 \ensuremath{-} x3 + x4 \ensuremath{\leq} 0
-3x1 + x2 + 4x3 \ensuremath{-} 2x4 \ensuremath{\geq} 3
-\ensuremath{-} x1 \ensuremath{-} x2 + 2x3 + x4 = 6
-x \ensuremath{\leq} 0
-x2, x3 \ensuremath{\geq} 0
-Write down the corresponding dual problem.}
+	\begin{align*}
+		\min \quad x_{1} - x_{2} \\
+		\begin{aligned}
+			\textup{s.t.}\quad
+			2 \cdot x_{1} + 3 \cdot x_{2} - x_{3} + x_{4} & \leq 0 \\
+			3 \cdot x_{1} + \cdot x_{2} + 4 \cdot x_{3} - 2 \cdot x_{4} & \geq 3 \\    
+			- x_{1} - x_{2} + 2 \cdot x_{3} + x_{4} & = 6 \\
+			x_{1} & \leq 0 \\
+			x_{2}, x_{3} & \geq 0 
+		\end{aligned}
+	\end{align*}
+	Write down the corresponding dual problem.}
+
+Θέτω: \\ 
+
+\begin{align*}
+	c &= \begin{bmatrix}
+			1 & -1 & 0 & 0
+		\end{bmatrix} \\
+	A &= \begin{bmatrix}
+			2 & 3 & -1 & 1 \\
+			3 & 1 & 4 & -2 \\
+			-1 & -1 & 2 & 1
+		\end{bmatrix} \\
+	b &= \begin{bmatrix}
+			0 & 3 & 6 & 0
+		\end{bmatrix}
+\end{align*}
+
+Το δυικό πρόβλημα θα είναι: \\
+
+\begin{align*}
+	\max \quad 3 \cdot p_{2} + 6 \cdot p_{3} \\
+	\begin{aligned}
+		\textup{s.t.}\quad
+		p_{1} & \leq 0 \\
+		p_{2} & \geq 0 \\
+		p_{3} & \quad free \\
+		2 \cdot p_{1} + 3 \cdot p_{2} - p_{3} & \geq 1 \\
+		3 \cdot p_{1} + p_{2} - p_{3} & \leq -1 \\
+		-p_{1} + 4 \cdot p_{2} + 2 \cdot p_{3} & \leq 0 \\
+		p_{1} - 2 \cdot p_{2} + p_{3} & = 0
+	\end{aligned}
+\end{align*}
 
 \vspace{2in}
 
 \pagebreak
 
 \subsection*{2. Consider the primal problem
-min c'x
-s.t. Ax \ensuremath{\geq} b
-x \ensuremath{\geq} 0
-Form the dual problem and convert it into an equivalent minimization problem. Derive a set of
-conditions on the matrix A and the vectors b,c under which the dual is identical to the primal.}
+	\begin{align*}
+		\min \quad c^{T} \cdot x \\
+		\begin{aligned}
+			\textup{s.t.}\quad
+			A \cdot x & \geq b \\
+			x & \geq 0 
+		\end{aligned}
+	\end{align*}
+	Form the dual problem and convert it into an equivalent minimization problem. Derive a set of
+	conditions on the matrix A and the vectors b,c under which the dual is identical to the primal.}
+
+Το δυικό πρόβλημα είναι το εξής: \\
+
+\begin{align*}
+	\max \quad p^{T} \cdot b \\
+	\begin{aligned}
+		\textup{s.t.}\quad	
+		p^{T} \cdot A & \leq c^{T} \\
+		p & \geq 0 
+	\end{aligned}
+\end{align*}
+
+To ισοδύναμο πρόβλημα ελαχιστοποίησης του δυικού προβλήματος που μολις αναφέραμε είναι: \\
+
+\begin{align*}
+	\min \quad -p^{T} \cdot b \\
+	\begin{aligned}
+		\textup{s.t.}\quad
+		-p^{T} \cdot A & \geq -c^{T} \\
+		p & \geq 0 
+	\end{aligned}
+\end{align*}
+
+Για να μπορεί το παραπάνω πρόβλημα ελαχιστοποίησης να είναι ισοδύναμο με το αρχικό πρέπει να ισχύουν τα εξής: \\
+
+\begin{align*}
+	&\bullet \quad b = -c \\
+	&\bullet \quad \text{ο πίνακας A πρέπει να είναι αντισυμμετρικός} 
+\end{align*}
+
+Να σημειώσουμε στο σημείο αυτό ότι αντισυμμετρικός είναι ένας τετραγωνικός πίνακας, ο οποίος είναι ίσος με τον αρνητικό του ανάστροφο, δηλαδή  \\
+
+\begin{align*}
+	A = -A^{T}
+\end{align*}
+
+Αν ισχύουν τα παρπάνω, ισχύει και ότι: \\
+
+\begin{align*}
+	-p^{T} \cdot A \geq -c^{T} &\Leftrightarrow \\
+	-A^{T} \cdot p \geq -c &\Leftrightarrow \\
+	A \cdot p \geq b
+\end{align*}
+
+και επίσης ισχύει και ότι: \\
+
+\begin{align*}
+	-p^{T} \cdot b &= \\ 
+	-p^{T} \cdot \left( - c \right) &= \\
+	p^{T} \cdot c &= \\
+	c^{T} \cdot p
+\end{align*}
+
+
+Συνεπώς το ισοδύναμο πρόβλημα ελαχιστοποίησης του δυικού ταυτίζεται με το αρχικό πρόβλημα αν ισχύουν οι παραπάνω δύο ειδικές συνθήκες.
 
 \vspace{2in}
 
@@ -136,27 +233,31 @@ solution.}
 Έστω το εξής πρόβλημα γραμμικού προγραμματισμού
 
 \begin{align*}
-    \max \margin c \cdot & x \\
-    s.t. \\
-    A \times & x \leq b \\
-    & x \geq 0
+    \max \quad c \cdot x \\
+    \begin{aligned}
+   		\textup{s.t.}\quad
+    	  A \cdot  x & \leq b \\
+	      x & \geq 0
+    \end{aligned}
 \end{align*}
 
 και το δϋικό του
 
 \begin{align*}
-    \min \margin y \cdot & b \\
-    s.t. \\
-    A^T \times & y \leq c \\
-    & y \geq 0
+    \min \quad y \cdot  b \\
+    \begin{aligned}
+   		\textup{s.t.}\quad
+ 		A^T \cdot  y & \leq c \\
+		y & \geq 0
+    \end{aligned}
 \end{align*}
 
 Ορίζουμε το παρακάτω σύστημα γραμμικών ανισώσεων
 
 \begin{align*}
-    A \times & x \leq b \\
+    A \cdot & x \leq b \\
     & x \geq 0 \\
-    A^T \times & y \leq c \\
+    A^T \cdot & y \leq c \\
     & y \geq 0 \\
     c \cdot x & \geq y \cdot b
 \end{align*}
@@ -175,6 +276,8 @@ solution.}
     αποτελούν βέλτιστες λύσεις του πρωτεύοντος και του δϋικού προβλήματος αντίστοιχα.
 \end{itemize}
 
+\pagebreak
+
 Έτσι, δοθέντος οποιουδήποτε προβλήματος γραμμικού προγραμματισμού αρκεί να ορίσουμε το
 αντίστοιχο σύστημα γραμμικών ανισώσεων, όπως παραπάνω, και να καλέσουμε την υπορουτίνα μας επί αυτού. \\
 
@@ -189,10 +292,60 @@ solution.}
 \pagebreak
 
 \subsection*{4. Let A be a symmetric matrix. Consider the linear program
-min c'x
-s.t. Ax \ensuremath{\geq} c
-x \ensuremath{\geq} 0
-Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*} \ensuremath{\geq} 0 then x\ensuremath{*} is an optimal solution.}
+	\begin{align*}
+		\min \quad c^{T} \cdot x \\
+		\begin{aligned}
+	   		\textup{s.t.}\quad
+			A \cdot x & \geq c \\
+			x & \geq 0 
+		\end{aligned}
+	\end{align*}
+	Prove that if \({x*}\) satisfies \(A \cdot {x*} = c\) and \({x*} \geq 0\) then \({x*}\) is an optimal solution.}
+
+Αν υποθέσουμε ότι \({x*}\) ικανοποιεί το \(A \cdot {x*} = c\) και ότι \({x*} \geq 0\), πρέπει να αποδείξουμε ότι το \({x*}\) είναι βέλτιστη λύση. \\
+
+Ο πίνακας \(A\) είναι συμμετρικός (άρα και τετραγωνικός) και συνεπώς ισχύει ότι είναι ίσος με τον ανάστροφό του\\
+
+\begin{align*}
+	A = A^{T}
+\end{align*}
+
+Σχηματίζουμε το δυικό του παραπάνω προβλήματος γραμμικού προγραμματισμού ως εξής \\
+
+\begin{align*}
+	\max \quad p^{T} \cdot x \\
+	\begin{aligned}
+		\textup{s.t.}\quad
+		p^{T} \cdot A & \leq c \\
+		p & \geq 0 
+	\end{aligned}
+\end{align*}
+
+Αν η βέλτιστη λύση του δυικού \({p*}\) είναι ίδια με τη βέλτιστη λύση του αρχικού προβλήματος, \({x*}\), τότε ισχυεί ότι \\
+
+\begin{align*}
+	{p*} = {x*} \geq 0
+\end{align*}
+
+Θα ισχύει ότι \\
+
+\begin{align*}
+	{p*}^{T} \cdot A &= A^{T} \cdot {p*} \Leftrightarrow \\
+	{p*}^{T} \cdot A &= A \cdot {p*} \Leftrightarrow \\
+	{p*}^{T} \cdot A &= A \cdot {x*} \Leftrightarrow \\
+	{p*}^{T} \cdot A &= c
+\end{align*}
+
+Επίσης, ισχύει ότι \\
+
+\begin{align*}
+	c^{T} \cdot {x*} &= {x*}^{T} \cdot c \Leftrightarrow \\
+	c^{T} \cdot {x*} &= {p*}^{T} \cdot c 	
+\end{align*}
+
+Ξέρουμε ότι αν \({x*}\) και \({p*}\) είναι εφικτές λύσεις στο αρχικό πρόβλημα γραμμικού προγραμματισμού και στο δυικό του αντίστοιχα και \({p*}^{T} \cdot b = c^{T} \cdot {x*}\), τότε τα \({x*}\) και τα \({p*}\) είναι οι βέλτιστες λύσεις. \\
+
+Συνεπώς, η \({x*}\) είναι βέλτιστη λύση για το πρόβλημα γραμμικού προγραμματισμού.
 
 \vspace{2in}
 
@@ -203,17 +356,23 @@ Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*}
 Έστω το πρωτεύον πρόβλημα \\
 
 \begin{align*}
-    \max \margin c & \cdot x \\
-    A \times x & \leq b \\
-    x & \geq 0
+    \max \quad c \cdot x \\
+    \begin{aligned}
+    	\textup{s.t.}\quad
+ 		A \cdot x & \leq b \\
+		x & \geq 0
+    \end{aligned}
 \end{align*}
 
 και το δϋικό του
 
 \begin{align*}
-    \min \margin b & \cdot y \\
-    A^T \times y & \geq c \\
-    y & \geq 0
+    \min \quad b \cdot y \\
+    \begin{aligned}
+    	\textup{s.t.}\quad
+   		A^T \cdot y & \geq c \\
+		y & \geq 0
+    \end{aligned}
 \end{align*}
 
 Έστω \( x \) και \( y \) εφικτές λύσεις στο πρωτεύον και στο δϋικό πρόβλημα αντίστοιχα. \\
@@ -222,8 +381,8 @@ Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*}
 αν και μόνο αν ισχύει ότι: \\
 
 \begin{itemize}
-    \item \( (b_i - \sum{j = 1}{n} a_{ij} \cdot x_j) \cdot y_i = 0 \margin \forall i \in \{ 1, \ldots, m\} \)
-    \item \( (\sum{i = 1}{n} a_{ji} \cdot y_i - c_j) \cdot x_j = 0 \margin \forall j \in \{ 1, \ldots, n\} \)
+    \item \( (b_i - \sum_{j=1}^{n} {a_{ij}} \cdot x_j) \cdot y_i = 0 \margin \forall i \in \{ 1, \ldots, m\} \)
+    \item \( (\sum_{i = 1}^{n} a_{ji} \cdot y_i - c_j) \cdot x_j = 0 \margin \forall j \in \{ 1, \ldots, n\} \)
 \end{itemize}
 
 \[ \underline{\textbf{ΑΠΟΔΕΙΞΗ}} \]
@@ -232,42 +391,42 @@ Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*}
 
 \begin{align*}
     \begin{rcases}
-        A^T & \times y \geq c
+        A^T & \cdot y \geq c \\
         x & \geq 0
     \end{rcases}
     \Rightarrow \\
-    x^T \times A^T \times y \geq x^T \times c = c \cdot x
+    x^T \cdot A^T \cdot y \geq x^T \cdot c = c \cdot x
 \end{align*}
 
 \begin{align*}
     \begin{rcases}
-        A & \times x \leq b \\
+        A & \cdot x \leq b \\
         y & \geq 0
     \end{rcases}
     \Rightarrow \\
-    y^T \times A \times x \leq y^T \times b = b \cdot y
+    y^T \cdot A \cdot x \leq y^T \cdot b = b \cdot y
 \end{align*}
 
-Από τα παραπάνω, δεδομένου ότι \( x^T \times A^T \times y \) είναι ένας \( 1 \times 1 \)
-πίνακας και ως εκ τούτου \( x^T \times A^T \times y = (x^T \times A^T \times y)^T = y^T \times A \times x\)
+Από τα παραπάνω, δεδομένου ότι \( x^T \cdot A^T \cdot y \) είναι ένας \( 1 \times 1 \)
+πίνακας και ως εκ τούτου \( x^T \cdot A^T \cdot y = (x^T \cdot A^T \cdot y)^T = y^T \cdot A \cdot x\)
 προκύπτει
 
-\[ c \cdot x = x^T \times c \leq x^T \times A^T \times y = y^T \times A \times x \leq y^T \times b = b \cdot y \]
+\[ c \cdot x = x^T \cdot c \leq x^T \cdot A^T \cdot y = y^T \cdot A \cdot x \leq y^T \cdot b = b \cdot y \]
 
 Βάσει Ισχυρής Δϋικότητας, τα \( x \) και \( y \) αποτελούν βέλτιστες λύσεις στα αντίστοιχα
-γραμμικά προβλήματα αν και μόνο αν \( c \dot x = b \cdot y \) και άρα αν και μόνο αν
+γραμμικά προβλήματα αν και μόνο αν \( c \cdot x = b \cdot y \) και άρα αν και μόνο αν
 
 \begin{itemize}
-    \item \( x^T \times c = x^T \times A^T \times y \Leftrightarrow x \cdot (A^T \times y - c) = 0 \)
-    \item \( y^T \times A \times x = y^T \times b \Leftrightarrow y \cdot (b - A \times x) = 0 \)
+    \item \( x^T \cdot c = x^T \cdot A^T \cdot y \Leftrightarrow x \cdot (A^T \cdot y - c) = 0 \)
+    \item \( y^T \cdot A \cdot x = y^T \cdot b \Leftrightarrow y \cdot (b - A \cdot x) = 0 \)
 \end{itemize}
 
 Σημειώνουμε ότι
 
-\[ 0 = x \cdot (A^T \times y - c)  = \sum_{j = 1}^{n}(x_j \cdot (\sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j)) \]
+\[ 0 = x \cdot (A^T \cdot y - c)  = \sum_{j = 1}^{n}(x_j \cdot (\sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j)) \]
 
 και δεδομένου ότι \( x_j \geq 0 \) και \( \sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j \geq 0 \)
-\( \forall j \in \{1, \ldots, n \} \) καταλήουμε στο συμπέρασμα ότι
+\( \forall j \in \{1, \ldots, n \} \) καταλήγουμε στο συμπέρασμα ότι
 
 \[ x_j \cdot (\sum_{i = 1}^{m} a_{ji} \cdot y_i - c_j) \geq 0 \forall j \in \{ 1, \ldots, n \} \]
 
@@ -276,7 +435,7 @@ Prove that if x\ensuremath{*} satisfies Ax\ensuremath{*} = c and x\ensuremath{*}
 
 Ομοίως αποδεικνύεται ότι
 
-\[ y \cdot ( b - A \times x ) = 0 \Leftrightarrow y_i \cdot ( b_i - \sum_{j = 1}^{n} a_{ij} \cdot x_j ) = 0 \margin \forall i \in \{ 1, \ldots, m \} \]
+\[ y \cdot ( b - A \cdot x ) = 0 \Leftrightarrow y_i \cdot ( b_i - \sum_{j = 1}^{n} a_{ij} \cdot x_j ) = 0 \margin \forall i \in \{ 1, \ldots, m \} \]
 
 \vspace{2in}
 

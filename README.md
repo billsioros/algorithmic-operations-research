@@ -3,11 +3,16 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Exercises
+
 * [Homework 1](Homework_1/homework.pdf)
 * [Homework 2](Homework_2/homework.pdf)
 * [Homework 3](Homework_3/homework.pdf)
 * [Homework 4](Homework_4/homework.pdf)
 * [Homework 5](Homework_5/homework.pdf)
+
+## Presentation Topics
+
 * [Sudoku](SUDOKU/README.md)
 
 ## Contributors

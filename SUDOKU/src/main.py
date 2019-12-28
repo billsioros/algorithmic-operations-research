@@ -23,6 +23,13 @@ class Window(Sudoku):
 
         super().__init__(matrix)
 
+        self.original = set([
+            (i, j)
+            for i in range(self.n)
+            for j in range(self.n)
+            if self.matrix[i][j] != 0
+        ])
+
         pygame.init()
 
         self.size = self.n * multiplier
@@ -30,7 +37,7 @@ class Window(Sudoku):
 
         self.font = pygame.font.Font(font, self.cell_size // 2)
 
-        pygame.display.set_caption(title)
+        pygame.display.set_caption(f"{title} {self.n} x {self.n}")
 
         self.canvas = pygame.display.set_mode((self.size, self.size))
 
@@ -53,10 +60,10 @@ class Window(Sudoku):
 
         self.solve()
 
-        def insert(value, i, j):
+        def insert(value, i, j, color):
 
             cell_surface = self.font.render(
-                '%d' % (value), True, Window.Colors.BLACK.value)
+                '%d' % (value), True, color.value)
 
             cell_rectangle = cell_surface.get_rect()
             cell_rectangle.topleft = (
@@ -91,7 +98,10 @@ class Window(Sudoku):
 
         for i in range(self.n):
             for j in range(self.n):
-                insert(self.matrix[i][j], i, j)
+                insert(self.matrix[i][j], i, j,
+                       Window.Colors.GRAY
+                       if (i, j) not in self.original
+                       else Window.Colors.BLACK)
 
 
 if __name__ == "__main__":

@@ -22,6 +22,8 @@ if __name__ == "__main__":
 
     sudoku = Sudoku(read_sudoku_file(args.load))
 
-    print(sudoku)
+    sudoku.show()
 
     sudoku.solve()
+
+    sudoku.show()

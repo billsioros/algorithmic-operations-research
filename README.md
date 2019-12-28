@@ -43,4 +43,3 @@ python generate.py -l "..\Algorithmic Operation Research_hw_4.pdf" -fs .\Homewor
 # Special Thanks To
 
 * [Carbon](https://carbon.now.sh/) for providing us with beautiful images of our source code
-

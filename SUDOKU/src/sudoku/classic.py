@@ -9,51 +9,60 @@ from re import sub
 class Sudoku(LpProblem):
 
     @staticmethod
-    def load(filename, expected_extension="sdk"):
+    def load(filename):
 
-        extension = path.splitext(filename)[1]
+        class ParseError(ValueError):
 
-        if extension[1:] != expected_extension:
-            raise ValueError(f"'{extension}' files are not supported")
+            def __init__(self, index, line, message):
+
+                super().__init__(
+                    f"{path.basename(filename)}:{index + 1}: '{line}' {message}")
 
         with open(filename, 'r', encoding="ascii", errors="strict") as file:
 
-            lines = [
-                sub(r"\s+", "", line) for line in file.readlines()
-            ]
+            lines = file.readlines()
+            lines = map(lambda line: sub(r"#.*", "", line), lines)
+            lines = map(lambda line: sub(r"\s+", "", line), lines)
+            lines = enumerate(lines)
+            lines = filter(lambda data: len(data[1]) > 0, lines)
 
             try:
-                size = int(lines[0])
+                index, line = next(lines)
+
+                size = int(line)
 
                 if size <= 0:
                     raise ValueError
 
             except ValueError:
-                raise ValueError(f"'{lines[0]}' is not a valid size specifier")
+                raise ParseError(
+                    index, line, "is not a valid size specifier")
 
             _sqrt = sqrt(size)
 
             if _sqrt != int(_sqrt):
-                raise ValueError(f"{size} is not a perfect square")
+                raise ParseError(
+                    index, line, f"{size} is not a perfect square")
 
             matrix = [[0 for _ in range(size)] for _ in range(size)]
 
-            for i in range(1, len(lines)):
+            for index, line in lines:
                 try:
-                    x, y, z = tuple(
-                        map(lambda value: int(value) - 1, lines[i].split(',')))
+                    x, y, z = tuple(map(int, line.split(',')))
 
-                    if x < 0 or y < 0 or z < 0 or z >= size:
+                    if x < 0 or y < 0 or z < 0 or z > size:
                         raise IndexError
 
-                    matrix[x][y] = z
+                    matrix[x - 1][y - 1] = z
 
                 except IndexError:
-                    raise ValueError(
-                        f"'{lines[i]}' is not a valid entry for a puzzle of size {size}")
+                    raise ParseError(
+                        index, line,
+                        f"is not a valid entry for a puzzle of size {size}")
 
                 except:
-                    raise ValueError(f"Malformed entry '{lines[i]}'")
+                    raise ParseError(
+                        index, line, "Malformed entry")
 
         return matrix
 
@@ -63,7 +72,9 @@ class Sudoku(LpProblem):
         self.n = len(matrix)
         self.m = int(sqrt(self.n))
 
-        super().__init__(name="Sudoku", sense=LpMinimize)
+        super().__init__(
+            name=f"{type(self).__name__}_{self.n}_x_{self.n}_Solver",
+            sense=LpMinimize)
 
         self.x = [
             [

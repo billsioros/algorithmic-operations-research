@@ -1,10 +1,8 @@
 
 from window import classic
 
-from sudoku import x
 
-
-class Window(classic.Window):
+class SudokuX(classic.Sudoku):
 
     def draw(self):
 

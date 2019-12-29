@@ -4,7 +4,7 @@ from pulp import *
 from sudoku import classic
 
 
-class Sudoku(classic.Sudoku):
+class SudokuXLP(classic.SudokuLP):
 
     def __init__(self, matrix):
 

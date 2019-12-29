@@ -1,17 +1,79 @@
 
 from argparse import ArgumentParser
 from os import path
-from re import fullmatch
+from re import sub, fullmatch
+from math import sqrt
 
-from window import classic
-from window import x
+from sudoku.classic import SudokuLP
+from sudoku.x import SudokuXLP
+
+from window.classic import Sudoku
+from window.x import SudokuX
+
+
+def load(filename):
+
+    class ParseError(ValueError):
+
+        def __init__(self, index, line, message):
+
+            super().__init__(
+                f"{path.basename(filename)}:{index + 1}: '{line}' {message}")
+
+    with open(filename, 'r', encoding="ascii", errors="strict") as file:
+
+        lines = file.readlines()
+        lines = map(lambda line: sub(r"#.*", "", line), lines)
+        lines = map(lambda line: sub(r"\s+", "", line), lines)
+        lines = enumerate(lines)
+        lines = filter(lambda data: len(data[1]) > 0, lines)
+
+        try:
+            index, line = next(lines)
+
+            size = int(line)
+
+            if size <= 0:
+                raise ValueError
+
+        except ValueError:
+            raise ParseError(
+                index, line, "is not a valid size specifier")
+
+        _sqrt = sqrt(size)
+
+        if _sqrt != int(_sqrt):
+            raise ParseError(
+                index, line, f"{size} is not a perfect square")
+
+        matrix = [[0 for _ in range(size)] for _ in range(size)]
+
+        for index, line in lines:
+            try:
+                x, y, z = tuple(map(int, line.split(',')))
+
+                if x < 0 or y < 0 or z < 0 or z > size:
+                    raise IndexError
+
+                matrix[x - 1][y - 1] = z
+
+            except IndexError:
+                raise ParseError(
+                    index, line,
+                    f"is not a valid entry for a puzzle of size {size}")
+
+            except:
+                raise ParseError(
+                    index, line, "Malformed entry")
+
+    return matrix
 
 
 if __name__ == "__main__":
 
     options = {
-        "sdk": classic.Window,
-        "sdkx": x.Window
+        "sdk": (SudokuLP, Sudoku),
+        "sdkx": (SudokuXLP, SudokuX)
     }
 
     argparser = ArgumentParser(
@@ -45,7 +107,8 @@ if __name__ == "__main__":
     if extension not in options:
         raise ValueError(f"'{extension}' files are not supported")
 
-    window = options[extension](options[extension].load(args.load))
+    problem = options[extension][0](load(args.load))
+    window = options[extension][1](problem)
 
     if args.save:
 
@@ -59,6 +122,6 @@ if __name__ == "__main__":
 
         with open(args.save, "w", encoding='ascii') as file:
 
-            print(window, file=file)
+            print(problem, file=file)
 
     window.loop()

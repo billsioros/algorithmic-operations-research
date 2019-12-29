@@ -5,33 +5,33 @@ from pygame.locals import *
 from sys import exit
 
 from window.detail.colors import Colors
-from sudoku import classic
 
 
-class Window(classic.Sudoku):
+class Sudoku:
 
     pygame.init()
 
-    def __init__(self, matrix, multiplier=75):
+    def __init__(self, sudoku, multiplier=75):
 
-        super().__init__(matrix)
+        self.sudoku = sudoku
 
         self.original = {
             (i, j)
-            for i in range(self.n)
-            for j in range(self.n)
-            if self.matrix[i][j] != 0
+            for i in range(self.sudoku.n)
+            for j in range(self.sudoku.n)
+            if self.sudoku.matrix[i][j] != 0
         }
 
-        self.solve()
+        self.sudoku.solve()
 
-        self.size = self.n * multiplier
-        self.cell_size = self.size // self.n
+        self.size = self.sudoku.n * multiplier
+        self.cell_size = self.size // self.sudoku.n
 
         self.font = pygame.font.Font('freesansbold.ttf', self.cell_size // 2)
 
         pygame.display.set_caption(
-            f"Sudoku {type(self).__name__} {self.n} x {self.n}")
+            f"{type(self).__name__} {self.sudoku.n} x {self.sudoku.n}"
+        )
 
         self.canvas = pygame.display.set_mode((self.size, self.size))
 
@@ -60,7 +60,7 @@ class Window(classic.Sudoku):
                 color = Colors.BLACK
 
             cell_surface = self.font.render(
-                '%d' % (self.matrix[i][j]),
+                '%d' % (self.sudoku.matrix[i][j]),
                 True,
                 color.value
             )
@@ -86,16 +86,16 @@ class Window(classic.Sudoku):
             pygame.draw.line(self.canvas, Colors.GRAY.value,
                              (x, 0), (x, self.size))
 
-        for y in range(0, self.size, self.cell_size * self.m):
+        for y in range(0, self.size, self.cell_size * self.sudoku.m):
 
             pygame.draw.line(self.canvas, Colors.BLACK.value,
                              (0, y), (self.size, y))
 
-        for x in range(0, self.size, self.cell_size * self.m):
+        for x in range(0, self.size, self.cell_size * self.sudoku.m):
 
             pygame.draw.line(self.canvas, Colors.BLACK.value,
                              (x, 0), (x, self.size))
 
-        for i in range(self.n):
-            for j in range(self.n):
+        for i in range(self.sudoku.n):
+            for j in range(self.sudoku.n):
                 draw_cell(i, j)

@@ -1,123 +1,127 @@
 
-from sys import exit
 from argparse import ArgumentParser
 from os import path
+from re import sub, fullmatch
+from math import sqrt
 
-import pygame
-from pygame.locals import *
+from sudoku.classic import SudokuLP
+from sudoku.x import SudokuXLP
 
-from enum import Enum
+from window.classic import Sudoku
+from window.x import SudokuX
 
-from sudoku import Sudoku
 
+def load(filename):
 
-class Window(Sudoku):
+    class ParseError(ValueError):
 
-    class Colors(Enum):
+        def __init__(self, index, line, message):
 
-        WHITE = (255, 255, 255)
-        GRAY = (127, 127, 127)
-        BLACK = (0, 0, 0)
+            super().__init__(
+                f"{path.basename(filename)}:{index + 1}: '{line}' {message}")
 
-    def __init__(self, matrix, multiplier=75, title="Sudoku", font='freesansbold.ttf'):
+    with open(filename, 'r', encoding="ascii", errors="strict") as file:
 
-        super().__init__(matrix)
+        lines = file.readlines()
+        lines = map(lambda line: sub(r"#.*", "", line), lines)
+        lines = map(lambda line: sub(r"\s+", "", line), lines)
+        lines = enumerate(lines)
+        lines = filter(lambda data: len(data[1]) > 0, lines)
 
-        self.original = set([
-            (i, j)
-            for i in range(self.n)
-            for j in range(self.n)
-            if self.matrix[i][j] != 0
-        ])
+        try:
+            index, line = next(lines)
 
-        pygame.init()
+            size = int(line)
 
-        self.size = self.n * multiplier
-        self.cell_size = self.size // self.n
+            if size <= 0:
+                raise ValueError
 
-        self.font = pygame.font.Font(font, self.cell_size // 2)
+        except ValueError:
+            raise ParseError(
+                index, line, "is not a valid size specifier")
 
-        pygame.display.set_caption(f"{title} {self.n} x {self.n}")
+        _sqrt = sqrt(size)
 
-        self.canvas = pygame.display.set_mode((self.size, self.size))
+        if _sqrt != int(_sqrt):
+            raise ParseError(
+                index, line, f"{size} is not a perfect square")
 
-    def loop(self):
+        matrix = [[0 for _ in range(size)] for _ in range(size)]
 
-        while True:
+        for index, line in lines:
+            try:
+                x, y, z = tuple(map(int, line.split(',')))
 
-            self.draw()
+                if x < 0 or y < 0 or z < 0 or z > size:
+                    raise IndexError
 
-            for event in pygame.event.get():
+                matrix[x - 1][y - 1] = z
 
-                if event.type == QUIT:
+            except IndexError:
+                raise ParseError(
+                    index, line,
+                    f"is not a valid entry for a puzzle of size {size}")
 
-                    pygame.quit()
-                    exit()
+            except:
+                raise ParseError(
+                    index, line, "Malformed entry")
 
-            pygame.display.update()
-
-    def draw(self):
-
-        self.solve()
-
-        def insert(value, i, j, color):
-
-            cell_surface = self.font.render(
-                '%d' % (value), True, color.value)
-
-            cell_rectangle = cell_surface.get_rect()
-            cell_rectangle.topleft = (
-                i * self.cell_size +
-                (self.cell_size - cell_rectangle.width) // 2,
-                j * self.cell_size +
-                (self.cell_size - cell_rectangle.height) // 2)
-
-            self.canvas.blit(cell_surface, cell_rectangle)
-
-        self.canvas.fill(Window.Colors.WHITE.value)
-
-        for y in range(0, self.size, self.cell_size):
-
-            pygame.draw.line(self.canvas, Window.Colors.GRAY.value,
-                             (0, y), (self.size, y))
-
-        for x in range(0, self.size, self.cell_size):
-
-            pygame.draw.line(self.canvas, Window.Colors.GRAY.value,
-                             (x, 0), (x, self.size))
-
-        for y in range(0, self.size, self.cell_size * self.m):
-
-            pygame.draw.line(self.canvas, Window.Colors.BLACK.value,
-                             (0, y), (self.size, y))
-
-        for x in range(0, self.size, self.cell_size * self.m):
-
-            pygame.draw.line(self.canvas, Window.Colors.BLACK.value,
-                             (x, 0), (x, self.size))
-
-        for i in range(self.n):
-            for j in range(self.n):
-                insert(self.matrix[i][j], i, j,
-                       Window.Colors.GRAY
-                       if (i, j) not in self.original
-                       else Window.Colors.BLACK)
+    return matrix
 
 
 if __name__ == "__main__":
 
+    options = {
+        "sdk": (SudokuLP, Sudoku),
+        "sdkx": (SudokuXLP, SudokuX)
+    }
+
     argparser = ArgumentParser(
-        description='Sudoku Solver')
+        description="Creating & Solving Variations on Sudoku Puzzles")
 
     argparser.add_argument(
-        "-l", "--load", help="specify the file to be loaded", required=True)
+        "-l", "--load",
+        help="a file representing an unsolved sudoku problem",
+        required=True
+    )
+
+    argparser.add_argument(
+        "-s", "--save",
+        help="where to save the linear programming formulation of the given problem",
+        required=False
+    )
+
+    argparser.add_argument(
+        "-f", "--force",
+        help="do not prompt before overwriting",
+        action="store_true"
+    )
 
     args = argparser.parse_args()
 
     if args.load and not path.exists(args.load):
-
         raise ValueError(f"'{args.load}' does not exist")
 
-    matrix = Sudoku.load(args.load)
+    extension = path.splitext(args.load)[1][1:]
 
-    Window(matrix).loop()
+    if extension not in options:
+        raise ValueError(f"'{extension}' files are not supported")
+
+    problem = options[extension][0](load(args.load))
+    window = options[extension][1](problem)
+
+    if args.save:
+
+        if path.exists(args.save) and not args.force:
+
+            answer = input(f"Would you like to overwrite '{args.save}': ")
+
+            if not fullmatch(r"y|Y|yes|YES|", answer):
+                raise ValueError(
+                    f"Failed to save the linear programming formulation as '{args.save}'")
+
+        with open(args.save, "w", encoding='ascii') as file:
+
+            print(problem, file=file)
+
+    window.loop()

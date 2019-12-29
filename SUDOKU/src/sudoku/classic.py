@@ -2,60 +2,9 @@
 from pulp import *
 
 from math import sqrt
-from os import path
-from re import sub
 
 
-class Sudoku(LpProblem):
-
-    @staticmethod
-    def load(filename, expected_extension="sdk"):
-
-        extension = path.splitext(filename)[1]
-
-        if extension[1:] != expected_extension:
-            raise ValueError(f"'{extension}' files are not supported")
-
-        with open(filename, 'r', encoding="ascii", errors="strict") as file:
-
-            lines = [
-                sub(r"\s+", "", line) for line in file.readlines()
-            ]
-
-            try:
-                size = int(lines[0])
-
-                if size <= 0:
-                    raise ValueError
-
-            except ValueError:
-                raise ValueError(f"'{lines[0]}' is not a valid size specifier")
-
-            _sqrt = sqrt(size)
-
-            if _sqrt != int(_sqrt):
-                raise ValueError(f"{size} is not a perfect square")
-
-            matrix = [[0 for _ in range(size)] for _ in range(size)]
-
-            for i in range(1, len(lines)):
-                try:
-                    x, y, z = tuple(
-                        map(lambda value: int(value) - 1, lines[i].split(',')))
-
-                    if x < 0 or y < 0 or z < 0 or z >= size:
-                        raise IndexError
-
-                    matrix[x][y] = z
-
-                except IndexError:
-                    raise ValueError(
-                        f"'{lines[i]}' is not a valid entry for a puzzle of size {size}")
-
-                except:
-                    raise ValueError(f"Malformed entry '{lines[i]}'")
-
-        return matrix
+class SudokuLP(LpProblem):
 
     def __init__(self, matrix):
 
@@ -63,7 +12,9 @@ class Sudoku(LpProblem):
         self.n = len(matrix)
         self.m = int(sqrt(self.n))
 
-        super().__init__(name="Sudoku", sense=LpMinimize)
+        super().__init__(
+            name=f"{type(self).__name__}_solver_{self.n}_x_{self.n}".lower(),
+            sense=LpMinimize)
 
         self.x = [
             [

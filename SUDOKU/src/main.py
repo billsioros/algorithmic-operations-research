@@ -6,9 +6,11 @@ from math import sqrt
 
 from sudoku.classic import SudokuLP
 from sudoku.x import SudokuXLP
+from sudoku.four_square import FourSquareSudokuLP
 
 from window.classic import Sudoku
 from window.x import SudokuX
+from window.four_square import FourSquareSudoku
 
 
 def load(filename):
@@ -73,7 +75,8 @@ if __name__ == "__main__":
 
     options = {
         "sdk": (SudokuLP, Sudoku),
-        "sdkx": (SudokuXLP, SudokuX)
+        "sdkx": (SudokuXLP, SudokuX),
+        "sdkfs": (FourSquareSudokuLP, FourSquareSudoku)
     }
 
     argparser = ArgumentParser(

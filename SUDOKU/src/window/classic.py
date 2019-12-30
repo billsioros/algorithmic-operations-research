@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 
 from sys import exit
+from re import finditer
 
 from window.detail.colors import Colors
 
@@ -29,8 +30,17 @@ class Sudoku:
 
         self.font = pygame.font.Font('freesansbold.ttf', self.cell_size // 2)
 
+        name = type(self).__name__
+
+        name = ' '.join([
+            match.group(0)
+            for match in finditer(
+                r".+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)",
+                name)
+        ])
+
         pygame.display.set_caption(
-            f"{type(self).__name__} {self.sudoku.n} x {self.sudoku.n}"
+            f"{name} {self.sudoku.n} x {self.sudoku.n}"
         )
 
         self.canvas = pygame.display.set_mode((self.size, self.size))
@@ -50,29 +60,27 @@ class Sudoku:
 
             pygame.display.update()
 
+    def draw_cell(self, i, j, color):
+
+        if (i, j) in self.original:
+            color = Colors.GRAY
+
+        cell_surface = self.font.render(
+            '%d' % (self.sudoku.matrix[i][j]),
+            True,
+            color.value
+        )
+
+        cell_rectangle = cell_surface.get_rect()
+        cell_rectangle.topleft = (
+            j * self.cell_size +
+            (self.cell_size - cell_rectangle.width) // 2,
+            i * self.cell_size +
+            (self.cell_size - cell_rectangle.height) // 2)
+
+        self.canvas.blit(cell_surface, cell_rectangle)
+
     def draw(self):
-
-        def draw_cell(i, j):
-
-            if (i, j) in self.original:
-                color = Colors.GRAY
-            else:
-                color = Colors.BLACK
-
-            cell_surface = self.font.render(
-                '%d' % (self.sudoku.matrix[i][j]),
-                True,
-                color.value
-            )
-
-            cell_rectangle = cell_surface.get_rect()
-            cell_rectangle.topleft = (
-                j * self.cell_size +
-                (self.cell_size - cell_rectangle.width) // 2,
-                i * self.cell_size +
-                (self.cell_size - cell_rectangle.height) // 2)
-
-            self.canvas.blit(cell_surface, cell_rectangle)
 
         self.canvas.fill(Colors.WHITE.value)
 
@@ -98,4 +106,4 @@ class Sudoku:
 
         for i in range(self.sudoku.n):
             for j in range(self.sudoku.n):
-                draw_cell(i, j)
+                self.draw_cell(i, j, Colors.BLACK)

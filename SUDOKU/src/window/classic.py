@@ -78,12 +78,12 @@ class Sudoku:
 
         for y in range(0, self.size, self.cell_size):
 
-            pygame.draw.line(self.canvas, Colors.GRAY.value,
+            pygame.draw.line(self.canvas, Colors.LIGHT_GRAY.value,
                              (0, y), (self.size, y))
 
         for x in range(0, self.size, self.cell_size):
 
-            pygame.draw.line(self.canvas, Colors.GRAY.value,
+            pygame.draw.line(self.canvas, Colors.LIGHT_GRAY.value,
                              (x, 0), (x, self.size))
 
         for y in range(0, self.size, self.cell_size * self.sudoku.m):

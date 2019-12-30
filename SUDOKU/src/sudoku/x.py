@@ -14,10 +14,10 @@ class SudokuXLP(classic.SudokuLP):
 
             self += lpSum([
                 self.x[r][r][k] for r in range(self.n)
-            ]) == 1, f"only one {k + 1} in the diagonal"
+            ]) == 1, f"in the diagonal only one {k + 1}"
 
         for k in range(self.n):
 
             self += lpSum([
                 self.x[r][self.n - 1 - r][k] for r in range(self.n)
-            ]) == 1, f"only one {k + 1} in the anti diagonal"
+            ]) == 1, f"in the anti diagonal only one {k + 1}"

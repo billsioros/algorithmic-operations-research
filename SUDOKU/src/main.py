@@ -6,9 +6,13 @@ from math import sqrt
 
 from sudoku.classic import SudokuLP
 from sudoku.x import SudokuXLP
+from sudoku.four_square import FourSquareSudokuLP
+from sudoku.four_pyramid import FourPyramidSudokuLP
 
 from window.classic import Sudoku
 from window.x import SudokuX
+from window.four_square import FourSquareSudoku
+from window.four_pyramid import FourPyramidSudoku
 
 
 def load(filename):
@@ -73,7 +77,9 @@ if __name__ == "__main__":
 
     options = {
         "sdk": (SudokuLP, Sudoku),
-        "sdkx": (SudokuXLP, SudokuX)
+        "sdkx": (SudokuXLP, SudokuX),
+        "sdkfs": (FourSquareSudokuLP, FourSquareSudoku),
+        "sdkfp": (FourPyramidSudokuLP, FourPyramidSudoku)
     }
 
     argparser = ArgumentParser(
@@ -97,6 +103,12 @@ if __name__ == "__main__":
         action="store_true"
     )
 
+    argparser.add_argument(
+        "-d", "--debug",
+        help="enable debugging mode",
+        action="store_true"
+    )
+
     args = argparser.parse_args()
 
     if args.load and not path.exists(args.load):
@@ -108,7 +120,7 @@ if __name__ == "__main__":
         raise ValueError(f"'{extension}' files are not supported")
 
     problem = options[extension][0](load(args.load))
-    window = options[extension][1](problem)
+    window = options[extension][1](problem, debug=args.debug)
 
     if args.save:
 

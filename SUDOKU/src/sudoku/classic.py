@@ -66,17 +66,17 @@ class SudokuLP(LpProblem):
 
         super().solve(solver=solver, **kwargs)
 
+        if LpStatus[self.status] != "Optimal":
+
+            raise ValueError(
+                f"Solver failed with status '{LpStatus[self.status]}'")
+
         for i in range(self.n):
             for j in range(self.n):
                 if self.matrix[i][j] == 0:
                     self.matrix[i][j] = [
                         self.x[i][j][k].varValue for k in range(self.n)
                     ].index(1) + 1
-
-        if LpStatus[self.status] != "Optimal":
-
-            raise ValueError(
-                f"Solver failed with status '{LpStatus[self.status]}'")
 
     def show(self):
 

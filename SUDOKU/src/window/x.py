@@ -12,8 +12,8 @@ class SudokuX(classic.Sudoku):
 
         super().draw()
 
-        pygame.draw.line(self.canvas, Colors.BLUE.value,
-                         (0, 0), (self.size, self.size))
+        for i in range(self.sudoku.n):
+            self.highlight_cell(i, i, Colors.LIGHT_BLUE)
 
-        pygame.draw.line(self.canvas, Colors.BLUE.value,
-                         (0, self.size), (self.size, 0))
+        for i in range(self.sudoku.n):
+            self.highlight_cell(self.sudoku.n - 1 - i, i, Colors.LIGHT_BLUE)

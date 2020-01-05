@@ -2,6 +2,7 @@
 from argparse import ArgumentParser
 from os import path
 from re import fullmatch
+from math import sqrt
 import numpy as np
 
 from detail.load import load
@@ -23,16 +24,31 @@ def relabel(matrix):
         )
     }
 
-    for i in range(len(matrix) + 1):
-        for j in range(len(matrix) + 1):
-            matrix[i][j] = replacements[matrix[i][j]]
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            if matrix[i][j] is not None:
+                matrix[i][j] = replacements[matrix[i][j]]
 
     return matrix
 
 
 def reorder(matrix):
 
-    pass
+    m = int(sqrt(len(matrix)))
+
+    for p in range(m):
+        for q in range(m):
+            for i in range(m * p, m * (p + 1)):
+                for j in range(m * q, m * (q + 1)):
+                    pass
+
+    for p in range(m):
+        for q in range(m):
+            for i in range(m * p, m * (p + 1)):
+                for j in range(m * q, m * (q + 1)):
+                    pass
+
+    return matrix
 
 
 if __name__ == "__main__":
@@ -90,4 +106,4 @@ if __name__ == "__main__":
         raise ValueError(
             f"'{args.method}' is not a supported sudoku generation method")
 
-        dump(methods[args.method](load(args.load)), args.save)
+    dump(methods[args.method](load(args.load)), args.save)

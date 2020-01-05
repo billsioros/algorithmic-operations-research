@@ -7,5 +7,5 @@ def dump(matrix, filename):
 
         for i in range(len(matrix)):
             for j in range(len(matrix)):
-                if matrix is not None:
-                    file.write(f"{i + 1}, {j + 1}, {matrix[i][j]}")
+                if matrix[i][j] is not None:
+                    file.write(f"{i + 1}, {j + 1}, {matrix[i][j]}\n")

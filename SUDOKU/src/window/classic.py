@@ -22,7 +22,7 @@ class Sudoku:
             (i, j)
             for i in range(self.sudoku.n)
             for j in range(self.sudoku.n)
-            if self.sudoku.matrix[i][j] != 0
+            if self.sudoku.matrix[i][j] is not None
         }
 
         if not self.debug:
@@ -81,7 +81,7 @@ class Sudoku:
             color = Colors.GRAY
 
         font_surface = self.font.render(
-            f"{self.sudoku.matrix[i][j]}" if self.sudoku.matrix[i][j] != 0 else '',
+            f"{self.sudoku.matrix[i][j]}" if self.sudoku.matrix[i][j] else '',
             True,
             color.value
         )

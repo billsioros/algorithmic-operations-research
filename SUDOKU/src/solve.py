@@ -25,7 +25,7 @@ if __name__ == "__main__":
     }
 
     argparser = ArgumentParser(
-        description="Creating & Solving Variations on Sudoku Puzzles")
+        description="Solving Variations on Sudoku Puzzles")
 
     argparser.add_argument(
         "-l", "--load",
@@ -74,7 +74,7 @@ if __name__ == "__main__":
                 raise ValueError(
                     f"Failed to save the linear programming formulation as '{args.save}'")
 
-        with open(args.save, "w", encoding='ascii') as file:
+        with open(args.save, 'w', encoding="ascii") as file:
 
             print(problem, file=file)
 

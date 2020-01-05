@@ -39,7 +39,7 @@ def load(filename):
             raise ParseError(
                 index, line, f"{size} is not a perfect square")
 
-        matrix = [[0 for _ in range(size)] for _ in range(size)]
+        matrix = [[None for _ in range(size)] for _ in range(size)]
 
         for index, line in lines:
             try:

@@ -62,12 +62,20 @@ class SudokuLP(LpProblem):
                     self += self.x[i][j][self.matrix[i][j] -
                                          1] == 1, f"cell {i + 1:02d} {j + 1:02d} has an initial value of {self.matrix[i][j]:02d}"
 
+        for i in range(self.n):
+            for j in range(self.n):
+                if not self.matrix[i][j]:
+                    for value in self.illegal_values(i, j):
+                        self += (
+                            self.x[i][j][value - 1] == 0,
+                            f"cell {i + 1:02d} {j + 1:02d} cannot be assigned a value of {value:02d}"
+                        )
+
     def solve(self, solver=None, **kwargs):
 
         super().solve(solver=solver, **kwargs)
 
         if LpStatus[self.status] != "Optimal":
-
             raise ValueError(
                 f"Solver failed with status '{LpStatus[self.status]}'")
 
@@ -78,8 +86,23 @@ class SudokuLP(LpProblem):
                         self.x[i][j][k].varValue for k in range(self.n)
                     ].index(1) + 1
 
-    def show(self):
+    def illegal_values(self, row, col):
 
-        for line in self.matrix:
+        values = set()
 
-            print(' '.join([str(value) for value in line]))
+        for j in range(self.n):
+            if self.matrix[row][j] is not None:
+                values.add(self.matrix[row][j])
+
+        for i in range(self.n):
+            if self.matrix[i][col] is not None:
+                values.add(self.matrix[i][col])
+
+        p, q = row // self.m, col // self.m
+
+        for i in range(self.m * p, self.m * (p + 1)):
+            for j in range(self.m * q, self.m * (q + 1)):
+                if self.matrix[i][j] is not None:
+                    values.add(self.matrix[i][j])
+
+        return values

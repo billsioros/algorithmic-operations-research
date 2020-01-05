@@ -73,7 +73,7 @@ class SudokuLP(LpProblem):
 
         for i in range(self.n):
             for j in range(self.n):
-                if self.matrix[i][j] == 0:
+                if not self.matrix[i][j]:
                     self.matrix[i][j] = [
                         self.x[i][j][k].varValue for k in range(self.n)
                     ].index(1) + 1

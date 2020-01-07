@@ -1,4 +1,5 @@
 
 # An Integer Programming Model for the Sudoku Problem
 
-* [Presentation](presentation.pdf)
+* [Slides](./slides/presentation.pdf)
+* [Text](./text/presentation.pdf)

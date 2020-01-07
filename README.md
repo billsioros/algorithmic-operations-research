@@ -11,9 +11,9 @@
 * [Homework 4](Homework_4/homework.pdf)
 * [Homework 5](Homework_5/homework.pdf)
 
-## Presentation Topics
+## Presentation Topic
 
-* [Sudoku](SUDOKU/README.md)
+* [Sudoku from a Linear Programming perspective](SUDOKU/README.md)
 
 ## Contributors
 

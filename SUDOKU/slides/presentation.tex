@@ -24,7 +24,7 @@
 
 \begin{document}
 
-	\title{\href{https://www.researchgate.net/publication/228615106_An_integer_programming_model_for_the_sudoku_problem}{SUDOKU}}
+	\title{\huge Το Sudoku από τη σκοπιά του\\Γραμμικού Προγραμματισμού}
 
 	\author[\el Σιώρος Βασίλειος, Ανδρινοπούλου Χριστίνα] % (optional, for multiple authors)
 	{\el Σιώρος Βασίλειος \and \el Ανδρινοπούλου Χριστίνα}
@@ -35,10 +35,10 @@
 	\begin{frame}
 		\frametitle{\el Εισαγωγή(1)}
 		\begin{itemize}
-			\item \el Το \en Sudoku \el είναι ένα πάζλ βασισμένο στη λογική.	
+			\item \el Το \en Sudoku \el είναι ένα πάζλ βασισμένο στη λογική.
 		\end{itemize}
 		\begin{figure}
-			\includegraphics[scale=0.12]{./Figures/classicSUDOKU.jpeg}
+			\includegraphics[scale=0.12]{./figures/classicSUDOKU.jpeg}
 			\caption{\el Παράδειγμα κλασσικού \en SUDOKU \(9 \times 9\)}
 		\end{figure}
 	\end{frame}
@@ -63,20 +63,23 @@
 	\begin{frame}
 		\frametitle{\el Εισαγωγή(4)}
 		\begin{itemize}
-			\item \el Οι αριθμοί μπορούν να αντικατασταθούν με οποιαδήποτε ομάδα συμβόλων, χωρίς να προκαλέσουν καμμία επίπτωση στηνεπίλυση, στη δημιουργία ή στη μαθηματική μοντελοποίηση του παζλ. 
-			\item \el Υπάρχουν διαθέσιμα \enSUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζικους αριθμούς και σύμβολα που αναπαριστούνμερίδες σούσι.
+			\item \el Οι αριθμοί μπορούν να αντικατασταθούν με οποιαδήποτε ομάδα συμβόλων, χωρίς να προκαλέσουν καμμία επίπτωση στην
+επίλυση, στη δημιουργία ή στη μαθηματική μοντελοποίηση του παζλ.
+			\item \el Υπάρχουν διαθέσιμα \en
+SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζικους αριθμούς και σύμβολα που αναπαριστούν
+μερίδες σούσι.
 		\end{itemize}
 	\end{frame}
 
 	\begin{frame}
 		\frametitle{\el Ιστορία(1)}
 		\begin{itemize}
-			\item \el Δημιουργός του εν λόγω παιχνιδιού υπήρξε ο Αμερικανός αρχιτέκτονας \en Howard Garns \el (Μάρτιος 1905 - Οκτώβριος 1989) το 1979. 
+			\item \el Δημιουργός του εν λόγω παιχνιδιού υπήρξε ο Αμερικανός αρχιτέκτονας \en Howard Garns \el (Μάρτιος 1905 - Οκτώβριος 1989) το 1979.
 			\item Το παιχνίδι αρχικά ονομάστηκε \en “Number Place” \el και δημοσιεύτηκε στο περιοδικό \en Dell Pencil Puzzles \& Word Games.
 			\item \el Ένα χρόνο μετά το παιχνίδι έγινε ιδιαίτερα δημοφιλές στην Ιαπωνία και μετονομάστηκε σε \en “suji wa dokushin ni kagiru”(SUDOKU).
 		\end{itemize}
 		\begin{figure}
-			\includegraphics[scale=0.1]{./Figures/Howard Garns.jpeg}
+			\includegraphics[scale=0.1]{./figures/Howard Garns.jpeg}
 			\caption{Howard Garns}
 		\end{figure}
 	\end{frame}
@@ -85,9 +88,9 @@
 	\frametitle{\el Ιστορία(2)}
 	\begin{itemize}
 		\item \el Το \en SUDOKU \el έγινε ιδιαίτερα αγαπητό στην Ιαπωνία, με τις μηνιαίες πωλήσεις \en SUDOKU \el περιοδικών να ανέρχονται στα 600.000 αντίτυπα κάθε μήνα.
-		\item Οι Ιάπωνες υιοθέτησαν το \en SUDOKU \el ως συνήθεια για δύο βασικούς λόγους: 
+		\item Οι Ιάπωνες υιοθέτησαν το \en SUDOKU \el ως συνήθεια για δύο βασικούς λόγους:
 		\begin{itemize}
-			\item η γλώσσα τους δεν ήταν κατάλληλη για την ανάπτυξη σταυρόλεξων, οπότε υστερούσαν σε αυτά και 
+			\item η γλώσσα τους δεν ήταν κατάλληλη για την ανάπτυξη σταυρόλεξων, οπότε υστερούσαν σε αυτά και
 			\item συνηθίζουν να μετακινούνται με τρένα και λεωφορεία.
 		\end{itemize}
 	\end{itemize}
@@ -96,13 +99,13 @@
 \begin{frame}
 	\frametitle{\el Ιστορία(3)}
 	\begin{figure}
-		\includegraphics[scale=0.2]{./Figures/WayneGould.jpg}
+		\includegraphics[scale=0.2]{./figures/WayneGould.jpg}
 		\caption{Wayne Gould}
 	\end{figure}
 	\begin{itemize}
-		\item \el Ο \en Wayne Gould \el, Νεοζηλανδός δικαστής, έφερε πίσω στον Δυτικό κόσμο το \en SUDOKU. 
-		\item \el To 1997 βρισκόταν στο Τόκιο και ανακάλυψε ενα \en SUDOKU. 
-		\item \el Έφτιαξε το πρωτο πρόγραμμα που δημιουργούσε \en SUDOKU \el παζλ. 
+		\item \el Ο \en Wayne Gould \el, Νεοζηλανδός δικαστής, έφερε πίσω στον Δυτικό κόσμο το \en SUDOKU.
+		\item \el To 1997 βρισκόταν στο Τόκιο και ανακάλυψε ενα \en SUDOKU.
+		\item \el Έφτιαξε το πρωτο πρόγραμμα που δημιουργούσε \en SUDOKU \el παζλ.
 	\end{itemize}
 \end{frame}
 
@@ -127,7 +130,7 @@
 			\item \el Επίπεδα δυσκολίας \en SUDOKU \el παζλ
 			\begin{itemize}
 				\item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \en SUDOKU \el παζλ από τον άνθρωπο
-				\item \el Στατιστική προσέγγιση 
+				\item \el Στατιστική προσέγγιση
 				\item \el Επίπεδο δυσκολίας και δεδομένοι όροι στο παζλ.
 			\end{itemize}
 		\end{itemize}
@@ -153,27 +156,27 @@
 	\begin{frame}
 	\frametitle{\el Μαθηματική μοντελοποίηση(2)}
 	\begin{itemize}
-		\item \el Ένα πρόβλημα ικανοποίησης περιορισμών ορίζεται από δύο σύνολα: 
+		\item \el Ένα πρόβλημα ικανοποίησης περιορισμών ορίζεται από δύο σύνολα:
 		\begin{itemize}
 			\item \el το σύνολο μεταβλητών, \(X_1, X_2, \dots, X_t\),
 			\item \el το σύνολο περιορισμών, \(C_1, C_2, \dots, C_z\)
 		\end{itemize}
-		\item \el Κάθε μεταβλητή \(X_i\) με \(1 \leq i \leq t\) λαμβάνει τιμές από ένα πεδίο \(D_i\). 
-		\item Κάθε περιορισμός \(C_j\) με \(1 \leq j \leq z\) αφορά κάποιο υποσύνολο των μεταβλητών και καθορίζει ποιος είναι ο επιτρεπτός συνδυασμός τιμών για αυτό το υποσύνολο μεταβλητών. 
+		\item \el Κάθε μεταβλητή \(X_i\) με \(1 \leq i \leq t\) λαμβάνει τιμές από ένα πεδίο \(D_i\).
+		\item Κάθε περιορισμός \(C_j\) με \(1 \leq j \leq z\) αφορά κάποιο υποσύνολο των μεταβλητών και καθορίζει ποιος είναι ο επιτρεπτός συνδυασμός τιμών για αυτό το υποσύνολο μεταβλητών.
 	\end{itemize}
 \end{frame}
 
 	\begin{frame}
 		\frametitle{\el Μαθηματική μοντελοποίηση(3)}
 		\begin{itemize}
-			\item \el Έστω, ο \(n \times n\) πίνακας \en SUDOKU \el και οι υποπίνακες του μεγέθους \(m \times m\). 
+			\item \el Έστω, ο \(n \times n\) πίνακας \en SUDOKU \el και οι υποπίνακες του μεγέθους \(m \times m\).
 			\item \el Ορίζουμε τις μεταβλητές απόφασης ως εξής:
 			\[
-			x_{ijk} = 
+			x_{ijk} =
 			\begin{cases}
 			1 &\quad\text{αν το κελι \en (i,j) \el του πίνακα περιέχει τον ακέραιο \en k}\\
 			0 &\quad\text{\el αλλιώς} \\
-			
+
 			\end{cases}
 			\]
 		\end{itemize}
@@ -215,23 +218,24 @@
 		\begin{itemize}
 			\item \el Υπάρχουν παραλλαγές του κλασσικού παζλ \en SUDOKU,
 			\item \el Η επίλυσή τους είναι πιο απαιτητική σε σχέση με το κλασσικό παζλ.
-			\item \el Η μοντελοποίησή του δε διαφέρειιδιαίτερα από τη μοντελοποίηση για τα κλασσικά παζλ \en SUDOKU.
+			\item \el Η μοντελοποίησή του δε διαφέρει
+ιδιαίτερα από τη μοντελοποίηση για τα κλασσικά παζλ \en SUDOKU.
 		\end{itemize}
 	\end{frame}
 
 	\begin{frame}
 		\frametitle{\en SUDOKU X}
 		\begin{itemize}
-			\item \el Το \en SUDOKU X \el είναι μία παραλλαγή του κλασσικού \en SUDOKU. 
+			\item \el Το \en SUDOKU X \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
 			\item \el Έχει τον επιπλεόν κανόνα ότι οι δύο μεγάλες διαγώνιοι του πίνακα πρέπει να περιέχουν κάθε ψηφίο από το 1 μέχρι το \en n \el ακριβώς μία φορά η κάθε μία.
 		\end{itemize}
 	\end{frame}
-	
+
 	\begin{frame}
 		\frametitle{\en SUDOKU X}
 		\begin{figure}[h]
-			\centering	
-			\includegraphics[scale=0.7]{Figures/sudokuX.jpg}
+			\centering
+			\includegraphics[scale=0.7]{figures/sudokuX.jpg}
 			\caption{Παράδειγμα ενός SUDOKU X παζλ. Οι δύο μεγάλες διαγώνιοι είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
 		\end{figure}
 	\end{frame}
@@ -245,7 +249,7 @@
 			\(\bullet\) \el Κάθε υποπίνακας μεγέθους \(m \times m\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
 			\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί (1,1) και καταλήγει στο κελί \en (n,n) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
 			\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί \en (1,n) \el και καταλήγει στο κελί \en (n,1) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			
+
 		\end{mytheorem}
 	\end{frame}
 
@@ -286,25 +290,25 @@
 		\end{aligned}
 		\end{align*}
 	\end{frame}
- 
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
  	\begin{itemize}
- 		\item \el Το \en Four Square SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU. 
+ 		\item \el Το \en Four Square SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
  		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
  		\item \el Ο επιπλεόν κανόνας εδώ σχετίζεται με τέσσερις επιπλέον υποπεριοχές στον πίνακα μεγέθους \(3 \times 3\). Στίς περιοχές αυτες πρέπει να περιέχονται όλοι οι ακέραιοι αριθμοί από το 1 ως το 9.
  	\end{itemize}
  \end{frame}
- 
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
  	\begin{figure}[h]
- 		\centering	
- 		\includegraphics[scale=0.4]{Figures/An-example-Four-Square-Sudoku-puzzle.png}
+ 		\centering
+ 		\includegraphics[scale=0.4]{figures/An-example-Four-Square-Sudoku-puzzle.png}
  		\caption{Παράδειγμα ενός Four Square SUDOKU παζλ. Οι τέσσερις περιοχές είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
  	\end{figure}
  \end{frame}
- 
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
 	\begin{mytheorem}{\en Four Square SUDOKU}{}
@@ -316,7 +320,7 @@
 		\(3 \times 3\) να περιέχει όλους τους ακέραιους από το 1 ως το 9. \\
 	\end{mytheorem}
  \end{frame}
- 
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
  	\begin{itemize}
@@ -331,7 +335,7 @@
  	\end{aligned}
  	\end{align*}
  \end{frame}
- 
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
  	\begin{align*}
@@ -341,7 +345,7 @@
  	\end{aligned}
  	\end{align*}
  \end{frame}
-  
+
  \begin{frame}
  	\frametitle{\en Four Square SUDOKU}
  	\begin{align*}
@@ -356,7 +360,7 @@
  \begin{frame}
 	\frametitle{\en Four Pyramids SUDOKU}
 	\begin{itemize}
-		\item \el Το \en Four Pyramids SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU. 
+		\item \el Το \en Four Pyramids SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
 		\item \el Η παραλλαγή είναι παρόμοια με την παραλλαγή στο \en Four Square SUDOKU \el , με τη διαφορά ότι εδώ οι επιπλέον υποπεριοχές του πίνακα έχουν τριγωνική μορφή.
 	\end{itemize}
@@ -365,8 +369,8 @@
 \begin{frame}
 	\frametitle{\en Four Pyramids SUDOKU}
 	\begin{figure}[h]
-		\centering	
-		\includegraphics[scale=0.4]{Figures/Pyramid Sudoku.png}
+		\centering
+		\includegraphics[scale=0.4]{figures/Pyramid Sudoku.png}
 		\caption{Παράδειγμα ενός Four Pyramids SUDOKU παζλ. Οι τέσσερις τριγωνικές περιοχές είναι σημειωμένες με γκρί χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
 	\end{figure}
 \end{frame}
@@ -433,17 +437,17 @@
 \begin{frame}
 	\frametitle{\en Position SUDOKU}
 	\begin{itemize}
-		\item \el Το \en Position SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU. 
+		\item \el Το \en Position SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
-		\item \el Τα κελιά (1,1) σε όλους τους \(3 \times 3\) υποπίνακες πρέπει να περιέχουν όλους τους ακέραιους από το 1 ως το 9 ακριβώς μια φορά, αντίστοιχα τα κελιά (1,2) όλων των υποπινάκων κοκ. 
+		\item \el Τα κελιά (1,1) σε όλους τους \(3 \times 3\) υποπίνακες πρέπει να περιέχουν όλους τους ακέραιους από το 1 ως το 9 ακριβώς μια φορά, αντίστοιχα τα κελιά (1,2) όλων των υποπινάκων κοκ.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{\en Position SUDOKU}
 	\begin{figure}[h]
-		\centering	
-		\includegraphics[scale=0.2]{Figures/positionSUDOKU.png}
+		\centering
+		\includegraphics[scale=0.2]{figures/positionSUDOKU.png}
 		\caption{Παράδειγμα ενός Position SUDOKU παζλ. Κάθε κελί με το ίδιο χρώμα πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
 	\end{figure}
 \end{frame}
@@ -498,17 +502,17 @@
 \begin{frame}
 	\frametitle{\en Three Magic SUDOKU}
 	\begin{itemize}
-		\item \el Το \en Three Magic SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU. 
+		\item \el Το \en Three Magic SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
-		\item \el Στα σημειωμένα \(3 \times 3\) κουτιά \en (magic) \el οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή αν αθροιστούν δίνουν το ίδιο αποτέλεσμα. 
+		\item \el Στα σημειωμένα \(3 \times 3\) κουτιά \en (magic) \el οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή αν αθροιστούν δίνουν το ίδιο αποτέλεσμα.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{\en Three Magic SUDOKU}
 	\begin{figure}[h]
-		\centering	
-		\includegraphics[scale=0.2]{Figures/threemagicSUDOKU.png}
+		\centering
+		\includegraphics[scale=0.2]{figures/threemagicSUDOKU.png}
 		\caption{Παράδειγμα ενός Three Magic SUDOKU παζλ. Οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή στα πράσινα \(3 \times 3\) κουτιά πρέπει αν προτεθούν να δίνουν τον ίδιο αριθμό.}
 	\end{figure}
 \end{frame}
@@ -586,9 +590,11 @@
 	\frametitle{\el Κριτήρια \en SUDOKU \el παζλ}
 	\begin{itemize}
 		\item \el Να έχει μοναδική λύση.
-		\item \el Να μην απαιτεί από τον λύτη να μπαίνει σε διαδικασία να μαντέψει αν η λύση είναι σωστή ή όχι μίαδεδομένη στιγμή. 
+		\item \el Να μην απαιτεί από τον λύτη να μπαίνει σε διαδικασία να μαντέψει αν η λύση είναι σωστή ή όχι μία
+δεδομένη στιγμή.
 		\item \el Να κατατάσσεται ορθά σε επίπεδα δυσκολίας.
-		\item \el Να έχει την ίδια διαβαθμιση δυσκολίας κατά τη διαδικασία επίλυσήςτου. 
+		\item \el Να έχει την ίδια διαβαθμιση δυσκολίας κατά τη διαδικασία επίλυσής
+του.
 		\item \el Να έχει απλή μορφή.
 		\item \el Να είναι συμμετρικό.
 	\end{itemize}
@@ -597,7 +603,8 @@
 \begin{frame}
 	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ με \en bruteforce}
 	\begin{itemize}
-		\item \el Σε ένανπίνακα μεγέθους \(n \times n\) τοποθετούμε τυχαία αριθμούς από το 1 ως το \en n \el  στα κελιά του.
+		\item \el Σε έναν
+πίνακα μεγέθους \(n \times n\) τοποθετούμε τυχαία αριθμούς από το 1 ως το \en n \el  στα κελιά του.
 		\item \el Ελέγχουμε αν ο τελικός πίνακας συμμορφώνεται με τους κανόνες του \en SUDOKU.
 		\item \el Η τεχνική αυτή δημιουργεί περίπου \(n^{n}\) διαφορετικούς πίνακες και φυσικα δε συμμορφώνοται όλοι τους με τους κανόνες του \en SUDOKU.
 	\end{itemize}
@@ -606,8 +613,9 @@
 \begin{frame}
 	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
 	\begin{itemize}
-		\item \el Δημιουργία νέων παζλ βασισμένοι σε κάποιο άλλο \en SUDOKU \el παζλ. 
-		\item \el Για να το επιτύχουμε αυτό πρέπεινα διατυπώσουμε μερικούς μαθηματικούς ορισμούς και θεωρήματα.
+		\item \el Δημιουργία νέων παζλ βασισμένοι σε κάποιο άλλο \en SUDOKU \el παζλ.
+		\item \el Για να το επιτύχουμε αυτό πρέπει
+να διατυπώσουμε μερικούς μαθηματικούς ορισμούς και θεωρήματα.
 	\end{itemize}
 \end{frame}
 
@@ -669,7 +677,8 @@
 	\frametitle{\el Δημιουργία \en SUDOKU \el βάση λογικών στρατηγικών}
 	\begin{itemize}
 		\item \el Κατασκευή πίνακα και συμπλήρωσή του, βάση λογικών στρατηγικών, με όλους τους αριθμούς από το 1 ως το \en n.
-		\item \el Αφαίρεση ψηφίωναπό τον πίνακα, για να οδηγηθούμε στη τελική μορφή του παζλ.
+		\item \el Αφαίρεση ψηφίων
+από τον πίνακα, για να οδηγηθούμε στη τελική μορφή του παζλ.
 		\item \el Έπειτα από κάθε αφαίρεση, έλέγχος	αν το προκύπτον παζλ είναι επιλύσιμο, αλλιώς επανατοποθέτηση.
 	\end{itemize}
 \end{frame}
@@ -678,7 +687,7 @@
 	\frametitle{\el Επίπεδα δυσκολίας \en SUDOKU \el παζλ}
 	\begin{itemize}
 		\item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \en SUDOKU \el παζλ από τον άνθρωπο
-		\item \el Στατιστική προσέγγιση 
+		\item \el Στατιστική προσέγγιση
 		\item \el Επίπεδο δυσκολίας και δεδομένοι όροι στο παζλ.
 	\end{itemize}
 \end{frame}
@@ -691,24 +700,26 @@
 		\begin{itemize}
 			\item \en backtracking
 			\item \en constraint propagation
-		\end{itemize} 
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
-		\item \el Το \en backtracking \el είναι ουσιαστικά ένας \en bruteforce \el τρόπος επίλυσης προβλημάτων περιορισμών. 
+		\item \el Το \en backtracking \el είναι ουσιαστικά ένας \en bruteforce \el τρόπος επίλυσης προβλημάτων περιορισμών.
 		\item \el Ξεκινά με μία κενή ανάθεση τιμών στις μεταβλητές του προβλήματος και αναθέτοντας
-		τιμές τη μία μετά την άλλη επιχειρεί να καταλήξει σε λύση. 
-		\item \el Η τεχνική αυτή είναι σίγουρο πωςθα καταλήξει σε λύση, αφού ουσιαστικά ελέγχει όλους τους πιθανούς τρόπους με τους οποίουςμπορεί να συμπληρωθεί ένα παζλ.  
+		τιμές τη μία μετά την άλλη επιχειρεί να καταλήξει σε λύση.
+		\item \el Η τεχνική αυτή είναι σίγουρο πως
+θα καταλήξει σε λύση, αφού ουσιαστικά ελέγχει όλους τους πιθανούς τρόπους με τους οποίους
+μπορεί να συμπληρωθεί ένα παζλ.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{figure}
-		\includegraphics[scale=0.2]{./Figures/backtracking.png}
+		\includegraphics[scale=0.2]{./figures/backtracking.png}
 		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) SUDOKU με την τεχνική backtracking}
 	\end{figure}
 \end{frame}
@@ -718,7 +729,8 @@
 	\begin{itemize}
 		\item \el Με την \en constraint propagation \el τεχνική χρησιμοποιούμε τη λογική για να για να βρούμε
 		την τιμή κάποιων μεταβλητών, εξετάζοντας τους περιορισμούς.
-		\item \el Για κάθε μεταβλητή ορίζουμε ένασύνολο τιμών που μπορεί να λάβει χωρίς να προκαλέσει την παραβίαση κανενός περιορισμού.
+		\item \el Για κάθε μεταβλητή ορίζουμε ένα
+σύνολο τιμών που μπορεί να λάβει χωρίς να προκαλέσει την παραβίαση κανενός περιορισμού.
 		\item \el Η τεχική αυτή δεν είναι βέβαιο πως θα οδηγήσει σε λύση, αλλά σίγουρα είναι πιο αποδοτική.
 		\item \el Μπορεί να συνδυαστεί με \en backtracking \el για καλύτερα αποτελέσματα.
 	\end{itemize}
@@ -727,7 +739,7 @@
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{figure}
-		\includegraphics[scale=0.2]{./Figures/propagation.png}
+		\includegraphics[scale=0.2]{./figures/propagation.png}
 		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) SUDOKU με την τεχνική constraint
 			propagation}
 	\end{figure}
@@ -736,10 +748,12 @@
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
-		\item \el Το \en constraint propagation\el είναι η τεχνική που χρησιμοποιεί ο ανθρώπινος εγκέφαλος για να επιλύσει ένα \en SUDOKU \el παζλ.
-		\item \el Συγκεκριμένα ο άνθρωπος χρησιμοποιεί δύο είδη τεχνικών: 
+		\item \el Το \en constraint propagation
+\el είναι η τεχνική που χρησιμοποιεί ο ανθρώπινος εγκέφαλος για να επιλύσει ένα \en SUDOKU \el παζλ.
+		\item \el Συγκεκριμένα ο άνθρωπος χρησιμοποιεί δύο είδη τεχνικών:
 		\begin{itemize}
-			\item \en Naked single technique: \el όπου για ένα δεδομένο κελί του πίνακα υπάρχει μόνο μία τιμή που μπορεί να ανατεθεί, καθώς όλες οιυπόλοιπες τιμές πλήττουν κάποιον περιορισμο
+			\item \en Naked single technique: \el όπου για ένα δεδομένο κελί του πίνακα υπάρχει μόνο μία τιμή που μπορεί να ανατεθεί, καθώς όλες οι
+υπόλοιπες τιμές πλήττουν κάποιον περιορισμο
 			\item \en Hidden single technique: όπου για μία συγκεκριμένη γραμμή ή στήλη ή για έναν συγκεκριμένο
 			υποπίνακα του παζλ υπάρχει μόνο ένα κελί που μπορεί να φιλοξενήσει μία συγκεκριμένη τιμή.
 		\end{itemize}
@@ -749,7 +763,8 @@
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
-		\item \el Το πείραμα που πραγματοποιήθηκε για να συσχετίσει τη συμπεριφορά των ανθρώπων απέναντι σε παζλ, ώστε να προκύψουν συμπεράσματα για τα επίπεδα δυσκολίας τους αντλείδεδομένα από τον παγκόσμιο ιστό. 
+		\item \el Το πείραμα που πραγματοποιήθηκε για να συσχετίσει τη συμπεριφορά των ανθρώπων απέναντι σε παζλ, ώστε να προκύψουν συμπεράσματα για τα επίπεδα δυσκολίας τους αντλεί
+δεδομένα από τον παγκόσμιο ιστό.
 		\item \el Ως μέτρο για την εκτίμηση την δυσκολίας των ανθρώπων να λύσουν ένα παζλ \en SUDOKU \el
 		χρησιμοποιήθηκε ο μέσος χρόνος επίλυσης.
 	\end{itemize}
@@ -758,7 +773,7 @@
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{figure}
-		\includegraphics[scale=0.26]{./Figures/results.png}
+		\includegraphics[scale=0.26]{./figures/results.png}
 		\caption{Αποτελέσματα του πειράματος}
 	\end{figure}
 \end{frame}
@@ -768,8 +783,9 @@
 	\begin{itemize}
 		\item \el Παραθέτουμε στατιστική μελέτη του ζητήματος της ταξινόμησης των \en SUDOKU \el παζλ
 		ανάλογα με το επίπεδο δυσκολίας τους, που πραγματοποιήθηκε με πραγματικά δεδομένα από το διαδίκτυο.
-		\item \el Τα εν λόγω δεδομένα ήτανορθές καταχωρήσεις λυμένων παζλ από χρήστες του Διαδικτύου σε ένα καθημερινό διαγωνισμό. 
-		\item \el Καθημερινά συγκεντρώνονταν 2000 με 3000 καταχωρήσεις σωστά λυμένων παζλ. 
+		\item \el Τα εν λόγω δεδομένα ήταν
+ορθές καταχωρήσεις λυμένων παζλ από χρήστες του Διαδικτύου σε ένα καθημερινό διαγωνισμό.
+		\item \el Καθημερινά συγκεντρώνονταν 2000 με 3000 καταχωρήσεις σωστά λυμένων παζλ.
 	\end{itemize}
 \end{frame}
 
@@ -788,7 +804,7 @@
 \begin{frame}
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
-		\includegraphics[scale=0.3]{./Figures/stat1.png}
+		\includegraphics[scale=0.3]{./figures/stat1.png}
 		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
 			το επίπεδο δυσκολίας τους. Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
@@ -798,7 +814,7 @@
 \begin{frame}
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
-		\includegraphics[scale=0.3]{./Figures/stat2.png}
+		\includegraphics[scale=0.3]{./figures/stat2.png}
 		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
 			το επίπεδο δυσκολίας τους . Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
@@ -808,7 +824,7 @@
 \begin{frame}
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
-		\includegraphics[scale=0.3]{./Figures/stat3.png}
+		\includegraphics[scale=0.3]{./figures/stat3.png}
 		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
 			το επίπεδο δυσκολίας τους . Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
@@ -818,7 +834,7 @@
 \begin{frame}
 	\frametitle{\el Δεδομένοι όροι στο παζλ}
 	\begin{itemize}
-		\item \el Τα συμπληρωμένα κελιά ενός παζλ καθορίζουν σημαντικά τα επίπεδα δυσκολίας	ενός παζλ. 
+		\item \el Τα συμπληρωμένα κελιά ενός παζλ καθορίζουν σημαντικά τα επίπεδα δυσκολίας	ενός παζλ.
 		\item \el Το πλήθος των συμπληρωμένων κελιών, καθώς επίσης και οι θέσεις τους στον πίνακα
 		 παίζουν καθοριστικό ρόλο για το πώς θα χαρακτηριστεί ένα παζλ.
 		 \item \el Οι παρακάτω πίνακες συνοψίζουν τη σχετική γνώση.
@@ -830,19 +846,19 @@
 	\begin{center}
 		\begin{tabular}{ | l | r | }
 			\hline
-			Επίπεδο δυσκολίας & Πλήθος δεδομένων κελιών \\ 
+			Επίπεδο δυσκολίας & Πλήθος δεδομένων κελιών \\
 
 			\hline
 			Πολύ εύκολο & Περισσότερα από 46  \\
-			\hline  
+			\hline
 			Εύκολο & 36-46  \\
-			\hline 
+			\hline
 			Μέτριο & 32-35  \\
-			\hline 
+			\hline
 			Δύσκολο & 28-31  \\
-			\hline 
+			\hline
 			Πολύ δύσκολο & 17-27  \\
-			\hline 
+			\hline
 		\end{tabular}
 	\end{center}
 \end{frame}
@@ -852,19 +868,19 @@
 	\begin{center}
 		\begin{tabular}{ | l | r | }
 			\hline
-			Επίπεδο δυσκολίας & Ελάχιστος δεδομένα κελιά ανά γραμμή/στήλη \\ 
-			
+			Επίπεδο δυσκολίας & Ελάχιστος δεδομένα κελιά ανά γραμμή/στήλη \\
+
 			\hline
 			Πολύ εύκολο & 5  \\
-			\hline  
+			\hline
 			Εύκολο & 4  \\
-			\hline 
+			\hline
 			Μέτριο & 3  \\
-			\hline 
+			\hline
 			Δύσκολο & 2  \\
-			\hline 
+			\hline
 			Πολύ δύσκολο & 0  \\
-			\hline 
+			\hline
 		\end{tabular}
 	\end{center}
 \end{frame}
@@ -883,9 +899,9 @@
 	\begin{itemize}
 		\item \textit{"The History of Sudoku",www.sudoku.com, https://sudoku.com/how-to-play/the-history-of-sudoku/}
 		\item \textit{"Howard Garns", https://en.wikipedia.org/wiki/Howard\_Garns}
-		\item \textit{Binary Integer Programming and its Use for EnvelopeDetermination, 
+		\item \textit{Binary Integer Programming and its Use for EnvelopeDetermination,
 		Vladimir Y. Lunin, Alexandre Urzhumtsev, Alexander Bockmayr}
-		\item \textit{\en An Integer Programming Model for the Sudoku Problem, 
+		\item \textit{\en An Integer Programming Model for the Sudoku Problem,
 		Andrew C. Bartlett, Timothy P. Chartier, Amy N. Langville, Timothy D. Rankin, \el 3 Μάη 2008}
 	\end{itemize}
 \end{frame}
@@ -896,7 +912,8 @@
 		\item \textit{\el Τεχνητή Νοημοσύνη Μία σύγχρονη προσέγγιση, Δεύτερη Αμερικανική έκδοση, εκδό-
 			σεις Κλειδάριθμος, \en Stuart Russell, Peter Norvig, ISBN: 960-209-873-2, \el Κεφάλαιο 5 Προβ-
 			λήματα Ικανοποίησης Περιορισμών, σελ.:179,180,181}
-		\item \textit{\en The number of \(9 \times 9\) Latin squares, Discrete Mathematics, Stanley Bammel andJermome Rothstein, 1975}
+		\item \textit{\en The number of \(9 \times 9\) Latin squares, Discrete Mathematics, Stanley Bammel and
+Jermome Rothstein, 1975}
 		\item \textit{\en There are 6670903752021072936960 Sudoku grids, Bertram Felgenhauer and Frazer
 			Jarvis, http://www.afjarvis.staff.shef.ac.uk/sudoku/}
 		\item \textit{There are 5472730538 essentially different Sudoku grids . . . and the Sudoku symme-

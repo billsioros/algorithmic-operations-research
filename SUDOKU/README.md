@@ -1,5 +1,5 @@
 
-# An Integer Programming Model for the Sudoku Problem
+## Sudoku from a Linear Programming perspective
 
 * [Slides](./slides/presentation.pdf)
 * [Text](./text/presentation.pdf)

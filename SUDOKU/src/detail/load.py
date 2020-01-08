@@ -48,12 +48,20 @@ def load(filename):
                 if x < 0 or y < 0 or z < 0 or z > size:
                     raise IndexError
 
+                if matrix[x - 1][y - 1] is not None:
+                    raise ParseError(
+                        index, line,
+                        f"the cell has already been assigned")
+
                 matrix[x - 1][y - 1] = z
 
             except IndexError:
                 raise ParseError(
                     index, line,
                     f"is not a valid entry for a puzzle of size {size}")
+
+            except ParseError as parse_error:
+                raise parse_error
 
             except:
                 raise ParseError(

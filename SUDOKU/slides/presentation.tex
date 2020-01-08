@@ -24,438 +24,425 @@
 
 \begin{document}
 
-	\title{\huge Το Sudoku από τη σκοπιά του\\Γραμμικού Προγραμματισμού}
+\title{Το Sudoku από τη σκοπιά του\\Γραμμικού Προγραμματισμού}
 
-	\author[\el Σιώρος Βασίλειος, Ανδρινοπούλου Χριστίνα] % (optional, for multiple authors)
-	{\el Σιώρος Βασίλειος \and \el Ανδρινοπούλου Χριστίνα}
-	\date{\el Ιανουάριος, 2020}
+\author[\el Σιώρος Βασίλειος, Ανδρινοπούλου Χριστίνα]{\el Σιώρος Βασίλειος \and \el Ανδρινοπούλου Χριστίνα}
+\date{\el Ιανουάριος, 2020}
 
-	\frame{\titlepage}
-
-	\begin{frame}
-		\frametitle{\el Εισαγωγή(1)}
-		\begin{itemize}
-			\item \el Το \en Sudoku \el είναι ένα πάζλ βασισμένο στη λογική.
-		\end{itemize}
-		\begin{figure}
-			\includegraphics[scale=0.12]{./figures/classicSUDOKU.jpeg}
-			\caption{\el Παράδειγμα κλασσικού \en SUDOKU \(9 \times 9\)}
-		\end{figure}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Εισαγωγή(2)}
-		\begin{itemize}
-				\item \el Στόχος του παιχνιδιού είναι ο παίκτης να συμπληρώσει τα κενά κελιά ενός ημιτελώς συμπληρωμένου πίνακα.
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Εισαγωγή(3)}
-		\begin{mytheorem}{\en SUDOKU}{}
-			\el Οι κανόνες για το κλασσικό \en SUDOKU \el σε έναν πίνακα μεγέθους \(n \times n\) με υποπίνακες μεγέθους \(m \times m\), 	όπου \(m = \sqrt{n}\) είναι: \\
-			\(\bullet\)\el Κάθε γραμμή του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\)\el Κάθε στήλη του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\)\el Κάθε υποπίνακας μεγέθους \(m \times m\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-		\end{mytheorem}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Εισαγωγή(4)}
-		\begin{itemize}
-			\item \el Οι αριθμοί μπορούν να αντικατασταθούν με οποιαδήποτε ομάδα συμβόλων, χωρίς να προκαλέσουν καμμία επίπτωση στην
-επίλυση, στη δημιουργία ή στη μαθηματική μοντελοποίηση του παζλ.
-			\item \el Υπάρχουν διαθέσιμα \en
-SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζικους αριθμούς και σύμβολα που αναπαριστούν
-μερίδες σούσι.
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Ιστορία(1)}
-		\begin{itemize}
-			\item \el Δημιουργός του εν λόγω παιχνιδιού υπήρξε ο Αμερικανός αρχιτέκτονας \en Howard Garns \el (Μάρτιος 1905 - Οκτώβριος 1989) το 1979.
-			\item Το παιχνίδι αρχικά ονομάστηκε \en “Number Place” \el και δημοσιεύτηκε στο περιοδικό \en Dell Pencil Puzzles \& Word Games.
-			\item \el Ένα χρόνο μετά το παιχνίδι έγινε ιδιαίτερα δημοφιλές στην Ιαπωνία και μετονομάστηκε σε \en “suji wa dokushin ni kagiru”(SUDOKU).
-		\end{itemize}
-		\begin{figure}
-			\includegraphics[scale=0.1]{./figures/Howard Garns.jpeg}
-			\caption{Howard Garns}
-		\end{figure}
-	\end{frame}
+\frame{\titlepage}
 
 \begin{frame}
-	\frametitle{\el Ιστορία(2)}
+	\frametitle{\el Εισαγωγή}
 	\begin{itemize}
-		\item \el Το \en SUDOKU \el έγινε ιδιαίτερα αγαπητό στην Ιαπωνία, με τις μηνιαίες πωλήσεις \en SUDOKU \el περιοδικών να ανέρχονται στα 600.000 αντίτυπα κάθε μήνα.
-		\item Οι Ιάπωνες υιοθέτησαν το \en SUDOKU \el ως συνήθεια για δύο βασικούς λόγους:
-		\begin{itemize}
-			\item η γλώσσα τους δεν ήταν κατάλληλη για την ανάπτυξη σταυρόλεξων, οπότε υστερούσαν σε αυτά και
-			\item συνηθίζουν να μετακινούνται με τρένα και λεωφορεία.
-		\end{itemize}
+		\item \el Το \en Sudoku \el είναι ένα πάζλ βασισμένο στη λογική.
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.12]{./figures/classicSUDOKU.jpeg}
+		\caption{\el Παράδειγμα κλασσικού \textbf{\en Sudoku} \(9 \times 9\)}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Εισαγωγή}
+	\begin{itemize}
+		\item \el Στόχος του παιχνιδιού είναι ο παίκτης να συμπληρώσει τα κενά κελιά ενός ημιτελώς συμπληρωμένου πίνακα.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Ιστορία(3)}
+	\frametitle{\el Εισαγωγή}
+	\begin{mytheorem}{\textbf{\en Sudoku}}{}
+		\el Οι κανόνες για το κλασσικό \textbf{\en Sudoku} \el σε έναν πίνακα μεγέθους \(n \times n\) με υποπίνακες μεγέθους \(m \times m\), 	όπου \(m = \sqrt{n}\) είναι: \\
+		\(\bullet\)\el Κάθε γραμμή του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\)\el Κάθε στήλη του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\)\el Κάθε υποπίνακας μεγέθους \(m \times m\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+	\end{mytheorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Εισαγωγή}
+	\begin{itemize}
+		\item \el Οι αριθμοί μπορούν να αντικατασταθούν με οποιαδήποτε ομάδα συμβόλων, χωρίς να προκαλέσουν καμμία επίπτωση στην
+		      επίλυση, στη δημιουργία ή στη μαθηματική μοντελοποίηση του παζλ.
+		\item \el Υπάρχουν διαθέσιμα \en
+		      \textbf{Sudoku} \el παζλ με βάση κινέζικα σύμβολα, κινέζικους αριθμούς και σύμβολα που αναπαριστούν
+		      μερίδες σούσι.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Ιστορία}
+	\begin{itemize}
+		\item \el Δημιουργός του εν λόγω παιχνιδιού υπήρξε ο Αμερικανός αρχιτέκτονας \en Howard Garns \el (Μάρτιος 1905 - Οκτώβριος 1989) το 1979.
+		\item Το παιχνίδι αρχικά ονομάστηκε \en “Number Place” \el και δημοσιεύτηκε στο περιοδικό \en Dell Pencil Puzzles \& Word Games.
+		\item \el Ένα χρόνο μετά το παιχνίδι έγινε ιδιαίτερα δημοφιλές στην Ιαπωνία και μετονομάστηκε σε \en “suji wa dokushin ni kagiru”(\textbf{Sudoku}).
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.1]{./figures/Howard Garns.jpeg}
+		\caption{Howard Garns}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Ιστορία}
+	\begin{itemize}
+		\item \el Το \textbf{\en Sudoku} \el έγινε ιδιαίτερα αγαπητό στην Ιαπωνία, με τις μηνιαίες πωλήσεις \textbf{\en Sudoku} \el περιοδικών να ανέρχονται στα 600.000 αντίτυπα κάθε μήνα.
+		\item Οι Ιάπωνες υιοθέτησαν το \textbf{\en Sudoku} \el ως συνήθεια για δύο βασικούς λόγους:
+		      \begin{itemize}
+			      \item η γλώσσα τους δεν ήταν κατάλληλη για την ανάπτυξη σταυρόλεξων, οπότε υστερούσαν σε αυτά και
+			      \item συνηθίζουν να μετακινούνται με τρένα και λεωφορεία.
+		      \end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Ιστορία}
 	\begin{figure}
 		\includegraphics[scale=0.2]{./figures/WayneGould.jpg}
 		\caption{Wayne Gould}
 	\end{figure}
 	\begin{itemize}
-		\item \el Ο \en Wayne Gould \el, Νεοζηλανδός δικαστής, έφερε πίσω στον Δυτικό κόσμο το \en SUDOKU.
-		\item \el To 1997 βρισκόταν στο Τόκιο και ανακάλυψε ενα \en SUDOKU.
-		\item \el Έφτιαξε το πρωτο πρόγραμμα που δημιουργούσε \en SUDOKU \el παζλ.
+		\item \el Ο \en Wayne Gould \el, Νεοζηλανδός δικαστής, έφερε πίσω στον Δυτικό κόσμο το \textbf{\en Sudoku}.
+		\item \el To 1997 βρισκόταν στο Τόκιο και ανακάλυψε ενα \textbf{\en Sudoku}.
+		\item \el Έφτιαξε το πρωτο πρόγραμμα που δημιουργούσε \textbf{\en Sudoku} \el παζλ.
 	\end{itemize}
 \end{frame}
-
-	\begin{frame}
-		\frametitle{\el Μελέτη}
-		\el Στην παρούσα εργασία θα μελετήσουμε σε βάθος: \\
-
-		\begin{itemize}
-			\item \el Μαθηματικές μεθοδολογίες για την επίλυση \en sudoku.
-				\begin{itemize}
-					\item \el Μοντελοποίηση του προβλήματος της επίλυσης του παζλ ως πρόβλημα γραμμικού προγραμματισμού.
-					\item Επαλήθευση με χρήση \en Python .
-					\item \el Παραλλαγές του κλασσικού \en sudoku.
-				\end{itemize}
-			\item \el Μαθηματικές τεχνικές για τη δημιουργία \en sudoku.
-				\begin{itemize}
-					\item \el Κριτήρια \en sudoku \el παζλ.
-					\item \el Δημιουργία \en sudoku \el με \en bruteforce.
-					\item \el Δημιουργία \en sudoku \el από προγενέστερο παζλ.
-					\item \el Δημουργία \en SUDOKU \el παζλ βάση λογικών στρατηγικών .
-				\end{itemize}
-			\item \el Επίπεδα δυσκολίας \en SUDOKU \el παζλ
-			\begin{itemize}
-				\item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \en SUDOKU \el παζλ από τον άνθρωπο
-				\item \el Στατιστική προσέγγιση
-				\item \el Επίπεδο δυσκολίας και δεδομένοι όροι στο παζλ.
-			\end{itemize}
-		\end{itemize}
-	\end{frame}
 
 \begin{frame}
+	\frametitle{\el Μελέτη}
+	\el Στην παρούσα εργασία θα μελετήσουμε σε βάθος: \\
+
 	\begin{itemize}
-		\item \el Μοντελοποίηση του προβλήματος της επίλυσης του παζλ ως πρόβλημα γραμμικού προγραμματισμού.
-		\item Επαλήθευση με χρήση \en Python .
-		\item \el Παραλλαγές του κλασσικού \en sudoku.
+		\item \el Μαθηματικές μεθοδολογίες για την επίλυση \en sudoku.
+		      \begin{itemize}
+			      \item \el Μοντελοποίηση του προβλήματος της επίλυσης του παζλ ως πρόβλημα γραμμικού προγραμματισμού.
+			      \item \el Παραλλαγές του κλασσικού \en sudoku.
+			      \item Υλοποίηση σε \textbf{\en python}.
+		      \end{itemize}
+		\item \el Μαθηματικές τεχνικές για τη δημιουργία \en sudoku.
+		      \begin{itemize}
+			      \item \el Κριτήρια \en sudoku \el παζλ.
+			      \item \el Δημιουργία \en sudoku \el με \en bruteforce.
+			      \item \el Δημιουργία \en sudoku \el από προγενέστερο παζλ.
+			      \item \el Δημουργία \textbf{\en Sudoku} \el παζλ βάση λογικών στρατηγικών.
+			      \item Υλοποίηση σε \textbf{\en python}.
+		      \end{itemize}
+		\item \el Επίπεδα δυσκολίας \textbf{\en Sudoku} \el παζλ
+		      \begin{itemize}
+			      \item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \textbf{\en Sudoku} \el παζλ από τον άνθρωπο
+			      \item \el Στατιστική προσέγγιση
+			      \item \el Επίπεδο δυσκολίας και δεδομένοι όροι στο παζλ.
+		      \end{itemize}
 	\end{itemize}
 \end{frame}
 
-	\begin{frame}
-		\frametitle{\el Μαθηματική μοντελοποίηση(1)}
-		\begin{itemize}
+\begin{frame}
+	\frametitle{\el Μαθηματική μοντελοποίηση}
+	\begin{itemize}
 		\item \el Η μαθηματική μοντελοποίηση καθιστά δυνατή την εύρεση της λύσης του παζλ, αν υπάρχει, από
-		έναν μαθηματικό αλγόριθμο.
-		\item \el Το πρόβλημα επίλυσης ενός \en SUDOKU \el παζλ είναι πρόβλημα ικανοποίησης περιορισμών.
-		\end{itemize}
-	\end{frame}
+		      έναν μαθηματικό αλγόριθμο.
+		\item \el Το πρόβλημα επίλυσης ενός \textbf{\en Sudoku} \el παζλ είναι πρόβλημα ικανοποίησης περιορισμών.
+	\end{itemize}
+\end{frame}
 
-	\begin{frame}
-	\frametitle{\el Μαθηματική μοντελοποίηση(2)}
+\begin{frame}
+	\frametitle{\el Μαθηματική μοντελοποίηση}
 	\begin{itemize}
 		\item \el Ένα πρόβλημα ικανοποίησης περιορισμών ορίζεται από δύο σύνολα:
-		\begin{itemize}
-			\item \el το σύνολο μεταβλητών, \(X_1, X_2, \dots, X_t\),
-			\item \el το σύνολο περιορισμών, \(C_1, C_2, \dots, C_z\)
-		\end{itemize}
+		      \begin{itemize}
+			      \item \el το σύνολο μεταβλητών, \(X_1, X_2, \dots, X_t\),
+			      \item \el το σύνολο περιορισμών, \(C_1, C_2, \dots, C_z\)
+		      \end{itemize}
 		\item \el Κάθε μεταβλητή \(X_i\) με \(1 \leq i \leq t\) λαμβάνει τιμές από ένα πεδίο \(D_i\).
 		\item Κάθε περιορισμός \(C_j\) με \(1 \leq j \leq z\) αφορά κάποιο υποσύνολο των μεταβλητών και καθορίζει ποιος είναι ο επιτρεπτός συνδυασμός τιμών για αυτό το υποσύνολο μεταβλητών.
 	\end{itemize}
 \end{frame}
 
-	\begin{frame}
-		\frametitle{\el Μαθηματική μοντελοποίηση(3)}
-		\begin{itemize}
-			\item \el Έστω, ο \(n \times n\) πίνακας \en SUDOKU \el και οι υποπίνακες του μεγέθους \(m \times m\).
-			\item \el Ορίζουμε τις μεταβλητές απόφασης ως εξής:
-			\[
-			x_{ijk} =
-			\begin{cases}
-			1 &\quad\text{αν το κελι \en (i,j) \el του πίνακα περιέχει τον ακέραιο \en k}\\
-			0 &\quad\text{\el αλλιώς} \\
-
-			\end{cases}
-			\]
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Μαθηματική μοντελοποίηση(4)}
-		\begin{itemize}
-			\item \el Η μοντελοποίηση του προβλήματος είναι:
-		\end{itemize}
-		\begin{align*}
-		\min \quad 0^{T}x \\
-			\begin{aligned}
-			\textup{\en s.t.}\quad
-			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
-			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
-			\end{aligned}
-		\end{align*}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Μαθηματική μοντελοποίηση(5)}
-		\begin{align*}
-			\begin{aligned}
-			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
-			x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
-			x_{ijk} \in {0,1}
-			\end{aligned}
-		\end{align*}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Επαλήθευση μαθηματικής μοντελοποίησης με \en Python}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\el Μαθηματική μοντελοποίηση παραλλαγμένων \en SUDOKU \el παζλ}
-		\begin{itemize}
-			\item \el Υπάρχουν παραλλαγές του κλασσικού παζλ \en SUDOKU,
-			\item \el Η επίλυσή τους είναι πιο απαιτητική σε σχέση με το κλασσικό παζλ.
-			\item \el Η μοντελοποίησή του δε διαφέρει
-ιδιαίτερα από τη μοντελοποίηση για τα κλασσικά παζλ \en SUDOKU.
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{itemize}
-			\item \el Το \en SUDOKU X \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
-			\item \el Έχει τον επιπλεόν κανόνα ότι οι δύο μεγάλες διαγώνιοι του πίνακα πρέπει να περιέχουν κάθε ψηφίο από το 1 μέχρι το \en n \el ακριβώς μία φορά η κάθε μία.
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[scale=0.7]{figures/sudokuX.jpg}
-			\caption{Παράδειγμα ενός SUDOKU X παζλ. Οι δύο μεγάλες διαγώνιοι είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
-		\end{figure}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{mytheorem}{\en SUDOKU X}{}
-			\el Οι κανόνες για το \en SUDOKU X \el σε έναν πίνακα μεγέθους \(n \times n\) με υποπίνακες μεγέθους \(m \times m\), όπου \(m = \sqrt{n}\) είναι: \\
-			\(\bullet\) \el Κάθε γραμμή του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\) \el Κάθε στήλη του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\) \el Κάθε υποπίνακας μεγέθους \(m \times m\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί (1,1) και καταλήγει στο κελί \en (n,n) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-			\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί \en (1,n) \el και καταλήγει στο κελί \en (n,1) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
-
-		\end{mytheorem}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{itemize}
-			\item \el Η μοντελοποίηση του προβλήματος είναι:
-		\end{itemize}
-		\begin{align*}
-		\min \quad 0^{T}x \\
-		\begin{aligned}
-		\textup{\en s.t.}\quad
-		\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
-		\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
-		\end{aligned}
-		\end{align*}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{align*}
-		\begin{aligned}
-		\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-		\sum_{r=1}^{n} x_{rrk} = 1 \quad k=1:9 \\ \text{\el μόνο ένα \en k \el στην κύρια διαγώνιο} \\
-		\sum_{r=1}^{n} x_{r(n+1-r)k} = 1 \quad k=1:9 \\ \text{\el μόνο ένα \en k \el στη δευτερεύουσα διαγώνιο} \\
-		\end{aligned}
-		\end{align*}
-	\end{frame}
-
-
-	\begin{frame}
-		\frametitle{\en SUDOKU X}
-		\begin{align*}
-		\begin{aligned}
-		\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
-		x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
-		x_{ijk} \in {0,1}
-		\end{aligned}
-		\end{align*}
-	\end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
- 	\begin{itemize}
- 		\item \el Το \en Four Square SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
- 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
- 		\item \el Ο επιπλεόν κανόνας εδώ σχετίζεται με τέσσερις επιπλέον υποπεριοχές στον πίνακα μεγέθους \(3 \times 3\). Στίς περιοχές αυτες πρέπει να περιέχονται όλοι οι ακέραιοι αριθμοί από το 1 ως το 9.
- 	\end{itemize}
- \end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
- 	\begin{figure}[h]
- 		\centering
- 		\includegraphics[scale=0.4]{figures/An-example-Four-Square-Sudoku-puzzle.png}
- 		\caption{Παράδειγμα ενός Four Square SUDOKU παζλ. Οι τέσσερις περιοχές είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
- 	\end{figure}
- \end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
-	\begin{mytheorem}{\en Four Square SUDOKU}{}
-		Οι κανόνες για το Four Square SUDOKU σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
-		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
-		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
-		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
-		\(\bullet\) Κάθε υποπεριοχή μεγέθους
-		\(3 \times 3\) να περιέχει όλους τους ακέραιους από το 1 ως το 9. \\
-	\end{mytheorem}
- \end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
- 	\begin{itemize}
- 		\item \el Η μοντελοποίηση του προβλήματος είναι:
- 	\end{itemize}
- 	\begin{align*}
- 	\min \quad 0^{T}x \\
- 	\begin{aligned}
- 	\textup{\en s.t.}\quad
- 	\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
- 	\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
- 	\end{aligned}
- 	\end{align*}
- \end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
- 	\begin{align*}
- 	\begin{aligned}
- 	\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
- 	\sum_{r=i}^{i+2}{\sum_{c=j}^{j+2}x_{rck}} = 1 \quad i=2,6; \quad j=2,6; \quad k=1:9 \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπεριοχή} \\
- 	\end{aligned}
- 	\end{align*}
- \end{frame}
-
- \begin{frame}
- 	\frametitle{\en Four Square SUDOKU}
- 	\begin{align*}
- 	\begin{aligned}
- 	\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
- 	x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
- 	x_{ijk} \in {0,1}
- 	\end{aligned}
- 	\end{align*}
- \end{frame}
-
- \begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
+\begin{frame}
+	\frametitle{\el Μαθηματική μοντελοποίηση}
 	\begin{itemize}
-		\item \el Το \en Four Pyramids SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
-		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
-		\item \el Η παραλλαγή είναι παρόμοια με την παραλλαγή στο \en Four Square SUDOKU \el , με τη διαφορά ότι εδώ οι επιπλέον υποπεριοχές του πίνακα έχουν τριγωνική μορφή.
+		\item \el Έστω, ο \(n \times n\) πίνακας \textbf{\en Sudoku} \el και οι υποπίνακες του μεγέθους \(m \times m\).
+		\item \el Ορίζουμε τις μεταβλητές απόφασης ως εξής:
+		      \[
+			      x_{ijk} =
+			      \begin{cases}
+				      1 & \quad\text{αν το κελι \en (i,j) \el του πίνακα περιέχει τον ακέραιο \en k} \\
+				      0 & \quad\text{\el αλλιώς}                                                     \\
+			      \end{cases}
+		      \]
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[scale=0.4]{figures/Pyramid Sudoku.png}
-		\caption{Παράδειγμα ενός Four Pyramids SUDOKU παζλ. Οι τέσσερις τριγωνικές περιοχές είναι σημειωμένες με γκρί χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
-	\begin{mytheorem}{\en Four Pyramids SUDOKU}{}
-		Οι κανόνες για το Four Pyramids SUDOKU σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
-		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
-		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
-		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
-		\(\bullet\) Κάθε υποπεριοχή μεγέθους
-		\(3 \times 3\) να περιέχει όλους τους ακέραιους από το 1 ως το 9. \\
-	\end{mytheorem}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
+	\frametitle{\el Μαθηματική μοντελοποίηση}
 	\begin{itemize}
 		\item \el Η μοντελοποίηση του προβλήματος είναι:
 	\end{itemize}
 	\begin{align*}
-	\min \quad 0^{T}x \\
-	\begin{aligned}
-	\textup{\en s.t.}\quad
-	\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
-	\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
-	\end{aligned}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
+	\frametitle{\el Μαθηματική μοντελοποίηση}
 	\begin{align*}
-	\begin{aligned}
-	\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-	\end{aligned}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n                                           \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                                                            \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
-	\begin{align*}
-	\begin{aligned}
-	\sum_{r=1}^{3}{\sum_{c=3+r}^{9-r} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η πρώτη πυραμίδα να έχει μόνο ένα \en k} \\
-	\sum_{c=1}^{3}{\sum_{r=1+c}^{7-c} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η δεύτερη πυραμίδα να έχει μόνο ένα \en k}\\
-	\sum_{r=7}^{9}{\sum_{c=11-r}^{r-7} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η τρίτη πυραμίδα να έχει μόνο ένα \en k} \\
-	\sum_{c=7}^{9}{\sum_{r=13-c}^{c-1} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η τέταρτη πυραμίδα να έχει μόνο ένα \en k} \\
-	\end{aligned}
-	\end{align*}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\en Four Pyramids SUDOKU}
-	\begin{align*}
-	\begin{aligned}
-	\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
-	x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
-	x_{ijk} \in {0,1}
-	\end{aligned}
-	\end{align*}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\en Position SUDOKU}
+	\frametitle{\el Παραλλαγές}
 	\begin{itemize}
-		\item \el Το \en Position SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
+		\item \el Υπάρχουν παραλλαγές του κλασσικού παζλ \textbf{\en Sudoku},
+		\item \el Η επίλυσή τους είναι πιο απαιτητική σε σχέση με το κλασσικό παζλ.
+		\item \el Η μοντελοποίησή του δε διαφέρει
+		      ιδιαίτερα από τη μοντελοποίηση για τα κλασσικά παζλ \textbf{\en Sudoku}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{itemize}
+		\item \el Το \textbf{\en Sudoku} X \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
+		\item \el Έχει τον επιπλεόν κανόνα ότι οι δύο μεγάλες διαγώνιοι του πίνακα πρέπει να περιέχουν κάθε ψηφίο από το 1 μέχρι το \en n \el ακριβώς μία φορά η κάθε μία.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.7]{figures/sudokuX.jpg}
+		\caption{Παράδειγμα ενός \textbf{Sudoku} X παζλ. Οι δύο μεγάλες διαγώνιοι είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{mytheorem}{\textbf{\en Sudoku} X}{}
+		\el Οι κανόνες για το \textbf{\en Sudoku} X \el σε έναν πίνακα μεγέθους \(n \times n\) με υποπίνακες μεγέθους \(m \times m\), όπου \(m = \sqrt{n}\) είναι: \\
+		\(\bullet\) \el Κάθε γραμμή του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\) \el Κάθε στήλη του πίνακα μεγέθους \en n \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\) \el Κάθε υποπίνακας μεγέθους \(m \times m\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί (1,1) και καταλήγει στο κελί \en (n,n) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+		\(\bullet\) \el Η διαγώνιος του πίνακα που ξεκινά από το κελί \en (1,n) \el και καταλήγει στο κελί \en (n,1) \el να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το \en n. \\
+
+	\end{mytheorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{itemize}
+		\item \el Η μοντελοποίηση του προβλήματος είναι:
+	\end{itemize}
+	\begin{align*}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+			\sum_{r=1}^{n} x_{rrk} = 1 \quad k=1:9                                                       \\ \text{\el μόνο ένα \en k \el στην κύρια διαγώνιο} \\
+			\sum_{r=1}^{n} x_{r(n+1-r)k} = 1 \quad k=1:9                                                 \\ \text{\el μόνο ένα \en k \el στη δευτερεύουσα διαγώνιο} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{\textbf{\en Sudoku} X}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                  \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Το \en Four Square \textbf{Sudoku} \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
+		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
+		\item \el Ο επιπλεόν κανόνας εδώ σχετίζεται με τέσσερις επιπλέον υποπεριοχές στον πίνακα μεγέθους \(3 \times 3\). Στίς περιοχές αυτες πρέπει να περιέχονται όλοι οι ακέραιοι αριθμοί από το 1 ως το 9.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{figures/An-example-Four-Square-Sudoku-puzzle.png}
+		\caption{Παράδειγμα ενός Four Square \textbf{Sudoku} παζλ. Οι τέσσερις περιοχές είναι σημειωμένες με μωβ χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{mytheorem}{\en Four Square \textbf{Sudoku}}{}
+		Οι κανόνες για το Four Square \textbf{Sudoku} σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
+		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
+		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
+		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
+		\(\bullet\) Κάθε υποπεριοχή μεγέθους
+		\(3 \times 3\) να περιέχει όλους τους ακέραιους από το 1 ως το 9. \\
+	\end{mytheorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Η μοντελοποίηση του προβλήματος είναι:
+	\end{itemize}
+	\begin{align*}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+			\sum_{r=i}^{i+2}{\sum_{c=j}^{j+2}x_{rck}} = 1 \quad i=2,6; \quad j=2,6; \quad k=1:9          \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπεριοχή} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Square \textbf{Sudoku}}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                  \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Το \en Four Pyramids \textbf{Sudoku} \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
+		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
+		\item \el Η παραλλαγή είναι παρόμοια με την παραλλαγή στο \en Four Square \textbf{Sudoku} \el , με τη διαφορά ότι εδώ οι επιπλέον υποπεριοχές του πίνακα έχουν τριγωνική μορφή.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{figures/Pyramid Sudoku.png}
+		\caption{Παράδειγμα ενός Four Pyramids \textbf{Sudoku} παζλ. Οι τέσσερις τριγωνικές περιοχές είναι σημειωμένες με γκρί χρώμα. Η κάθε μία πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{mytheorem}{\en Four Pyramids \textbf{Sudoku}}{}
+		Οι κανόνες για το Four Pyramids \textbf{Sudoku} σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
+		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
+		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
+		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
+		\(\bullet\) Κάθε υποπεριοχή μεγέθους
+		\(3 \times 3\) να περιέχει όλους τους ακέραιους από το 1 ως το 9. \\
+	\end{mytheorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Η μοντελοποίηση του προβλήματος είναι:
+	\end{itemize}
+	\begin{align*}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{r=1}^{3}{\sum_{c=3+r}^{9-r} x_{rck}} = 1 \quad k=1:9  \\ \text{\el η πρώτη πυραμίδα να έχει μόνο ένα \en k} \\
+			\sum_{c=1}^{3}{\sum_{r=1+c}^{7-c} x_{rck}} = 1 \quad k=1:9  \\ \text{\el η δεύτερη πυραμίδα να έχει μόνο ένα \en k}\\
+			\sum_{r=7}^{9}{\sum_{c=11-r}^{r-7} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η τρίτη πυραμίδα να έχει μόνο ένα \en k} \\
+			\sum_{c=7}^{9}{\sum_{r=13-c}^{c-1} x_{rck}} = 1 \quad k=1:9 \\ \text{\el η τέταρτη πυραμίδα να έχει μόνο ένα \en k} \\
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Four Pyramids \textbf{Sudoku}}
+	\begin{align*}
+		\begin{aligned}
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                  \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
+	\end{align*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Position \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Το \en Position \textbf{Sudoku} \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
 		\item \el Τα κελιά (1,1) σε όλους τους \(3 \times 3\) υποπίνακες πρέπει να περιέχουν όλους τους ακέραιους από το 1 ως το 9 ακριβώς μια φορά, αντίστοιχα τα κελιά (1,2) όλων των υποπινάκων κοκ.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Position SUDOKU}
+	\frametitle{\en Position \textbf{Sudoku}}
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.2]{figures/positionSUDOKU.png}
-		\caption{Παράδειγμα ενός Position SUDOKU παζλ. Κάθε κελί με το ίδιο χρώμα πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
+		\caption{Παράδειγμα ενός Position \textbf{Sudoku} παζλ. Κάθε κελί με το ίδιο χρώμα πρέπει να περιέχει όλους τους αριθμούς από το 1 εως και το 9 ακριβώς μία φορα τον καθέναν.}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Position SUDOKU}
-	\begin{mytheorem}{\en Position SUDOKU}{}
-		Οι κανόνες για το Position SUDOKU σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
+	\frametitle{\en Position \textbf{Sudoku}}
+	\begin{mytheorem}{\en Position \textbf{Sudoku}}{}
+		Οι κανόνες για το Position \textbf{Sudoku} σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
 		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
 		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
 		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
@@ -464,63 +451,63 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Position SUDOKU}
+	\frametitle{\en Position \textbf{Sudoku}}
 	\begin{itemize}
 		\item \el Η μοντελοποίηση του προβλήματος είναι:
 	\end{itemize}
 	\begin{align*}
-	\min \quad 0^{T}x \\
-	\begin{aligned}
-	\textup{\en s.t.}\quad
-	\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
-	\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
-	\end{aligned}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Position SUDOKU}
+	\frametitle{\en Position \textbf{Sudoku}}
 	\begin{align*}
-	\begin{aligned}
-	\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-	\sum_{i=c}^{9}{\sum_{j=z}^{9} x_{ijk}} = 1 \quad c=1:(3):9 \quad j=1:(3):9 \quad k=1:9 \\ \text{μόνο ένα k σε κελιά υποπινάκων με ίδιες συντεταγμένες } \\
-	\end{aligned}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+			\sum_{i=c}^{9}{\sum_{j=z}^{9} x_{ijk}} = 1 \quad c=1:(3):9 \quad j=1:(3):9 \quad k=1:9       \\ \text{μόνο ένα k σε κελιά υποπινάκων με ίδιες συντεταγμένες } \\
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Position SUDOKU}
+	\frametitle{\en Position \textbf{Sudoku}}
 	\begin{align*}
-	\begin{aligned}
-	\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
-	x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
-	x_{ijk} \in {0,1}
-	\end{aligned}
+		\begin{aligned}
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                  \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
 	\begin{itemize}
-		\item \el Το \en Three Magic SUDOKU \el είναι μία παραλλαγή του κλασσικού \en SUDOKU.
+		\item \el Το \en Three Magic \textbf{Sudoku} \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
 		\item \el Στα σημειωμένα \(3 \times 3\) κουτιά \en (magic) \el οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή αν αθροιστούν δίνουν το ίδιο αποτέλεσμα.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.2]{figures/threemagicSUDOKU.png}
-		\caption{Παράδειγμα ενός Three Magic SUDOKU παζλ. Οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή στα πράσινα \(3 \times 3\) κουτιά πρέπει αν προτεθούν να δίνουν τον ίδιο αριθμό.}
+		\caption{Παράδειγμα ενός Three Magic \textbf{Sudoku} παζλ. Οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή στα πράσινα \(3 \times 3\) κουτιά πρέπει αν προτεθούν να δίνουν τον ίδιο αριθμό.}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
-	\begin{mytheorem}{\en Three Magic SUDOKU}{}
-		Οι κανόνες για το Three Magic SUDOKU σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
+	\frametitle{\en Three Magic \textbf{Sudoku}}
+	\begin{mytheorem}{\en Three Magic \textbf{Sudoku}}{}
+		Οι κανόνες για το Three Magic \textbf{Sudoku} σε έναν πίνακα μεγέθους \(9 \times 9\) με υποπίνακες μεγέθους \(3 \times 3\) είναι: \\
 		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
 		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους 9 να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
 		\(\bullet\) Κάθε υποπίνακας μεγέθους \(3 \times 3\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
@@ -529,100 +516,100 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
 	\begin{itemize}
 		\item \el Η μοντελοποίηση του προβλήματος είναι:
 	\end{itemize}
 	\begin{align*}
-	\min \quad 0^{T}x \\
-	\begin{aligned}
-	\textup{\en s.t.}\quad
-	\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
-	\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
-	\end{aligned}
+		\min \quad 0^{T}x \\
+		\begin{aligned}
+			\textup{\en s.t.}\quad
+			\sum_{i=1}^{n}x_{ijk} = 1 \quad j=1:n, \quad k=1:n \\ \textit{\el μόνο ένα \en k \el σε κάθε στήλη του πίνακα} \\
+			\sum_{j=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad k=1:n \\ \text{\el μόνο ένα \en k \el σε κάθε γραμμή του πίνακα} \\
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
 	\begin{align*}
-	\begin{aligned}
-	\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-	............................................
-	\end{aligned}
+		\begin{aligned}
+			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
+			............................................
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\en Three Magic SUDOKU}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
 	\begin{align*}
-	\begin{aligned}
-	\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
-	x_{ijk} = 1 \forall (i,j,k) \in G \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
-	x_{ijk} \in {0,1}
-	\end{aligned}
+		\begin{aligned}
+			\sum_{k=1}^{n}x_{ijk} = 1 \quad i=1:n, \quad j=1:n \\ \text{\el όλα τα κελιά του πίνακα πρέπει να συμπληρωθούν} \\
+			x_{ijk} = 1 \forall (i,j,k) \in G                  \\ \text{\el τα κελιά του πίνακα που είναι συμπληρωμένα είναι \en "on"} \\
+			x_{ijk} \in {0,1}
+		\end{aligned}
 	\end{align*}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ}
-		\begin{itemize}
-			\item \el Κριτήρια \en sudoku \el παζλ.
-			\item \el Δημιουργία \en sudoku \el με \en bruteforce.
-			\item \el Δημιουργία \en sudoku \el από προγενέστερο παζλ.
-			\item \el Δημουργία \en SUDOKU \el παζλ βάση λογικών στρατηγικών .
-		\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\el Κριτήρια \en SUDOKU \el παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ}
 	\begin{itemize}
-		\item \el Ενα παζλ \en SUDOKU \el οφείλει να πληρεί ορισμένες βασικές προϋποθέσεις,
-		\begin{itemize}
-			\item \el για να έχει λύση
-			\item \el για να επιθυμεί κάποιος να ενασχοληθεί με αυτό.
-		\end{itemize}
+		\item \el Κριτήρια \en sudoku \el παζλ.
+		\item \el Δημιουργία \en sudoku \el με \en bruteforce.
+		\item \el Δημιουργία \en sudoku \el από προγενέστερο παζλ.
+		\item \el Δημουργία \textbf{\en Sudoku} \el παζλ βάση λογικών στρατηγικών .
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\el Κριτήρια \textbf{\en Sudoku} \el παζλ}
+	\begin{itemize}
+		\item \el Ενα παζλ \textbf{\en Sudoku} \el οφείλει να πληρεί ορισμένες βασικές προϋποθέσεις,
+		      \begin{itemize}
+			      \item \el για να έχει λύση
+			      \item \el για να επιθυμεί κάποιος να ενασχοληθεί με αυτό.
+		      \end{itemize}
 		\item \el Τα κριτήρια είναι:
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Κριτήρια \en SUDOKU \el παζλ}
+	\frametitle{\el Κριτήρια \textbf{\en Sudoku} \el παζλ}
 	\begin{itemize}
 		\item \el Να έχει μοναδική λύση.
 		\item \el Να μην απαιτεί από τον λύτη να μπαίνει σε διαδικασία να μαντέψει αν η λύση είναι σωστή ή όχι μία
-δεδομένη στιγμή.
+		      δεδομένη στιγμή.
 		\item \el Να κατατάσσεται ορθά σε επίπεδα δυσκολίας.
 		\item \el Να έχει την ίδια διαβαθμιση δυσκολίας κατά τη διαδικασία επίλυσής
-του.
+		      του.
 		\item \el Να έχει απλή μορφή.
 		\item \el Να είναι συμμετρικό.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ με \en bruteforce}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ με \en bruteforce}
 	\begin{itemize}
 		\item \el Σε έναν
-πίνακα μεγέθους \(n \times n\) τοποθετούμε τυχαία αριθμούς από το 1 ως το \en n \el  στα κελιά του.
-		\item \el Ελέγχουμε αν ο τελικός πίνακας συμμορφώνεται με τους κανόνες του \en SUDOKU.
-		\item \el Η τεχνική αυτή δημιουργεί περίπου \(n^{n}\) διαφορετικούς πίνακες και φυσικα δε συμμορφώνοται όλοι τους με τους κανόνες του \en SUDOKU.
+		      πίνακα μεγέθους \(n \times n\) τοποθετούμε τυχαία αριθμούς από το 1 ως το \en n \el  στα κελιά του.
+		\item \el Ελέγχουμε αν ο τελικός πίνακας συμμορφώνεται με τους κανόνες του \textbf{\en Sudoku}.
+		\item \el Η τεχνική αυτή δημιουργεί περίπου \(n^{n}\) διαφορετικούς πίνακες και φυσικα δε συμμορφώνοται όλοι τους με τους κανόνες του \textbf{\en Sudoku}.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{itemize}
-		\item \el Δημιουργία νέων παζλ βασισμένοι σε κάποιο άλλο \en SUDOKU \el παζλ.
+		\item \el Δημιουργία νέων παζλ βασισμένοι σε κάποιο άλλο \textbf{\en Sudoku} \el παζλ.
 		\item \el Για να το επιτύχουμε αυτό πρέπει
-να διατυπώσουμε μερικούς μαθηματικούς ορισμούς και θεωρήματα.
+		      να διατυπώσουμε μερικούς μαθηματικούς ορισμούς και θεωρήματα.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
-	\begin{mytheorem}{SUDOKU πίνακας}{}
-		Ένας τετραγωνικός πίνακας \(S\) είναι SUDOKU πίνακας αν ισχύουν τα παρακάτω: \\
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
+	\begin{mytheorem}{\textbf{Sudoku} πίνακας}{}
+		Ένας τετραγωνικός πίνακας \(S\) είναι \textbf{Sudoku} πίνακας αν ισχύουν τα παρακάτω: \\
 		\(\bullet\) Αν το μέγεθος του πίνακα είναι \(n\), τότε θα πρέπει να ισχύει ότι \(n = m^{2}\) , όπου το \(m\) μπορεί να είναι οποιοσδήποτε θετικός ακέραιος αριθμός. \\
 		\(\bullet\) Κάθε γραμμή του πίνακα μεγέθους \(n\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το n. \\
 		\(\bullet\) Κάθε στήλη του πίνακα μεγέθους \(n\) να περιέχει ακριβώς μια φορά κάθε ακέραιο αριθμό από το 1 ως το 9. \\
@@ -631,21 +618,21 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{itemize}
 		\item \el Μία πολύ απλή προσέγγιση είναι από ενα παζλ \(S\) να καταλήξουμε σε ένα νέο παζλ \(\overline{S}\) αντιστρέφοντας τον πίνακα \(S\).
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{mytheorem}{\el Θεώρημα}{}
-		Αν ο \(S\) είναι ένας πίνακα SUDOKU, τότε και ο \(S^{T}\) είναι πίνακας SUDOKU.
+		Αν ο \(S\) είναι ένας πίνακα \textbf{Sudoku}, τότε και ο \(S^{T}\) είναι πίνακας \textbf{Sudoku}.
 	\end{mytheorem}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{itemize}
 		\item \el Μία εξίσου έξυπνη ιδέα είναι να αλλάξουμε τις γραμμές με τις στήλες από ενα παζλ \(S\) και να καταλήξουμε σε ένα νέο παζλ \(\overline{S}\).
 		\item \el Με αυτον τον τρόπο παράγουμε περισσότερα από ένα παζλ.
@@ -653,40 +640,40 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{mytheorem}{\el Θεώρημα}{}
-		Αν \(S\) είναι ένας πίνακας SUDOKU, τότε ένας νεός πίνακα SUDOKU \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τη θέση σε γραμμές και στήλες σε επίπεδο υποπίνακα.
+		Αν \(S\) είναι ένας πίνακας \textbf{Sudoku}, τότε ένας νεός πίνακα \textbf{Sudoku} \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τη θέση σε γραμμές και στήλες σε επίπεδο υποπίνακα.
 	\end{mytheorem}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{itemize}
 		\item \el Άλλη μία προσέγγιση είναι να αλλάξουμε τους αριθμούς του παζλ.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el παζλ από προγενέστερα παζλ}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
 	\begin{mytheorem}{\el Θεώρημα}{}
-		Αν \(S\) είναι ένας πίνακας SUDOKU, τότε ένας νεός πίνακα SUDOKU \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τους ακέραιους αριθμούς του \(S\), με ένα προς ένα αντιστοίχιση ανάμεσα στο σύνολο α = \(\left( 1,2,\dots,n\right)\) που κατασκευάζει το \(S\) και στο σύνολο β, που είναι υπεύθυνο για την κατασκευή του \(\overline{S}\) και είναι μία μετάθεση του συνόλου α.
+		Αν \(S\) είναι ένας πίνακας \textbf{Sudoku}, τότε ένας νεός πίνακα \textbf{Sudoku} \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τους ακέραιους αριθμούς του \(S\), με ένα προς ένα αντιστοίχιση ανάμεσα στο σύνολο α = \(\left( 1,2,\dots,n\right)\) που κατασκευάζει το \(S\) και στο σύνολο β, που είναι υπεύθυνο για την κατασκευή του \(\overline{S}\) και είναι μία μετάθεση του συνόλου α.
 	\end{mytheorem}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Δημιουργία \en SUDOKU \el βάση λογικών στρατηγικών}
+	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el βάση λογικών στρατηγικών}
 	\begin{itemize}
 		\item \el Κατασκευή πίνακα και συμπλήρωσή του, βάση λογικών στρατηγικών, με όλους τους αριθμούς από το 1 ως το \en n.
 		\item \el Αφαίρεση ψηφίων
-από τον πίνακα, για να οδηγηθούμε στη τελική μορφή του παζλ.
+		      από τον πίνακα, για να οδηγηθούμε στη τελική μορφή του παζλ.
 		\item \el Έπειτα από κάθε αφαίρεση, έλέγχος	αν το προκύπτον παζλ είναι επιλύσιμο, αλλιώς επανατοποθέτηση.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\el Επίπεδα δυσκολίας \en SUDOKU \el παζλ}
+	\frametitle{\el Επίπεδα δυσκολίας \textbf{\en Sudoku} \el παζλ}
 	\begin{itemize}
-		\item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \en SUDOKU \el παζλ από τον άνθρωπο
+		\item \el Μελέτη των επιπέδων δυσκολίας στην επίλυση \textbf{\en Sudoku} \el παζλ από τον άνθρωπο
 		\item \el Στατιστική προσέγγιση
 		\item \el Επίπεδο δυσκολίας και δεδομένοι όροι στο παζλ.
 	\end{itemize}
@@ -695,12 +682,12 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \begin{frame}
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
-		\item \el Ορίζουμε το πρόβλημα επίλυσης \en SUDOKU \el παζλ ως πρόβλημα ικανοποίησης περιορισμών.
-		\item \el Υπάρχουν δύο προσεγγίζεις για την επίλυση ενός προβλήματος απόφασης για \en SUDOKU \el παζλ,
-		\begin{itemize}
-			\item \en backtracking
-			\item \en constraint propagation
-		\end{itemize}
+		\item \el Ορίζουμε το πρόβλημα επίλυσης \textbf{\en Sudoku} \el παζλ ως πρόβλημα ικανοποίησης περιορισμών.
+		\item \el Υπάρχουν δύο προσεγγίζεις για την επίλυση ενός προβλήματος απόφασης για \textbf{\en Sudoku} \el παζλ,
+		      \begin{itemize}
+			      \item \en backtracking
+			      \item \en constraint propagation
+		      \end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -709,10 +696,10 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\begin{itemize}
 		\item \el Το \en backtracking \el είναι ουσιαστικά ένας \en bruteforce \el τρόπος επίλυσης προβλημάτων περιορισμών.
 		\item \el Ξεκινά με μία κενή ανάθεση τιμών στις μεταβλητές του προβλήματος και αναθέτοντας
-		τιμές τη μία μετά την άλλη επιχειρεί να καταλήξει σε λύση.
+		      τιμές τη μία μετά την άλλη επιχειρεί να καταλήξει σε λύση.
 		\item \el Η τεχνική αυτή είναι σίγουρο πως
-θα καταλήξει σε λύση, αφού ουσιαστικά ελέγχει όλους τους πιθανούς τρόπους με τους οποίους
-μπορεί να συμπληρωθεί ένα παζλ.
+		      θα καταλήξει σε λύση, αφού ουσιαστικά ελέγχει όλους τους πιθανούς τρόπους με τους οποίους
+		      μπορεί να συμπληρωθεί ένα παζλ.
 	\end{itemize}
 \end{frame}
 
@@ -720,7 +707,7 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{figure}
 		\includegraphics[scale=0.2]{./figures/backtracking.png}
-		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) SUDOKU με την τεχνική backtracking}
+		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) \textbf{Sudoku} με την τεχνική backtracking}
 	\end{figure}
 \end{frame}
 
@@ -728,9 +715,9 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
 		\item \el Με την \en constraint propagation \el τεχνική χρησιμοποιούμε τη λογική για να για να βρούμε
-		την τιμή κάποιων μεταβλητών, εξετάζοντας τους περιορισμούς.
+		      την τιμή κάποιων μεταβλητών, εξετάζοντας τους περιορισμούς.
 		\item \el Για κάθε μεταβλητή ορίζουμε ένα
-σύνολο τιμών που μπορεί να λάβει χωρίς να προκαλέσει την παραβίαση κανενός περιορισμού.
+		      σύνολο τιμών που μπορεί να λάβει χωρίς να προκαλέσει την παραβίαση κανενός περιορισμού.
 		\item \el Η τεχική αυτή δεν είναι βέβαιο πως θα οδηγήσει σε λύση, αλλά σίγουρα είναι πιο αποδοτική.
 		\item \el Μπορεί να συνδυαστεί με \en backtracking \el για καλύτερα αποτελέσματα.
 	\end{itemize}
@@ -740,7 +727,7 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{figure}
 		\includegraphics[scale=0.2]{./figures/propagation.png}
-		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) SUDOKU με την τεχνική constraint
+		\caption{Μέρος της διαδικασίας επίλυσης ενός \(4 \times 4\) \textbf{Sudoku} με την τεχνική constraint
 			propagation}
 	\end{figure}
 \end{frame}
@@ -749,14 +736,14 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
 		\item \el Το \en constraint propagation
-\el είναι η τεχνική που χρησιμοποιεί ο ανθρώπινος εγκέφαλος για να επιλύσει ένα \en SUDOKU \el παζλ.
+		      \el είναι η τεχνική που χρησιμοποιεί ο ανθρώπινος εγκέφαλος για να επιλύσει ένα \textbf{\en Sudoku} \el παζλ.
 		\item \el Συγκεκριμένα ο άνθρωπος χρησιμοποιεί δύο είδη τεχνικών:
-		\begin{itemize}
-			\item \en Naked single technique: \el όπου για ένα δεδομένο κελί του πίνακα υπάρχει μόνο μία τιμή που μπορεί να ανατεθεί, καθώς όλες οι
-υπόλοιπες τιμές πλήττουν κάποιον περιορισμο
-			\item \en Hidden single technique: όπου για μία συγκεκριμένη γραμμή ή στήλη ή για έναν συγκεκριμένο
-			υποπίνακα του παζλ υπάρχει μόνο ένα κελί που μπορεί να φιλοξενήσει μία συγκεκριμένη τιμή.
-		\end{itemize}
+		      \begin{itemize}
+			      \item \en Naked single technique: \el όπου για ένα δεδομένο κελί του πίνακα υπάρχει μόνο μία τιμή που μπορεί να ανατεθεί, καθώς όλες οι
+			            υπόλοιπες τιμές πλήττουν κάποιον περιορισμο
+			      \item \en Hidden single technique: όπου για μία συγκεκριμένη γραμμή ή στήλη ή για έναν συγκεκριμένο
+			            υποπίνακα του παζλ υπάρχει μόνο ένα κελί που μπορεί να φιλοξενήσει μία συγκεκριμένη τιμή.
+		      \end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -764,9 +751,9 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Μελέτη των επιπέδων δυσκολίας}
 	\begin{itemize}
 		\item \el Το πείραμα που πραγματοποιήθηκε για να συσχετίσει τη συμπεριφορά των ανθρώπων απέναντι σε παζλ, ώστε να προκύψουν συμπεράσματα για τα επίπεδα δυσκολίας τους αντλεί
-δεδομένα από τον παγκόσμιο ιστό.
-		\item \el Ως μέτρο για την εκτίμηση την δυσκολίας των ανθρώπων να λύσουν ένα παζλ \en SUDOKU \el
-		χρησιμοποιήθηκε ο μέσος χρόνος επίλυσης.
+		      δεδομένα από τον παγκόσμιο ιστό.
+		\item \el Ως μέτρο για την εκτίμηση την δυσκολίας των ανθρώπων να λύσουν ένα παζλ \textbf{\en Sudoku} \el
+		      χρησιμοποιήθηκε ο μέσος χρόνος επίλυσης.
 	\end{itemize}
 \end{frame}
 
@@ -781,10 +768,10 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 \begin{frame}
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{itemize}
-		\item \el Παραθέτουμε στατιστική μελέτη του ζητήματος της ταξινόμησης των \en SUDOKU \el παζλ
-		ανάλογα με το επίπεδο δυσκολίας τους, που πραγματοποιήθηκε με πραγματικά δεδομένα από το διαδίκτυο.
+		\item \el Παραθέτουμε στατιστική μελέτη του ζητήματος της ταξινόμησης των \textbf{\en Sudoku} \el παζλ
+		      ανάλογα με το επίπεδο δυσκολίας τους, που πραγματοποιήθηκε με πραγματικά δεδομένα από το διαδίκτυο.
 		\item \el Τα εν λόγω δεδομένα ήταν
-ορθές καταχωρήσεις λυμένων παζλ από χρήστες του Διαδικτύου σε ένα καθημερινό διαγωνισμό.
+		      ορθές καταχωρήσεις λυμένων παζλ από χρήστες του Διαδικτύου σε ένα καθημερινό διαγωνισμό.
 		\item \el Καθημερινά συγκεντρώνονταν 2000 με 3000 καταχωρήσεις σωστά λυμένων παζλ.
 	\end{itemize}
 \end{frame}
@@ -793,9 +780,9 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{itemize}
 		\item \el Τα επίπεδα δυσκολίας ήταν από πριν καθορισμένα και η μελέτη αυτή ήρθε να επιβεβαιώσει
-		την κατηγοριοποίηση τους σε \en ”Gentle”, ”Moderate”, ”Tough” \el και \en ”Diabolical”.
+		      την κατηγοριοποίηση τους σε \en ”Gentle”, ”Moderate”, ”Tough” \el και \en ”Diabolical”.
 		\item \el Αφού οι άνθρωποι έλυναν κάποιο/-α παζλ έπειτα έπρεπε να δηλώσουν τον χρόνο που
-		χρειάστηκαν, για να καταφέρουν να φτάσουν στη λύση.
+		      χρειάστηκαν, για να καταφέρουν να φτάσουν στη λύση.
 		\item \el Η επιλογή έγινε από συγκεκριμένα χρονικά διαστήματα,
 		\item \el Παραθέτουμε τα αποτελέσματα της μελέτης.
 	\end{itemize}
@@ -805,7 +792,7 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
 		\includegraphics[scale=0.3]{./figures/stat1.png}
-		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
+		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των \textbf{Sudoku} ανάλογα με
 			το επίπεδο δυσκολίας τους. Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
 	\end{figure}
@@ -815,7 +802,7 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
 		\includegraphics[scale=0.3]{./figures/stat2.png}
-		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
+		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των \textbf{Sudoku} ανάλογα με
 			το επίπεδο δυσκολίας τους . Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
 	\end{figure}
@@ -825,7 +812,7 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\frametitle{\el Στατιστική μελέτη}
 	\begin{figure}
 		\includegraphics[scale=0.3]{./figures/stat3.png}
-		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των SUDOKU ανάλογα με
+		\caption{Γράφημα της στατιστικής μελέτης για την ταξινόμηση των \textbf{Sudoku} ανάλογα με
 			το επίπεδο δυσκολίας τους . Gentle = ανοιχτό πράσινο, Moderate = σκούρο πράσινο, Tough =
 			κίτρινο, Diabolical = κόκκινο}
 	\end{figure}
@@ -836,8 +823,8 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\begin{itemize}
 		\item \el Τα συμπληρωμένα κελιά ενός παζλ καθορίζουν σημαντικά τα επίπεδα δυσκολίας	ενός παζλ.
 		\item \el Το πλήθος των συμπληρωμένων κελιών, καθώς επίσης και οι θέσεις τους στον πίνακα
-		 παίζουν καθοριστικό ρόλο για το πώς θα χαρακτηριστεί ένα παζλ.
-		 \item \el Οι παρακάτω πίνακες συνοψίζουν τη σχετική γνώση.
+		      παίζουν καθοριστικό ρόλο για το πώς θα χαρακτηριστεί ένα παζλ.
+		\item \el Οι παρακάτω πίνακες συνοψίζουν τη σχετική γνώση.
 	\end{itemize}
 \end{frame}
 
@@ -849,15 +836,15 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 			Επίπεδο δυσκολίας & Πλήθος δεδομένων κελιών \\
 
 			\hline
-			Πολύ εύκολο & Περισσότερα από 46  \\
+			Πολύ εύκολο       & Περισσότερα από 46      \\
 			\hline
-			Εύκολο & 36-46  \\
+			Εύκολο            & 36-46                   \\
 			\hline
-			Μέτριο & 32-35  \\
+			Μέτριο            & 32-35                   \\
 			\hline
-			Δύσκολο & 28-31  \\
+			Δύσκολο           & 28-31                   \\
 			\hline
-			Πολύ δύσκολο & 17-27  \\
+			Πολύ δύσκολο      & 17-27                   \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -871,22 +858,22 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 			Επίπεδο δυσκολίας & Ελάχιστος δεδομένα κελιά ανά γραμμή/στήλη \\
 
 			\hline
-			Πολύ εύκολο & 5  \\
+			Πολύ εύκολο       & 5                                         \\
 			\hline
-			Εύκολο & 4  \\
+			Εύκολο            & 4                                         \\
 			\hline
-			Μέτριο & 3  \\
+			Μέτριο            & 3                                         \\
 			\hline
-			Δύσκολο & 2  \\
+			Δύσκολο           & 2                                         \\
 			\hline
-			Πολύ δύσκολο & 0  \\
+			Πολύ δύσκολο      & 0                                         \\
 			\hline
 		\end{tabular}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{References(1)}
+	\frametitle{References}
 	\begin{itemize}
 		\item \textit{\en Sudoku Creation and Grading, Andrew C. Stuart, \el Φεβρουάριος 2007 - ενημερώθηκε τον Ιανουάριος 2012}
 		\item \textit{\en An Exhaustive Study on different Sudoku Solving Techniques, Arnab Kumar Maji, Sunanda Jana, Sudipta Roy, Rajat Kumar Pal, International Journal of Computer Science Issues, Vol. 11, Issue 2, No 1, \el Μάρτιος 2014}
@@ -894,32 +881,32 @@ SUDOKU \el παζλ με βάση κινέζικα σύμβολα, κινέζι�
 	\end{itemize}
 \end{frame}
 
-	\begin{frame}
-	\frametitle{References(2)}
+\begin{frame}
+	\frametitle{References}
 	\begin{itemize}
 		\item \textit{"The History of Sudoku",www.sudoku.com, https://sudoku.com/how-to-play/the-history-of-sudoku/}
 		\item \textit{"Howard Garns", https://en.wikipedia.org/wiki/Howard\_Garns}
 		\item \textit{Binary Integer Programming and its Use for EnvelopeDetermination,
-		Vladimir Y. Lunin, Alexandre Urzhumtsev, Alexander Bockmayr}
+			      Vladimir Y. Lunin, Alexandre Urzhumtsev, Alexander Bockmayr}
 		\item \textit{\en An Integer Programming Model for the Sudoku Problem,
-		Andrew C. Bartlett, Timothy P. Chartier, Amy N. Langville, Timothy D. Rankin, \el 3 Μάη 2008}
+			      Andrew C. Bartlett, Timothy P. Chartier, Amy N. Langville, Timothy D. Rankin, \el 3 Μάη 2008}
 	\end{itemize}
 \end{frame}
 
-	\begin{frame}
-		\frametitle{References(3)}
-		\begin{itemize}
+\begin{frame}
+	\frametitle{References}
+	\begin{itemize}
 		\item \textit{\el Τεχνητή Νοημοσύνη Μία σύγχρονη προσέγγιση, Δεύτερη Αμερικανική έκδοση, εκδό-
-			σεις Κλειδάριθμος, \en Stuart Russell, Peter Norvig, ISBN: 960-209-873-2, \el Κεφάλαιο 5 Προβ-
-			λήματα Ικανοποίησης Περιορισμών, σελ.:179,180,181}
+			      σεις Κλειδάριθμος, \en Stuart Russell, Peter Norvig, ISBN: 960-209-873-2, \el Κεφάλαιο 5 Προβ-
+			      λήματα Ικανοποίησης Περιορισμών, σελ.:179,180,181}
 		\item \textit{\en The number of \(9 \times 9\) Latin squares, Discrete Mathematics, Stanley Bammel and
-Jermome Rothstein, 1975}
+			      Jermome Rothstein, 1975}
 		\item \textit{\en There are 6670903752021072936960 Sudoku grids, Bertram Felgenhauer and Frazer
-			Jarvis, http://www.afjarvis.staff.shef.ac.uk/sudoku/}
+			      Jarvis, http://www.afjarvis.staff.shef.ac.uk/sudoku/}
 		\item \textit{There are 5472730538 essentially different Sudoku grids . . . and the Sudoku symme-
-			try group, Ed Russell and Frazer Jarvis, http://www.afjarvis.staff.shef.ac.uk/
-			sudoku/sudgroup.html/}
-		\end{itemize}
-	\end{frame}
+			      try group, Ed Russell and Frazer Jarvis, http://www.afjarvis.staff.shef.ac.uk/
+			      sudoku/sudgroup.html/}
+	\end{itemize}
+\end{frame}
 
 \end{document}

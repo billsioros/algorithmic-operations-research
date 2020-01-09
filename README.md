@@ -13,7 +13,7 @@
 
 ## Presentation Topic
 
-* [Sudoku from a Linear Programming perspective](SUDOKU/README.md)
+* [Sudoku from the perspective of Linear Programming](SUDOKU/README.md)
 
 ## Contributors
 

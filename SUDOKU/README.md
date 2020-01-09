@@ -1,5 +1,5 @@
 
-## Sudoku from a Linear Programming perspective
+## Sudoku from the perspective of Linear Programming
 
 * [Slides](./slides/presentation.pdf)
 * [Text](./text/presentation.pdf)

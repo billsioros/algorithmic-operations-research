@@ -16,6 +16,9 @@
 \newtcbtheorem{mytheorem}{\el Ορισμός}%
 {colback=blue!5,colframe=black!15!black,fonttitle=\bfseries}{th}
 
+\newtcbtheorem{mytheor}{\el Θεώρημα}%
+{colback=blue!5,colframe=black!15!black,fonttitle=\bfseries}{th}
+
 \newcommand{\en}{\selectlanguage{english}}
 \newcommand{\el}{\selectlanguage{greek}}
 
@@ -470,7 +473,7 @@
 	\begin{align*}
 		\begin{aligned}
 			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-			\sum_{i=c}^{9}{\sum_{j=z}^{9} x_{ijk}} = 1 \quad c=1:(3):9 \quad j=1:(3):9 \quad k=1:9       \\ \text{μόνο ένα k σε κελιά υποπινάκων με ίδιες συντεταγμένες } \\
+			\sum_{a=0}^{2}{\sum_{b=0}^{2}{x_{\left(3a+i\right)\left(3b+j\right)k}}} = 1 \quad i=1,2,3 \quad j=1,2,3 \quad k=1:9 \\ \text{μόνο ένα k σε κελιά υποπινάκων με ίδιες συντεταγμένες } \\
 		\end{aligned}
 	\end{align*}
 \end{frame}
@@ -492,6 +495,17 @@
 		\item \el Το \en Three Magic \textbf{Sudoku} \el είναι μία παραλλαγή του κλασσικού \textbf{\en Sudoku}.
 		\item \el Υποθέτουμε ότι αναφερόμαστε σε παζλ \(9 \times 9\).
 		\item \el Στα σημειωμένα \(3 \times 3\) κουτιά \en (magic) \el οι 3 αριθμοί σε κάθε στήλη και οι 3 αριθμοί σε κάθε γραμμή αν αθροιστούν δίνουν το ίδιο αποτέλεσμα.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\en Three Magic \textbf{Sudoku}}
+	\begin{itemize}
+		\item \el Το αποτέλεσμα αυτό είναι ο αριθμός 15!
+		\item \el Αν αθροίσουμε γραμμές και στήλες στα \(3 \times 3\) κουτιά, κάθε αριθμός προστίθεται 2 φορές.
+		\item \el Το άθροισμα των αριθμών από το 1 ως το 9 είναι 45.
+		\item \el Άρα το παραπάνω άθροισμα είναι 90.
+		\item \el Αν διαιρέσουμε το 90 με το 6 (3 στήλες και 3 γραμμές) προκύπτει το 15. 
 	\end{itemize}
 \end{frame}
 
@@ -535,7 +549,8 @@
 	\begin{align*}
 		\begin{aligned}
 			\sum_{j=mq-m+1}^{mq} {\sum_{i=mp-m+1}^{mp}x_{ijk}} = 1 \quad k=1:n, \quad p=1:m, \quad q=1:m \\ \text{\el μόνο ένας ακέραιος \en k \el σε κάθε υποπίνακα} \\
-			............................................
+			\sum_{c=7}^{9}{\sum_{k=1}^{9}{kx_{rck}}} = 15 \quad r = 1:3 \\ \text{\el αθροίσματα γραμμών} \\
+			\sum_{r=1}^{3}{\sum_{k=1}^{9}{kx_{rck}}} = 15 \quad c = 7:9 \\ \text{\el αθροίσματα στηλών}
 		\end{aligned}
 	\end{align*}
 \end{frame}
@@ -626,9 +641,9 @@
 
 \begin{frame}
 	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
-	\begin{mytheorem}{\el Θεώρημα}{}
+	\begin{mytheor}{}{}
 		Αν ο \(S\) είναι ένας πίνακα \textbf{Sudoku}, τότε και ο \(S^{T}\) είναι πίνακας \textbf{Sudoku}.
-	\end{mytheorem}
+	\end{mytheor}
 \end{frame}
 
 \begin{frame}
@@ -641,9 +656,9 @@
 
 \begin{frame}
 	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
-	\begin{mytheorem}{\el Θεώρημα}{}
+	\begin{mytheor}{}{}
 		Αν \(S\) είναι ένας πίνακας \textbf{Sudoku}, τότε ένας νεός πίνακα \textbf{Sudoku} \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τη θέση σε γραμμές και στήλες σε επίπεδο υποπίνακα.
-	\end{mytheorem}
+	\end{mytheor}
 \end{frame}
 
 \begin{frame}
@@ -655,9 +670,9 @@
 
 \begin{frame}
 	\frametitle{\el Δημιουργία \textbf{\en Sudoku} \el παζλ από προγενέστερα παζλ}
-	\begin{mytheorem}{\el Θεώρημα}{}
+	\begin{mytheor}{}{}
 		Αν \(S\) είναι ένας πίνακας \textbf{Sudoku}, τότε ένας νεός πίνακα \textbf{Sudoku} \(\overline{S}\) μπορεί να δημιουργηθεί αλλάζοντας τους ακέραιους αριθμούς του \(S\), με ένα προς ένα αντιστοίχιση ανάμεσα στο σύνολο α = \(\left( 1,2,\dots,n\right)\) που κατασκευάζει το \(S\) και στο σύνολο β, που είναι υπεύθυνο για την κατασκευή του \(\overline{S}\) και είναι μία μετάθεση του συνόλου α.
-	\end{mytheorem}
+	\end{mytheor}
 \end{frame}
 
 \begin{frame}

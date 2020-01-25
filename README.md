@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Exercises
+## Homework
 
 * [Homework 1](Homework_1/homework.pdf)
 * [Homework 2](Homework_2/homework.pdf)
@@ -12,7 +12,7 @@
 * [Homework 5](Homework_5/homework.pdf)
 * [Homework 6](Homework_6/homework.pdf)
 
-## Presentation Topic
+## Presentation
 
 * [Sudoku from the perspective of Linear Programming](SUDOKU/README.md)
 
@@ -21,26 +21,8 @@
 * [Σιώρος Βασίλειος](https://github.com/billsioros)
 * [Ανδρινοπούλου Χριστίνα](https://github.com/ChristinaAndrinopoyloy)
 
-# LaTeX Project Base Generation
+## Source Code
 
-```bash
-usage: generate.py [-h] [-l LOAD] -s SAVE [-f]
-
-LaTeX Project Base Generation
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -l LOAD, --load LOAD  specify the input file
-  -s SAVE, --save SAVE  specify the output file
-  -f, --force           do not prompt before overwriting
-```
-
-## Example
-
-```bash
-python generate.py -l "..\Algorithmic Operation Research_hw_4.pdf" -fs .\Homework_4\homework.tex
-```
-
-# Special Thanks To
-
-* [Carbon](https://carbon.now.sh/) for providing us with beautiful images of our source code
+* [Parsing homework assignments and generating LaTeX](https://github.com/billsioros/latex-homework-parser)
+* [2D Pattern Classification via Linear Programming for presentation purposes only](https://github.com/billsioros/classifier2D)
+* [Creating and Solving Variations of Sudoku Puzzles](https://github.com/billsioros/sudoku-generator-n-solver)

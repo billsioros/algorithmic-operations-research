@@ -18,7 +18,7 @@
 
 ## Contributors
 
-* [Sioros Vaileios](https://github.com/billsioros)
+* [Sioros Vasileios](https://github.com/billsioros)
 * [Andrinopoulou Christina](https://github.com/ChristinaAndrinopoyloy)
 
 ## Source Code

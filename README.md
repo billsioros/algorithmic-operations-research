@@ -18,8 +18,8 @@
 
 ## Contributors
 
-* [Σιώρος Βασίλειος](https://github.com/billsioros)
-* [Ανδρινοπούλου Χριστίνα](https://github.com/ChristinaAndrinopoyloy)
+* [Sioros Vaileios](https://github.com/billsioros)
+* [Andrinopoulou Christina](https://github.com/ChristinaAndrinopoyloy)
 
 ## Source Code
 
